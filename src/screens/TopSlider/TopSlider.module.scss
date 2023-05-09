@@ -1,0 +1,32 @@
+.screen {
+     :global(.swiper-slide-next) {
+          transform: translateX(-50px) scale(.9) !important;
+     }
+
+     :global(.Carousel) {
+          height: 600px;
+     }
+
+     :global(.swiper-slide) {
+          opacity: .3;
+          transition: var(--transition);
+          :global(.carousel-info) {
+               opacity: 0;
+               transform: translateY(-100px) scale(0.8);
+               transition: .5s;
+          }
+     }
+
+     :global(.swiper-slide-active) {
+          z-index: 2;
+          opacity: 1;
+          :global(.carousel-info) {
+               opacity: 1;
+               transform: translateY(0);
+          }
+     }
+
+     :global(.swiper-slide-prev) {
+          transform: translateX(50px) scale(.9) !important;
+     }
+}

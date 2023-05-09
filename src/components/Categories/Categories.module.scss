@@ -1,0 +1,12 @@
+.container {
+     padding-top: 35px;
+     padding-bottom: 50px;
+}
+
+.list {
+     display: flex;
+     align-items: center;
+     column-gap: 20px;
+     row-gap: 20px;
+     flex-wrap: wrap;
+}

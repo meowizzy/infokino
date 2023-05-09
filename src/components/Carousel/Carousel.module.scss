@@ -1,0 +1,13 @@
+.slider {
+     overflow: hidden;
+     display: flex;
+     position: relative;
+     :global(.swiper) {
+          overflow: visible;
+          height: 100%;
+     }
+}
+
+.slider :global(.swiper) {
+     position: static;
+}

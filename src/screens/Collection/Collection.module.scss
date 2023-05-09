@@ -1,0 +1,16 @@
+.Screen {
+     padding-bottom: 60px;
+     :global(.container) {
+          position: relative;
+     }
+     :global(.Carousel) {
+          padding: 15px 0;
+     }
+
+     :global(.swiper-button-prev) {
+          left: 20px;
+     }
+     :global(.swiper-button-next) {
+          right: 20px;
+     }
+}

@@ -1,0 +1,11 @@
+export const ERROR_MESSAGE = 'Упс... Что-то пошло не так ☹';
+
+export const GET_FILMS_BY_GENRE = "GET_FILMS_BY_GENRE";
+export const SET_NEW_FILMS = "SET_NEW_FILMS";
+export const SET_NEW_FILMS_ERROR = "SET_NEW_FILMS_ERROR";
+export const SET_COMEDY_FILMS = "SET_COMEDY_FILMS";
+export const SET_COMEDY_FILMS_ERROR= "SET_COMEDY_FILMS_ERROR";
+export const SET_DRAMA_FILMS = "SET_DRAMA_FILMS";
+export const SET_DRAMA_FILMS_ERROR = "SET_DRAMA_FILMS_ERROR";
+export const SET_FAMILY_FILMS = "SET_FAMILY_FILMS";
+export const SET_FAMILY_FILMS_ERROR = "SET_FAMILY_FILMS_ERROR";

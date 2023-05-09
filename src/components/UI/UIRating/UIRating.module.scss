@@ -1,0 +1,20 @@
+.default {
+     padding: 7px 10px;
+     border-radius: var(--radius-medium);
+     background-color: var(--primary);
+     color: var(--color-white);
+     font-weight: 300;
+}
+
+
+.small {
+     font-size: 13px;
+}
+
+.medium {
+     font-size: 15px;
+}
+
+.large {
+     font-size: 17px;
+}

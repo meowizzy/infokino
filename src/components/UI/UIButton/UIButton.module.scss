@@ -1,0 +1,46 @@
+.primary {
+     background-color: var(--primary);
+     border-radius: var(--radius-semi);
+     padding: 15px 26px;
+     
+     &:hover {
+          background-color: var(--primary-hover);
+     }
+}
+
+
+.default {
+     background-color: transparent;
+     &:hover {
+          color: var(--color-main);
+          svg {
+               path, circle, line {
+                    stroke: var(--color-main);
+               }
+          }
+     }
+}
+
+.button {
+     display: flex;
+     align-items: center;
+     cursor: pointer;
+     font-size: 15px;
+     font-family: var(--main-font);
+     transition: var(--transition);
+     color: var(--color-white);
+     border: 0;
+     svg {
+          width: 19px;
+          height: 19px;
+          margin-right: 10px;
+          path, circle, line {
+               transition: var(--transition);
+          }
+     }
+}
+
+.button:disabled {
+     opacity: 0.6;
+     pointer-events: none;
+}
