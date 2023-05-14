@@ -3,12 +3,16 @@ import { ReactComponent as AuthIcon } from "@public/images/user-icon.svg";
 import { ReactComponent as SearchIcon } from "@public/images/search-icon.svg";
 import { Header } from "@components/Header";
 import { Logo } from "@components/Logo";
+import { MenuList } from "@components/MenuList";
 
 export const HeaderPanel = () => {
      return (
           <Header 
                LeftSide={
-                    <Logo />
+                    <>
+                         <Logo />
+                         <MenuList />
+                    </>
                }
                RightSide={
                     <>

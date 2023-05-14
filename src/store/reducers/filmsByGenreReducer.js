@@ -12,7 +12,7 @@ const initialState = {
 };
 
 
-const filmsReducer = (state = initialState, action) => {
+const filmsByGenreReducer = (state = initialState, action) => {
      switch(action.type) {
           case SET_NEW_FILMS:
                return { ...state, newFilms: [...action.payload] }
@@ -26,4 +26,4 @@ const filmsReducer = (state = initialState, action) => {
      }
 };
 
-export default filmsReducer;
+export default filmsByGenreReducer;

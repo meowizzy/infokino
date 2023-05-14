@@ -1,0 +1,36 @@
+.container {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     height: 100%;
+     flex-direction: column;
+     text-align: center;
+     margin-top: 200px;
+}
+
+.pic {
+     height: 140px;
+     width: 140px;
+     svg {
+          max-width: 100%;
+          max-height: 100%;
+          path {
+               transition: var(--transition);
+          }
+     }
+
+     &:hover {
+          svg {
+               path {
+                    fill: var(--color-white);
+               }
+          }
+     }
+}
+
+.text {
+     font-family: serif;
+     color: var(--color-white);
+     font-size: 30px;
+     margin-top: 10px;
+}

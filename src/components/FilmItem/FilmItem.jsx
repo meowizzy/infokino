@@ -10,6 +10,7 @@ export const FilmItem = ({ item, clas }) => {
      const { poster, name, alternativeName, year, movieLength, rating } = item;
      const filmDuration = getFilmDuration(movieLength);
 
+
      return (
           <div className={cn(styles.item, clas)}>
                <div className={cn(styles.item__pic, {
@@ -24,7 +25,7 @@ export const FilmItem = ({ item, clas }) => {
                               {year} 
                          </p>
                          <p className={styles.item__duration}>
-                              {filmDuration}
+                              {movieLength ? filmDuration : "Сериал"}
                          </p>
                     </div>
                </div>

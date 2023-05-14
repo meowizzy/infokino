@@ -2,19 +2,19 @@ import { API_VERSIONS, reqInstance } from "@api/constants";
 import getCurrentYear from "@helpers/getCurrentYear";
 
 const kinoinfoApi = {
-     async getBaseUrl() {
-          const response = await reqInstance.get(`${API_VERSIONS.API_VER_1_3}/movie`);
-
-          return await response.data;
+     async getAllFilms(page = 1) {
+          const response = await reqInstance.get(`${API_VERSIONS.API_VER_1_3}/movie?page=${page}&limit=20`);
+     
+          return await response.data.docs;
      },
 
      async getNewFilms(limit = 10) {
-          const resposne = await reqInstance.get(`${API_VERSIONS.API_VER_1_3}/movie?year=${getCurrentYear()}&sortField=rating.kp&sortType=-1&type=movie&limit=${limit}&page=1`);
+          const resposne = await reqInstance.get(`${API_VERSIONS.API_VER_1_3}/movie?year=${getCurrentYear()-1}-${getCurrentYear()}&sortField=rating.kp&sortType=-1&type=movie&limit=${limit}&page=1`);
           return await resposne.data.docs;
      },
 
      async getFilmsByGenre(limit = 10, genre) {
-          const response = await reqInstance.get(`${API_VERSIONS.API_VER_1_3}/movie?year=${getCurrentYear()}&genres.name=${genre}&sortField=rating.kp&sortType=-1&type=movie&limit=${limit}&page=1`);
+          const response = await reqInstance.get(`${API_VERSIONS.API_VER_1_3}/movie?year=${getCurrentYear()-1}-${getCurrentYear()}&genres.name=${genre}&sortField=rating.kp&sortType=-1&type=movie&limit=${limit}&page=1`);
           return await response.data.docs;
      },
 
@@ -37,6 +37,7 @@ const kinoinfoApi = {
 
 
 export const { 
+     getAllFilms,
      getFilmById,
      getNewFilms,
      getFilmsByGenre,

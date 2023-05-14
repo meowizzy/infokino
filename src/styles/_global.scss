@@ -93,3 +93,24 @@ body {
           transform: rotate(180deg);
      }
 }
+
+
+.App {
+     display: flex;
+     flex-direction: column;
+     justify-content: stretch;
+     flex: 1;
+
+     main {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: stretch;
+     }
+}
+
+#root {
+     min-height: 100vh;
+     display: flex;
+     flex-direction: column;
+}

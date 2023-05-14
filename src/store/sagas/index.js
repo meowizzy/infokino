@@ -1,17 +1,32 @@
-import { takeLatest, put, call, fork } from 'redux-saga/effects';
-import { getNewFilms, getFilmsByGenre  } from '@services/kinoinfo';
-import { GET_FILMS_BY_GENRE } from "../constants";
+import { takeLatest, put, call, fork, select } from 'redux-saga/effects';
+import { getNewFilms, getFilmsByGenre, getAllFilms  } from '@services/kinoinfo';
+import { GET_ALL_FILMS, GET_FILMS_BY_GENRE } from "../constants";
 import { API_GENRES } from "@api/constants";
-import {  setNewFilmsAction, 
+import {  setAllFilmsAction,
+          setAllFilmsErrorAction,
+          setNewFilmsAction, 
           setComedyFilmsAction, 
           setDramaFilmsAction, 
           setFamilyFilmsAction, 
           setNewFilmsErrorAction,
           setFamilyFilmsErrorAction,
           setComedyFilmsErrorAction,
-          setDramaFilmsErrorAction
+          setDramaFilmsErrorAction,
+          setAllFilmsLoadingAction
 } from '../actions/actionCreator';
 
+
+export function* handleAllFilmsWorker() {
+     try {
+          const page = yield select(state => state.allFilmsReducer.page);
+          const data = yield call(getAllFilms, page);
+          yield put(setAllFilmsLoadingAction(false));
+          yield put(setAllFilmsAction(data));
+     } catch(e) {
+          yield put(setAllFilmsErrorAction());
+          yield put(setAllFilmsLoadingAction(false));
+     }
+}
 
 export function* handleNewFilmsWorker() {
      try {
@@ -57,6 +72,7 @@ export function* handleFilmsByGenreWorker() {
 }
 
 export function* watcherSaga() {
+     yield takeLatest(GET_ALL_FILMS, handleAllFilmsWorker);
      yield takeLatest(GET_FILMS_BY_GENRE, handleFilmsByGenreWorker);
 }
 

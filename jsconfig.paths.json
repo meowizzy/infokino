@@ -10,7 +10,10 @@
           "@styles/*": ["./src/styles"],
           "@components/*": ["./src/components"],
           "@store/*": ["./src/store"],
-          "@screens/*": ["./src/screens/"]
+          "@screens/*": ["./src/screens/"],
+          "@hooks/*": ["./src/hooks/"],
+          "@layouts/*": ["./src/layouts/"],
+          "@pages/*": ["./src/pages/"]
     }
   }
 }

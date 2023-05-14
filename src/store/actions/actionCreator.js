@@ -1,18 +1,60 @@
-import {  ERROR_MESSAGE,
-          SET_COMEDY_FILMS,
-          SET_COMEDY_FILMS_ERROR,
-          SET_NEW_FILMS, 
-          SET_NEW_FILMS_ERROR,
-          SET_DRAMA_FILMS,
-          SET_DRAMA_FILMS_ERROR, 
-          SET_FAMILY_FILMS,
-          SET_FAMILY_FILMS_ERROR,
-          GET_FILMS_BY_GENRE
+import {  
+     ERROR_MESSAGE,
+     SET_ALL_FILMS,
+     SET_ALL_FILMS_ERROR,
+     SET_ALL_FILMS_LOADING,
+     SET_FILMS_PAGE,
+     SET_COMEDY_FILMS,
+     SET_COMEDY_FILMS_ERROR,
+     SET_NEW_FILMS, 
+     SET_NEW_FILMS_ERROR,
+     SET_DRAMA_FILMS,
+     SET_DRAMA_FILMS_ERROR, 
+     SET_FAMILY_FILMS,
+     SET_FAMILY_FILMS_ERROR,
+     GET_FILMS_BY_GENRE,
+     GET_ALL_FILMS
 } from "../constants";
 
 export const getFilmsByGenre = () => {
      return { type: GET_FILMS_BY_GENRE }
 }
+
+// ALL FILMS
+
+export const getAllFilms = () => {
+     return { type: GET_ALL_FILMS }
+}
+
+export const setAllFilmsAction = data => {
+     return { 
+          type: SET_ALL_FILMS,
+          payload: data
+     }
+}
+
+export const setAllFilmsErrorAction = (string = ERROR_MESSAGE) => {
+     return { 
+          type: SET_ALL_FILMS_ERROR,
+          payload: string
+     }
+}
+
+export const setAllFilmsLoadingAction = (bool) => {
+     return { 
+          type: SET_ALL_FILMS_LOADING,
+          payload: bool
+     }
+}
+
+export const setAllFilmsPage = page => {
+     return {
+          type: SET_FILMS_PAGE,
+          payload: page
+     }
+};
+
+// ALL FILMS
 
 
 // COMEDY

@@ -11,7 +11,7 @@ const initialState = {
      familyFilmsError: ''
 };
 
-const filmsErrorReducer = (state = initialState, action) => {
+const filmsByGenreErrorReducer = (state = initialState, action) => {
      switch(action.type) {
           case SET_NEW_FILMS_ERROR:
                return { ...state, newFilmsError: action.payload }
@@ -25,4 +25,4 @@ const filmsErrorReducer = (state = initialState, action) => {
      }
 };
 
-export default filmsErrorReducer;
+export default filmsByGenreErrorReducer;

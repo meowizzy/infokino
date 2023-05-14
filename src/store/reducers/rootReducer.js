@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
-import filmsReducer from "./filmsReducer";
-import filmsErrorReducer from "./filmsErrorReducer";
+import filmsReducer from "./filmsByGenreReducer";
+import filmsErrorReducer from "./filmsByGenreErrorReducer";
+import { allFilmsReducer } from "./allFilmsReducer";
 
 const rootReducer = combineReducers({
      filmsReducer,
-     filmsErrorReducer
+     filmsErrorReducer,
+     allFilmsReducer
 });
 
 
