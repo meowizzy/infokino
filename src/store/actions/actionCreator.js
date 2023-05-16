@@ -3,6 +3,7 @@ import {
      SET_ALL_FILMS,
      SET_ALL_FILMS_ERROR,
      SET_ALL_FILMS_LOADING,
+     SET_FILMS_PAGES,
      SET_FILMS_PAGE,
      SET_COMEDY_FILMS,
      SET_COMEDY_FILMS_ERROR,
@@ -54,6 +55,12 @@ export const setAllFilmsPage = page => {
      }
 };
 
+export const setFilmsPages = data => {
+     return {
+          type: SET_FILMS_PAGES,
+          payload: data
+     }
+};
 // ALL FILMS
 
 

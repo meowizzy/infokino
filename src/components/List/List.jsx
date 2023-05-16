@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types';
 import { UILoader } from '../UI';
 import { FilmItem } from '../FilmItem';
 import styles from './List.module.scss';
 
-export const List = ({ items, isLoading }) => {
 
+export const List = ({ items, isLoading }) => {
      if (!items.length) {
           return (
                <UILoader />
@@ -22,4 +23,9 @@ export const List = ({ items, isLoading }) => {
                { isLoading && <UILoader /> }
           </>
      );
+};
+
+List.propTypes = {
+     items: PropTypes.array,
+     isLoading: PropTypes.bool
 };

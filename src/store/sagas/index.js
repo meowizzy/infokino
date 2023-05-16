@@ -12,7 +12,8 @@ import {  setAllFilmsAction,
           setFamilyFilmsErrorAction,
           setComedyFilmsErrorAction,
           setDramaFilmsErrorAction,
-          setAllFilmsLoadingAction
+          setAllFilmsLoadingAction,
+          setFilmsPages
 } from '../actions/actionCreator';
 
 
@@ -21,7 +22,8 @@ export function* handleAllFilmsWorker() {
           const page = yield select(state => state.allFilmsReducer.page);
           const data = yield call(getAllFilms, page);
           yield put(setAllFilmsLoadingAction(false));
-          yield put(setAllFilmsAction(data));
+          yield put(setAllFilmsAction(data.docs));
+          yield put(setFilmsPages(data.pages));
      } catch(e) {
           yield put(setAllFilmsErrorAction());
           yield put(setAllFilmsLoadingAction(false));

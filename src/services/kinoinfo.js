@@ -2,10 +2,10 @@ import { API_VERSIONS, reqInstance } from "@api/constants";
 import getCurrentYear from "@helpers/getCurrentYear";
 
 const kinoinfoApi = {
-     async getAllFilms(page = 1) {
-          const response = await reqInstance.get(`${API_VERSIONS.API_VER_1_3}/movie?page=${page}&limit=20`);
-     
-          return await response.data.docs;
+     async getAllFilms(page = 1, type='movie') {
+          const response = await reqInstance.get(`${API_VERSIONS.API_VER_1_3}/movie?page=${page}&limit=20&type=${type}`);
+          
+          return await response.data;
      },
 
      async getNewFilms(limit = 10) {
