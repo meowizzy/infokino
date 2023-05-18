@@ -14,7 +14,8 @@ import {
      SET_FAMILY_FILMS,
      SET_FAMILY_FILMS_ERROR,
      GET_FILMS_BY_GENRE,
-     GET_ALL_FILMS
+     GET_ALL_FILMS,
+     SET_ALL_FILMS_TYPE
 } from "../constants";
 
 export const getFilmsByGenre = () => {
@@ -59,6 +60,13 @@ export const setFilmsPages = data => {
      return {
           type: SET_FILMS_PAGES,
           payload: data
+     }
+};
+
+export const setFilmsType = type => {
+     return {
+          type: SET_ALL_FILMS_TYPE,
+          payload: type
      }
 };
 // ALL FILMS

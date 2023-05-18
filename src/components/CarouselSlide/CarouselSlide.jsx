@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
-import { UIRating } from '../UI';
+import { Link } from 'react-router-dom';
+import { UIRating, UIButton } from '../UI';
 import cn from 'classnames';
 import styles from './CarouselSlide.module.scss';
 
 export const CarouselSlide = ({ item, clas }) => {
-     const { poster, name, rating, alternativeName, shortDescription } = item;
+     const { poster, name, rating, alternativeName, shortDescription, id } = item;
 
      return (
           <div className={cn(styles.item, clas)}>
@@ -19,6 +20,9 @@ export const CarouselSlide = ({ item, clas }) => {
                     <div className={styles.item__desc}>
                          {shortDescription}
                     </div>
+                    <Link to={`/film/${id}`}>
+                         <UIButton text="Смотреть"/>
+                    </Link>
                </div>
                <UIRating text={rating.kp.toFixed(1)} type="large"/>
           </div>

@@ -5,8 +5,11 @@ import styles from './MenuList.module.scss';
 
 export const MenuList = () => {
      const items = [
-          {href: routes.home.path, text: 'Главная'},
-          {href: routes.films.path, text: 'Все фильмы'}
+          { path: "/", title: "Главная" },
+          { path: "films/movie", title: "Фильмы"},
+          { path: "films/cartoon", title: "Мультфильмы" },
+          { path: "films/tv-series", title: "Сериалы" },
+          { path: "films/anime", title: "Аниме" },
      ];
 
      return (
@@ -14,9 +17,10 @@ export const MenuList = () => {
                <ul className={styles.navigation__list}>
                     {
                          items.map(item => {
+                              if (item.path === '*') return '';
                               return (
-                                   <li key={item.href} className={styles.navigation__item}>
-                                        <NavLink to={item.href} children={item.text}/>
+                                   <li key={item.path} className={styles.navigation__item}>
+                                        <NavLink to={item.path} children={item.title}/>
                                    </li>
                               )
                          })

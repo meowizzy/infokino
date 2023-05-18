@@ -1,19 +1,22 @@
+import { memo } from 'react';
 import PropTypes from 'prop-types';
 import getFilmDuration from '@helpers/getFilmDuration';
+import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import { UIRating } from '../UI';
 
 import styles from './FilmItem.module.scss';
-import { memo } from 'react';
+
 
 export const FilmItem = memo(
      ({ item, clas }) => {
-          const { poster, name, alternativeName, year, movieLength, rating } = item;
+          const { poster, name, alternativeName, year, movieLength, rating, id } = item;
           const filmDuration = getFilmDuration(movieLength);
 
 
           return (
                <div className={cn(styles.item, clas)}>
+                    <Link className={styles.item__link} to={`/film/${id}`}/>
                     <div className={cn(styles.item__pic, {
                          [styles.item__no_pic]: poster
                     })}>

@@ -9,6 +9,10 @@
      display: flex;
      align-items: flex-end;
 
+     a {
+          text-decoration: none;
+     }
+
      &__info {
           position: relative;
           z-index: 1;

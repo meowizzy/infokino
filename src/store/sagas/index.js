@@ -20,7 +20,8 @@ import {  setAllFilmsAction,
 export function* handleAllFilmsWorker() {
      try {
           const page = yield select(state => state.allFilmsReducer.page);
-          const data = yield call(getAllFilms, page);
+          const type = yield select(state => state.allFilmsReducer.type);
+          const data = yield call(getAllFilms, page, type);
           yield put(setAllFilmsLoadingAction(false));
           yield put(setAllFilmsAction(data.docs));
           yield put(setFilmsPages(data.pages));

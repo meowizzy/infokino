@@ -1,4 +1,4 @@
-import { SET_ALL_FILMS, SET_ALL_FILMS_ERROR, SET_FILMS_PAGE, SET_ALL_FILMS_LOADING, SET_FILMS_PAGES } from "../constants";
+import { SET_ALL_FILMS, SET_ALL_FILMS_ERROR, SET_FILMS_PAGE, SET_ALL_FILMS_LOADING, SET_FILMS_PAGES, SET_ALL_FILMS_TYPE, CLEAR_FILMS_LIST } from "../constants";
 
 
 const initialState = {
@@ -6,7 +6,8 @@ const initialState = {
      allFilmsError: '',
      page: 1,
      loading: false,
-     pages: 10
+     pages: 10,
+     type: "movies"
 }
 
 
@@ -20,8 +21,12 @@ export const allFilmsReducer = (state = initialState, action) => {
                return { ...state, page: action.payload }
           case SET_FILMS_PAGES:
                return { ...state, pages: action.payload }
+          case SET_ALL_FILMS_TYPE:
+               return { ...state, type: action.payload }
           case SET_ALL_FILMS_LOADING: 
                return { ...state, loading: action.payload }
+          case CLEAR_FILMS_LIST: 
+               return { ...state, allFilms: []}
           default: 
                return state;
      }
