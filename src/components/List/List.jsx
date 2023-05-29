@@ -15,9 +15,7 @@ export const List = ({ items, isLoading }) => {
           <>
                <div className={styles.items}>
                     {
-                         items.map(item => (
-                              <FilmItem key={item.id} item={item}/>
-                         ))
+                         items.map(item => <FilmItem key={item.id} item={item}/>)
                     }
                </div>
                { isLoading && <UILoader /> }

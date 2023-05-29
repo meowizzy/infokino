@@ -1,42 +1,48 @@
+import { useEffect } from "react";
+import { useParams, useSearchParams } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
+import { setFilmsFilter } from "@store/actions/actionCreator";
+import { CLEAR_FILMS_LIST } from "@store/constants/allfilms";
 import convertMovieType from "@helpers/convertMovieType";
-import { useParams } from 'react-router-dom';
 import useScrollFetching from "@hooks/useScrollFetching";
 import { List } from "@components/List";
 import { UITitle } from "@components/UI";
-import { useEffect } from "react";
-import { setFilmsType, setAllFilmsPage } from "@store/actions/actionCreator";
-import { CLEAR_FILMS_LIST } from "@store/constants";
+import { Filter } from "@components/Filter";
 
 const FilmsPage = () => {
-     const films = useSelector(state => state.allFilmsReducer.allFilms);
-     const isLoading = useSelector(state => state.allFilmsReducer.loading);
+     const data = useSelector(state => state.allFilmsReducer);
+     const isLoading = data.loading;
      const dispatch = useDispatch();
      const param = useParams();
+     const [ searchParams ] = useSearchParams();
      const title = convertMovieType(param.type).main;
 
      const config = {
-          data: films,
+          data: data.allFilms,
           isLoading
      };
 
      useScrollFetching(config);
 
      useEffect(() => {
-          dispatch(setFilmsType(param.type));
+          dispatch(setFilmsFilter({
+               type: param.type,
+               genre: searchParams.get('genre'),
+               sorting: searchParams.get('sorting')
+          }));
 
           return () => {
                dispatch({type: CLEAR_FILMS_LIST});
-               dispatch(setAllFilmsPage(1));
           };
-     }, [dispatch, param.type]);
+     }, [dispatch, param.type, searchParams]);
 
      return (
           <>
                <h1>
                     <UITitle title={title}/>
                </h1>
-               <List items={films} isLoading={isLoading}/>
+               <Filter />
+               <List items={data.allFilms} isLoading={isLoading}/>
           </>
      );
 };

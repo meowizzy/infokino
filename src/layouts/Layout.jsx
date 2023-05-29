@@ -3,11 +3,11 @@ import { HeaderPanel } from "@containers/HeaderPanel";
 
 const Layout = () => {
      const location = useLocation();
-     const isMain = location.pathname === '/';
+     const withoutContainer = location.pathname === '/' || location.pathname.includes('/film/');
 
      let container;
 
-     if (isMain) {
+     if (withoutContainer) {
           container = (
                <Outlet />
           );

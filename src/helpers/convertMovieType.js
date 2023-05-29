@@ -8,6 +8,8 @@ const convertMovieType = (type) => {
                return { main: "Мультфильмы", secondary: "мультик" };
           case 'anime':
                return { main: "Аниме", secondary: "аниме" };
+          case 'animated-series':
+               return { main: "Анимационные сериалы", secondary: "анимационный сериал" };
           default: 
                return { main: "", secondary: "" };
 	}

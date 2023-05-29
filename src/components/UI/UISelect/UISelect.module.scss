@@ -1,0 +1,102 @@
+.wrapper {
+     position: relative;
+     color: #fff;
+     width: auto;
+}
+
+.header {
+     background-color: #222225;
+     padding: 8px 20px;
+     transition: 0.3s;
+     cursor: pointer;
+     border-radius: 5px;
+     width: 100%;
+     position: relative;
+     overflow: hidden;
+     transition: 0.3s;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     z-index: 1001;
+}
+
+.overlay {
+     position: fixed;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     z-index: 1000;
+}
+
+.header span {
+     position: relative;
+     display: inline-flex;
+     align-items: center;
+     column-gap: 10px;
+     pointer-events: none;
+}
+
+.header span:before {
+     content: "";
+     width: 15px;
+     height: 15px;
+     background-image: url("data:image/svg+xml,%3Csvg width='10' height='7' viewBox='0 0 10 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='10' height='1' rx='0.5' fill='%23D9D9D9'/%3E%3Crect y='6' width='6' height='1' rx='0.5' fill='%23D9D9D9'/%3E%3Crect y='3' width='8' height='1' rx='0.5' fill='%23D9D9D9'/%3E%3C/svg%3E");
+     background-repeat: no-repeat;
+     background-position: center;
+     background-size: cover;
+}
+
+.header:hover {
+     background-color: #2a2a2e;
+}
+
+.header::before {
+     content: "";
+     position: absolute;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     background-color: rgba(255, 255, 255, 0);
+}
+
+.header:active::before,
+.header.active::before {
+     background-color: rgba(255, 255, 255, 0.2);
+}
+
+.header.active svg {
+     transform: rotate(180deg);
+}
+
+.dropDown {
+     position: absolute;
+     z-index: 1001;
+     top: calc(100% + 10px);
+     right: 0;
+     list-style: none;
+     margin: 0;
+     padding: 0;
+     border-radius: 5px;
+     overflow: hidden;
+     min-width: 250px;
+     background-color: #222225;
+     color: #fff;
+     flex-direction: column;
+}
+
+.dropDown li {
+     padding: 8px 20px;
+     transition: 0.3s;
+     cursor: pointer;
+}
+
+.dropDown li:hover {
+     background-color: #2a2a2e;
+}
+
+.dropDown li:active,
+.dropDown li.active {
+     background-color: rgba(255, 255, 255, 0.1);
+}

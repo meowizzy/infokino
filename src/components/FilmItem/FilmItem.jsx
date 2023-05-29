@@ -18,7 +18,7 @@ export const FilmItem = memo(
                <div className={cn(styles.item, clas)}>
                     <Link className={styles.item__link} to={`/film/${id}`}/>
                     <div className={cn(styles.item__pic, {
-                         [styles.item__no_pic]: poster
+                         [styles.item__no_pic]: !poster
                     })}>
                          { poster ? <img src={poster.previewUrl} alt={name || alternativeName} /> : ''}
                     </div>

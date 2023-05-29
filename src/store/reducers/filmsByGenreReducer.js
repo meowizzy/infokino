@@ -2,7 +2,7 @@ import { SET_COMEDY_FILMS,
           SET_NEW_FILMS, 
           SET_DRAMA_FILMS, 
           SET_FAMILY_FILMS,
-} from "../constants";
+} from "../constants/genre";
 
 const initialState = {
      newFilms: [],

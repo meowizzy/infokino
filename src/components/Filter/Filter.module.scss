@@ -1,0 +1,39 @@
+.filter_panel {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     flex-wrap: wrap;
+     position: relative;
+
+     &__dropdown {
+          position: absolute;
+          top: calc(100% + 10px);
+          left: 0;
+          right: 0;
+          background-color: #121212;
+          border-radius: var(--radius-medium);
+          padding: 20px;
+     }
+
+     &__fields {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          column-gap: 15px;
+          row-gap: 15px;
+     }
+
+     &__filter_btn {
+          font-size: 16px;
+          border-radius: var(--radius-medium);
+          padding: 8px 20px;
+          font-weight: 300;
+     }
+
+     &__btns {
+          margin-top: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          column-gap: 15px;
+     }
+}

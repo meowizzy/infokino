@@ -1,8 +1,9 @@
+import cn from 'classnames';
 import styles from './UILoader.module.scss';
 
-const UILoader = () => {
+const UILoader = ({ customClass = '' }) => {
      return (
-          <div className={styles.wrapper}>
+          <div className={cn(styles.wrapper, customClass)}>
                <div className={styles.lds_ellipsis}>
                     <div key={1}></div>
                     <div key={2}></div>

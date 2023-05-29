@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom';
-import routes from '@api/routes';
 import styles from './MenuList.module.scss';
 
 
@@ -10,6 +9,7 @@ export const MenuList = () => {
           { path: "films/cartoon", title: "Мультфильмы" },
           { path: "films/tv-series", title: "Сериалы" },
           { path: "films/anime", title: "Аниме" },
+          { path: "films/animated-series", title: "Анимационные сериалы" },
      ];
 
      return (

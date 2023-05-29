@@ -21,7 +21,7 @@ const RoutesCustom = ({ children }) => {
 
      TopBarProgress.config({
           barColors: {
-               "0": "#8c98ff"
+               "0": "#406AFF"
           },
           shadowBlur: 5
      });

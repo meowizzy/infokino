@@ -1,22 +1,11 @@
-import {  
-     ERROR_MESSAGE,
-     SET_ALL_FILMS,
-     SET_ALL_FILMS_ERROR,
-     SET_ALL_FILMS_LOADING,
-     SET_FILMS_PAGES,
-     SET_FILMS_PAGE,
-     SET_COMEDY_FILMS,
-     SET_COMEDY_FILMS_ERROR,
-     SET_NEW_FILMS, 
-     SET_NEW_FILMS_ERROR,
-     SET_DRAMA_FILMS,
-     SET_DRAMA_FILMS_ERROR, 
-     SET_FAMILY_FILMS,
-     SET_FAMILY_FILMS_ERROR,
-     GET_FILMS_BY_GENRE,
-     GET_ALL_FILMS,
-     SET_ALL_FILMS_TYPE
-} from "../constants";
+import { ERROR_MESSAGE } from "../constants";
+import { GET_ALL_FILMS, SET_ALL_FILMS_ERROR, SET_ALL_FILMS, SET_ALL_FILMS_LOADING, SET_FILMS_PAGES, SET_FILMS_PAGE, SET_FILMS_FILTERS } from "../constants/allfilms";
+import { SET_COMEDY_FILMS, 
+          SET_NEW_FILMS, 
+          SET_NEW_FILMS_ERROR, 
+          SET_COMEDY_FILMS_ERROR, 
+          SET_DRAMA_FILMS, SET_DRAMA_FILMS_ERROR, GET_FILMS_BY_GENRE, SET_FAMILY_FILMS, SET_FAMILY_FILMS_ERROR } from "../constants/genre";
+import { GET_FILM_BY_ID, SET_FILM_BY_ID_ERROR, SET_FILM_ID, SET_FILM_BY_ID } from "../constants/filmById";
 
 export const getFilmsByGenre = () => {
      return { type: GET_FILMS_BY_GENRE }
@@ -63,13 +52,34 @@ export const setFilmsPages = data => {
      }
 };
 
-export const setFilmsType = type => {
+export const setFilmsFilter = obj => {
      return {
-          type: SET_ALL_FILMS_TYPE,
-          payload: type
+          type: SET_FILMS_FILTERS,
+          payload: obj
      }
 };
 // ALL FILMS
+
+
+// FILM BY GENRE
+
+export const getFilmByIdAction = () => {
+     return { type: GET_FILM_BY_ID } 
+};
+
+export const setFilmByIdAction = data => {
+     return { type: SET_FILM_BY_ID, payload: data }
+};
+
+
+export const setFilmByIdErrorAction = (msg = ERROR_MESSAGE) => {
+     return { type: SET_FILM_BY_ID_ERROR, payload: msg } 
+};
+
+export const setFilmId = (id) => {
+     return { type: SET_FILM_ID, payload: id } 
+};
+// FILM BY GENRE
 
 
 // COMEDY

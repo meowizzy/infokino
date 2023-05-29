@@ -12,17 +12,25 @@ import { ReactComponent as TrillerIcon } from "@public/images/trillerssvg.svg";
 
 
 export const Categories = () => {
+     const list = [
+          { path: "/films/movie?sorting=year", text: "Новинки", icon: NewIcon},
+          { path: "/films/movie?genre=приключения", text: "Приключения", icon: FantasyIcon},
+          { path: "/films/movie?genre=ужасы", text: "Ужасы", icon: TrillerIcon},
+          { path: "/films/movie?genre=комедия", text: "Комедии", icon: ComedyIcon},
+          { path: "/films/movie?sorting=rating.kp", text: "Популярное", icon: PopularIcon},
+          { path: "/films/movie?genre=семейный", text: "Семейные", icon: FamilyIcon},
+          { path: "/films/movie?genre=драма", text: "Драмы", icon: RomanticIcon},
+     ];
+
      return (
           <div className={styles.container}>
                <nav className={cn(styles.nav, 'container')}>
                     <ul className={styles.list}>
-                         <CategoriesItem text="Новинки" icon={NewIcon}/>
-                         <CategoriesItem text="Приключения" icon={FantasyIcon}/>
-                         <CategoriesItem text="Ужасы" icon={TrillerIcon}/>
-                         <CategoriesItem text="Комедии" icon={ComedyIcon}/>
-                         <CategoriesItem text="Популярное" icon={PopularIcon}/>
-                         <CategoriesItem text="Семейные" icon={FamilyIcon}/>
-                         <CategoriesItem text="Мелодраммы" icon={RomanticIcon}/>
+                         {
+                              list.map(item => (
+                                   <CategoriesItem key={item.path} path={item.path} text={item.text} icon={item.icon}/>
+                              ))
+                         }
                     </ul>
                </nav>
           </div>

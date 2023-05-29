@@ -2,7 +2,7 @@ import { SET_COMEDY_FILMS_ERROR,
           SET_NEW_FILMS_ERROR, 
           SET_DRAMA_FILMS_ERROR, 
           SET_FAMILY_FILMS_ERROR,
-} from "../constants";
+} from "../constants/genre";
 
 const initialState = {
      newFilmsError: '',

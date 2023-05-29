@@ -23,7 +23,7 @@
                     width: 0;
                     height: 1px;
                     background-color: var(--color-main);
-                    transition: var(--transition);
+                    transition: 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
                }
 
                &:hover, &:global(.active) {

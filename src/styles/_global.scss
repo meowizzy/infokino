@@ -114,3 +114,97 @@ body {
      display: flex;
      flex-direction: column;
 }
+
+
+html body .custom-select {
+     &__control {
+          background-color: var(--primary);
+          border: 0 !important;
+          box-shadow: none !important;
+          border-radius: var(--radius-medium);
+          &--is-focused, &--menu-is-open {
+               border: 0;
+          }
+     }
+
+     &__menu {
+          background-color: var(--primary);
+          
+          & > div {
+               &::-webkit-scrollbar {
+                    width: 4px;
+               }
+          
+               &::-webkit-scrollbar-track {
+                    background: transparent;
+               }
+          
+          
+               &::-webkit-scrollbar-thumb {
+                    background-color: #808080;
+                    border-radius: 2px;
+               }
+          }
+     }
+
+     &__option {
+          cursor: pointer;
+
+          &--is-focused, &:active {
+               background-color: var(--color-main);
+          }
+     }
+
+     &__multi-value {
+          background-color: var(--color-main);
+
+          &__label {
+               color: var(--color-white);
+          }
+
+          &__remove, &__remove:hover {
+               background-color: var(--color-main-hover);
+               cursor: pointer;
+
+               svg path {
+                    fill: var(--color-white);
+               }
+          }
+     }
+
+     &__value-container {
+
+     }
+
+     &__placeholder {
+          color: var(--color-white);
+     }
+
+     &__input-container {
+
+     }
+
+     &__input {
+          color: var(--color-white) !important;
+     }
+
+     &__indicators {
+
+     }
+
+     &__indicator-separator {
+
+     }
+
+     &__indicator {
+          svg path {
+               fill: var(--color-white);
+               cursor: pointer;
+          }
+     }
+
+     &__dropdown-indicator {
+
+     }
+}
+

@@ -10,7 +10,7 @@ const HomePage = () => {
      const films = useSelector(state => state.filmsReducer);
      const newFilms = films.newFilms;
 
-     useFetching(getFilmsByGenre);
+     useFetching(getFilmsByGenre, newFilms);
 
      return (
           <>

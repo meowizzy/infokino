@@ -3,11 +3,11 @@ import cn from 'classnames';
 import styles from './UIButton.module.scss';
 
 
-const UIButton = ({ text, Icon, type = 'primary', ...props }) => {
+const UIButton = ({ text, classes, Icon, type = 'primary', ...props }) => {
      const icon = Icon ? <Icon/> : '';
 
      return (
-          <button className={cn(styles.button, styles[type])} {...props}>
+          <button className={cn(styles.button, styles[type], classes)} {...props}>
                {icon}
                <span>{text}</span>
           </button>
