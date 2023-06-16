@@ -1,14 +1,19 @@
 import PropTypes from 'prop-types';
 import { UILoader } from '../UI';
 import { FilmItem } from '../FilmItem';
+import { Error } from '../Error';
 import styles from './List.module.scss';
 
 
-export const List = ({ items, isLoading }) => {
-     if (!items.length) {
+export const List = ({ items, isLoading, error }) => {
+     if (!items.length && !error) {
           return (
                <UILoader />
           );
+     }
+
+     if (error) {
+          return <Error message="Ничего не найдено"/>
      }
 
      return (

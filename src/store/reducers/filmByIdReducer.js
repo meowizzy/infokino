@@ -2,7 +2,7 @@ import { SET_FILM_BY_ID, SET_FILM_BY_ID_ERROR, SET_FILM_ID } from "../constants/
 
 const initialState = {
      data: null,
-     error: "",
+     error: false,
      id: null
 };
 

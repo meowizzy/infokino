@@ -4,6 +4,7 @@
      justify-content: space-between;
      flex-wrap: wrap;
      position: relative;
+     margin-bottom: 20px;
 
      &__dropdown {
           position: absolute;
@@ -13,11 +14,17 @@
           background-color: #121212;
           border-radius: var(--radius-medium);
           padding: 20px;
+          z-index: 10;
+          display: none;
+
+          &.opened {
+               display: block;
+          }
      }
 
      &__fields {
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
+          grid-template-columns: repeat(3, 1fr);
           column-gap: 15px;
           row-gap: 15px;
      }

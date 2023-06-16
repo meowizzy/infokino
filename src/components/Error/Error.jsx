@@ -1,9 +1,9 @@
 import styles from './Error.module.scss';
 
-export const Error = () => {
+export const Error = ({ message = "Упс... что-то пошло не так!" }) => {
      return (
           <div className={styles.container}>
-               <p>Упс... что-то пошло не так!🙁</p>
+               <p>{message}🙁</p>
           </div>
      );
 };   

@@ -24,10 +24,10 @@ export const setAllFilmsAction = data => {
      }
 }
 
-export const setAllFilmsErrorAction = (string = ERROR_MESSAGE) => {
+export const setAllFilmsErrorAction = (error = false) => {
      return { 
           type: SET_ALL_FILMS_ERROR,
-          payload: string
+          payload: error
      }
 }
 
@@ -72,8 +72,8 @@ export const setFilmByIdAction = data => {
 };
 
 
-export const setFilmByIdErrorAction = (msg = ERROR_MESSAGE) => {
-     return { type: SET_FILM_BY_ID_ERROR, payload: msg } 
+export const setFilmByIdErrorAction = (error = false) => {
+     return { type: SET_FILM_BY_ID_ERROR, payload: error } 
 };
 
 export const setFilmId = (id) => {
@@ -108,10 +108,10 @@ export const setNewFilmsAction = data => {
      }
 }
 
-export const setNewFilmsErrorAction = (string = ERROR_MESSAGE) => {
+export const setNewFilmsErrorAction = (error = false) => {
      return { 
           type: SET_NEW_FILMS_ERROR,
-          payload: string
+          payload: error
      }
 }
 
@@ -125,10 +125,10 @@ export const setDramaFilmsAction = data => {
      }
 }
 
-export const setDramaFilmsErrorAction = (string = ERROR_MESSAGE) => {
+export const setDramaFilmsErrorAction = (error = false) => {
      return { 
           type: SET_DRAMA_FILMS_ERROR,
-          payload: string
+          payload: error
      }
 }
 // DRAMA END
@@ -141,10 +141,10 @@ export const setFamilyFilmsAction = data => {
      }
 }
 
-export const setFamilyFilmsErrorAction = (string = ERROR_MESSAGE) => {
+export const setFamilyFilmsErrorAction = (error = false) => {
      return { 
           type: SET_FAMILY_FILMS_ERROR,
-          payload: string
+          payload: error
      }
 }
 

@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 export const useFetching = (someFetchActionCreator, data) => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(someFetchActionCreator());
+    if (!data) dispatch(someFetchActionCreator());
   }, [dispatch, someFetchActionCreator])
 }

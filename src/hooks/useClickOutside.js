@@ -12,8 +12,8 @@ const useClickOutside = (handler) => {
                }
           };
 
-          document.addEventListener('mousedown', handleClick);
-          return () => document.removeEventListener('mousedown', handleClick);
+          document.addEventListener('mouseup', handleClick);
+          return () => document.removeEventListener('mouseup', handleClick);
      }, [handler]);
 
      return filterRef;

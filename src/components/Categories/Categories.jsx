@@ -14,12 +14,12 @@ import { ReactComponent as TrillerIcon } from "@public/images/trillerssvg.svg";
 export const Categories = () => {
      const list = [
           { path: "/films/movie?sorting=year", text: "Новинки", icon: NewIcon},
-          { path: "/films/movie?genre=приключения", text: "Приключения", icon: FantasyIcon},
-          { path: "/films/movie?genre=ужасы", text: "Ужасы", icon: TrillerIcon},
-          { path: "/films/movie?genre=комедия", text: "Комедии", icon: ComedyIcon},
+          { path: "/films/movie?genres.name=приключения", text: "Приключения", icon: FantasyIcon},
+          { path: "/films/movie?genres.name=ужасы", text: "Ужасы", icon: TrillerIcon},
+          { path: "/films/movie?genres.name=комедия", text: "Комедии", icon: ComedyIcon},
           { path: "/films/movie?sorting=rating.kp", text: "Популярное", icon: PopularIcon},
-          { path: "/films/movie?genre=семейный", text: "Семейные", icon: FamilyIcon},
-          { path: "/films/movie?genre=драма", text: "Драмы", icon: RomanticIcon},
+          { path: "/films/movie?genres.name=семейный", text: "Семейные", icon: FamilyIcon},
+          { path: "/films/movie?genres.name=драма", text: "Драмы", icon: RomanticIcon},
      ];
 
      return (

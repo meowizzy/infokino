@@ -2,13 +2,15 @@ import { SET_ALL_FILMS, SET_ALL_FILMS_ERROR, SET_ALL_FILMS_LOADING, SET_FILMS_PA
 
 const initialState = {
      allFilms: [],
-     allFilmsError: '',
+     allFilmsError: false,
      pages: 10,
      loading: false,
      page: 1,
-     filters: {
+     params: {
           type: "movies",
-          genre: null,
+          "genres": null,
+          "countries": null,
+          year: null,
           sorting: null
      }
 }
@@ -25,11 +27,11 @@ export const allFilmsReducer = (state = initialState, action) => {
           case SET_FILMS_PAGES:
                return { ...state, pages: action.payload }
           case SET_FILMS_FILTERS:
-               return { ...state, filters: action.payload }
+               return { ...state, params: action.payload }
           case SET_ALL_FILMS_LOADING: 
                return { ...state, loading: action.payload }
           case CLEAR_FILMS_LIST: 
-               return { ...state, allFilms: [], page: 1}
+               return { ...state, allFilms: [], page: 1, allFilmsError: false, pages: 10}
           default: 
                return state;
      }

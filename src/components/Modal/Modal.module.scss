@@ -1,0 +1,66 @@
+.backdrop {
+     position: fixed;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     background-color: rgba(#000, .9);
+     z-index: 1002;
+     display: flex;
+     flex-direction: column;
+     opacity: 0;
+     pointer-events: none;
+     transition: var(--transition);
+     backdrop-filter: blur(10px);
+     
+     &.isOpened {
+          opacity: 1;
+          pointer-events: all;
+     }
+
+     .close {
+          width: 50px;
+          height: 50px;
+          background-color: transparent;
+          border: 0;
+          outline: none;
+          cursor: pointer;
+          svg {
+               width: 100%;
+               height: 100%;
+          }
+     }
+
+     .header {
+          width: 100%;
+          padding: 20px;
+          border-bottom: 1px solid var(--primary);
+          position: relative;
+          display: flex;
+          text-align: center;
+          align-items: center;
+          justify-content: center;
+          
+          .close {
+               top: 50%;
+               right: 30px;
+               transform: translateY(-50%);
+               position: absolute;
+          }
+     }
+
+     .title {
+          color: var(--color-white);
+          font-size: 35px;
+          text-align: center;
+          font-weight: 300;
+     }
+
+     .content {
+          .close {
+               position: absolute;
+               top: 40px;
+               right: 40px;
+          }
+     }    
+}

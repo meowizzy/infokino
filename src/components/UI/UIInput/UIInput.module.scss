@@ -1,0 +1,15 @@
+.base {
+     $self: &;
+     background-color: var(--primary);
+     border-radius: var(--radius-medium);
+     border: 0;
+     outline: none;
+     padding: 8px;
+     color: var(--color-white);
+     font-size: 16px;
+     transition: var(--transition);
+
+     &::placeholder {
+          color: var(--color-white)
+     }
+}

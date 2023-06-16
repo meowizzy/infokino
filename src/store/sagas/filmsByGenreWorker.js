@@ -22,7 +22,7 @@ export function* handleNewFilmsWorker() {
 
 export function* handleFamilyFilmsWorker() {
      try {
-          const data = yield call(getFilmsByGenre, 10, API_GENRES.family)
+          const data = yield call(getFilmsByGenre, 10, { "genres.name": API_GENRES.family })
           yield put(setFamilyFilmsAction(data.docs));
      } catch(e) {
           yield put(setFamilyFilmsErrorAction());
@@ -31,7 +31,7 @@ export function* handleFamilyFilmsWorker() {
 
 export function* handleComedyFilmsWorker() {
      try {
-          const data = yield call(getFilmsByGenre, 10, API_GENRES.comedy)
+          const data = yield call(getFilmsByGenre, 10, { "genres.name": API_GENRES.comedy })
           yield put(setComedyFilmsAction(data.docs));
      } catch(e) {
           yield put(setComedyFilmsErrorAction());
@@ -40,7 +40,7 @@ export function* handleComedyFilmsWorker() {
 
 export function* handleDramaFilmsWorker() {
      try {
-          const data = yield call(getFilmsByGenre, 10, API_GENRES.drama)
+          const data = yield call(getFilmsByGenre, 10, { "genres.name": API_GENRES.drama })
           yield put(setDramaFilmsAction(data.docs));
      } catch(e) {
           yield put(setDramaFilmsErrorAction());

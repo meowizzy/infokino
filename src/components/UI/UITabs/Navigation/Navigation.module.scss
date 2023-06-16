@@ -1,0 +1,10 @@
+.list {
+     display: flex !important;
+     align-items: center !important;   
+     column-gap: 10px !important;
+     white-space: nowrap;
+     overflow: auto;
+     padding: 10px;
+     background-color: var(--primary);
+     border-radius: var(--radius-large);
+}

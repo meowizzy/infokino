@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllFilms, setAllFilmsLoadingAction, setAllFilmsPage } from "@store/actions/actionCreator";
 
 const useScrollFetching = (props) => {
-     const { data, isLoading } = props;
+     const { data, isLoading, error } = props;
      const page = useSelector(state => state.allFilmsReducer.page);
      const pages = useSelector(state => state.allFilmsReducer.pages);
      const dispatch = useDispatch();
 
      useEffect(() => {
-          if (!data.length) dispatch(getAllFilms());
+          if (!data.length && !error) dispatch(getAllFilms());
      }, [data, dispatch]);
 
      useEffect(() => {
@@ -26,9 +26,9 @@ const useScrollFetching = (props) => {
                }
           };
 
-          document.addEventListener('scroll', handleScroll);
+          if (!error) document.addEventListener('scroll', handleScroll);
           return () => document.removeEventListener('scroll', handleScroll);    
-     }, [page]);
+     }, [page, isLoading, error]);
 };
 
 export default useScrollFetching;

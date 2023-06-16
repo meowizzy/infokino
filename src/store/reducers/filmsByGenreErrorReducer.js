@@ -5,10 +5,10 @@ import { SET_COMEDY_FILMS_ERROR,
 } from "../constants/genre";
 
 const initialState = {
-     newFilmsError: '',
-     comedyFilmsError: '',
-     dramaFilmsError: '',
-     familyFilmsError: ''
+     newFilmsError: false,
+     comedyFilmsError: false,
+     dramaFilmsError: false,
+     familyFilmsError: false
 };
 
 const filmsByGenreErrorReducer = (state = initialState, action) => {

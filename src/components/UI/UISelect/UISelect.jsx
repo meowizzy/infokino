@@ -1,14 +1,21 @@
 import { memo, useState } from "react";
+import { useParams } from "react-router";
 import PropTypes from "prop-types";
 import cn from "classnames";
 import useClickOutside from "@hooks/useClickOutside";
 import { ReactComponent as ArrowIcon } from '@public/images/arrow.svg';
 import styles from "./UISelect.module.scss";
+import { useEffect } from "react";
 
 const UISelect = memo(({ options, onChange }) => {
           const [isOpened, setIsOpened] = useState(false);
           const selectRef = useClickOutside(setIsOpened);
           const [selectedOption, setSelectedOption] = useState(options[0]);
+          const params = useParams();
+
+          useEffect(() => {
+               setSelectedOption(options[0]);
+          }, [params.type]);
           
           const handleOpenClick = () => {
                setIsOpened(!isOpened);

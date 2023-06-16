@@ -4,5 +4,7 @@ import UIRating from './UIRating/UIRating';
 import UITitle from './UITitle/UITitle';
 import UIPlayerButton from './UIPlayerButton/UIPlayerButton';
 import UISelect from "./UISelect/UISelect";
+import UIInput from "./UIInput/UIInput";
+import UITabs from "./UITabs/UITabs";
 
-export { UIButton, UILoader, UIRating, UITitle, UIPlayerButton, UISelect };
+export { UIButton, UILoader, UIRating, UITitle, UIPlayerButton, UISelect, UIInput, UITabs };

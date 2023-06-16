@@ -19,16 +19,17 @@ const FilmsPage = () => {
 
      const config = {
           data: data.allFilms,
+          error: data.allFilmsError,
           isLoading
      };
-
-     useScrollFetching(config);
 
      useEffect(() => {
           dispatch(setFilmsFilter({
                type: param.type,
-               genre: searchParams.get('genre'),
-               sorting: searchParams.get('sorting')
+               "genres.name": searchParams.get('genres.name'),
+               "countries.name": searchParams.get('countries.name'),
+               sorting: searchParams.get('sorting'),
+               year: searchParams.get('year')
           }));
 
           return () => {
@@ -36,13 +37,15 @@ const FilmsPage = () => {
           };
      }, [dispatch, param.type, searchParams]);
 
+     useScrollFetching(config);
+
      return (
           <>
                <h1>
                     <UITitle title={title}/>
                </h1>
                <Filter />
-               <List items={data.allFilms} isLoading={isLoading}/>
+               <List items={data.allFilms} isLoading={isLoading} error={data.allFilmsError}/> 
           </>
      );
 };

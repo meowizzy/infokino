@@ -1,0 +1,25 @@
+.button {
+     button {
+          color: var(--color-white);
+          border-radius: var(--radius-small);
+          border: 0;
+          outline: none;
+          font-size: 16px;
+          cursor: pointer;
+          background-color: transparent;
+          padding: 9px 14px;
+          transition: var(--transition);
+          font-family: var(--main-font);
+     }
+     &.active, &:hover {
+          button {
+               background-color: var(--color-main);
+          }
+     }
+
+     &.active {
+          button {
+               cursor: default;
+          }
+     }
+}

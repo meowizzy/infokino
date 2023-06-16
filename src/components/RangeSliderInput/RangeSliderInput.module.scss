@@ -1,0 +1,16 @@
+.wrap {
+     .inputs {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          column-gap: 10px;
+          row-gap: 10px;
+
+          .from, .to {
+               input {
+                    width: 100%;
+                    min-height: 38px;
+               }
+          }
+          margin-bottom: 5px;
+     }
+}

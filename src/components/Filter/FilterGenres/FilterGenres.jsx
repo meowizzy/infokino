@@ -1,35 +1,19 @@
+import genresJSON from '@services/genres.json';
 import { useState } from 'react';
+import { useParams } from 'react-router';
+import makeAnimated from 'react-select/animated';
 import Select from 'react-select';
+import { useEffect } from 'react';
 
 const FilterGenres = () => {
-	const genres = [
-		{ label: 'Все жанры', value: '' },
-		{ label: 'Семейные', value: 'семейный' },
-		{ label: 'Биографии', value: 'биография' },
-		{ label: 'Боевики', value: 'боевик' },
-		{ label: 'Вестерны', value: 'вестерн' },
-		{ label: 'Военные', value: 'военный' },
-		{ label: 'Детективы', value: 'детектив' },
-		{ label: 'Детские', value: 'детский' },
-		{ label: 'Документальные', value: 'документальный' },
-		{ label: 'Драмы', value: 'драма' },
-		{ label: 'Исторические', value: 'история' },
-		{ label: 'Комедии', value: 'комедия' },
-		{ label: 'Короткометражки', value: 'короткометражка' },
-		{ label: 'Криминал', value: 'криминал' },
-		{ label: 'Мелодрамы', value: 'мелодрама' },
-		{ label: 'Музыкальные', value: 'музыка' },
-		{ label: 'Мюзиклы', value: 'мюзикл' },
-		{ label: 'Новости', value: 'новости' },
-		{ label: 'Приключения', value: 'приключения' },
-		{ label: 'Спортивные', value: 'спорт' },
-		{ label: 'Триллеры', value: 'триллер' },
-		{ label: 'Ужасы', value: 'ужасы' },
-		{ label: 'Фантастика', value: 'фантастика' },
-		{ label: 'Фильмы-нуар', value: 'фильм-нуар' },
-		{ label: 'Фэнтези', value: 'фэнтези' },
-	];
+	const genres = genresJSON;
 	const [currentOptions, setCurrentOptions] = useState([genres[0].label]);
+	const animatedComponents = makeAnimated();
+	const params = useParams();
+
+	useEffect(() => {
+		setCurrentOptions([genres[0].label]);
+	}, [params.type]);
 
 	const getValue = () => {
 		if (currentOptions) {
@@ -46,8 +30,8 @@ const FilterGenres = () => {
 
      return (
           <div>
-			<Select value={getValue()} onChange={handleChange} classNamePrefix="custom-select" options={genres} placeholder="Все жанры" isMulti={true} isClearable={true}/>
-			<input type="hidden" name="genres" value={getValue().map(op => op.value).join('+')}/>
+			<Select components={animatedComponents} value={getValue()} onChange={handleChange} classNamePrefix="custom-select" options={genres} placeholder="Жанры" isMulti={true} isClearable={true}/>
+			{ getValue().length ? <input type="hidden" name="genres.name" value={getValue().map(op => op.value).join('+')}/> : '' }
 		</div>
      );
 };

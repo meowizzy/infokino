@@ -1,16 +1,20 @@
 import { API_VERSIONS, reqInstance } from "@api/constants";
 import getCurrentYear from "@helpers/getCurrentYear";
+import buildUrlParams from "@helpers/buildUrlParams";
 
 const kinoinfoApi = {
      async getAllFilms(page = 1, type='movie', sort) {
           const response = await reqInstance.get(`${API_VERSIONS.API_VER_1_3}/movie`, {
                params: {
+                    sortField: sort,
+                    sortType: "-1",
                     year: `1860-${getCurrentYear()}`,
                     page: page,
                     limit: 40,
-                    type: type,
-                    sortField: sort,
-                    sortType: -1
+                    "rating.kp": "1-10",
+                    "poster.previewUrl": "!null",
+                    "poster.url": "!null",
+                    type: type
                }
           });
           
@@ -20,43 +24,63 @@ const kinoinfoApi = {
      async getNewFilms(limit = 10) {
           const resposne = await reqInstance.get(`${API_VERSIONS.API_VER_1_3}/movie`, {
                params: {
+                    sortField: "year",
+                    sortType: "-1",
+                    movieLength: "!null",
+                    "rating.kp": "1-10",
+                    "poster.previewUrl": "!null",
+                    "poster.url": "!null",
                     year: `${getCurrentYear()-1}-${getCurrentYear()}`,
-                    type: 'movie',
                     limit: limit,
-                    page: 1
+                    page: 1,
                }
           });
           return await resposne.data.docs;
      },
 
-     async getFilmsByGenre(limit = 10, genre, page = 1, type='movie', sort) {
+     async getFilmsByGenre(limit = 10, filters, page = 1, type='movie', sort) {
 
-          const response = await reqInstance.get(`${API_VERSIONS.API_VER_1_3}/movie`, {
+          const response = await reqInstance.get(`${API_VERSIONS.API_VER_1_3}/movie?${buildUrlParams(filters)}`, {
                params: {
-                    year: `1860-${getCurrentYear()}`,
-                    "genre.name": genre,
+                    sortField: sort,
+                    sortType: -1,
+                    "poster.previewUrl": "!null",
+                    "poster.url": "!null",
+                    "rating.kp": "1-10",
                     type: type,
                     limit: limit,
-                    page: page,
-                    sortField: sort,
-                    sortType: -1
+                    page: page
                }
           });
+          
           return await response.data;
      },
 
      async getFilmById(id) {
-          if (!id) {
-               console.log("Field ID is empty");
-               return;
-          }
           const response = await reqInstance.get(`${API_VERSIONS.API_VER_1_3}/movie/${id}`);
 
           return await response.data;
      },
      
-     async getSearchQuery(query) {
-          const response = await reqInstance.get(`${API_VERSIONS.API_VER_1_3}/movie/search?query=${query}`);
+     async getSearchQuery(params) {
+          const response = await reqInstance.get(`${API_VERSIONS.API_VER_1_2}/${params.type}/search?limit=50&query=${params.query}`, {
+               params: {
+                    "poster.previewUrl": "!null",
+                    "poster.url": "!null",
+                    "rating.kp": "1-10",
+                    "poster": "!null"
+               }
+          });
+
+          return await response.data;
+     },
+
+     async getCountries() {
+          const response = await reqInstance.get(`${API_VERSIONS.API_VER_1}/movie/possible-values-by-field`, {
+               params: {
+                    field: "countries.name"
+               }
+          });
 
           return await response.data;
      }
@@ -68,5 +92,6 @@ export const {
      getFilmById,
      getNewFilms,
      getFilmsByGenre,
-     getSearchQuery
+     getSearchQuery,
+     getCountries
 } = kinoinfoApi;

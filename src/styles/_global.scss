@@ -208,3 +208,39 @@ html body .custom-select {
      }
 }
 
+
+
+.horizontal-slider {
+     height: 4px;
+     padding: 10px;
+     overflow: hidden;
+     display: flex;
+     align-items: center;
+     .example-thumb {
+          width: 15px;
+          height: 15px;
+          border-radius: 50%;
+          background-color: var(--color-main);
+          cursor: pointer;
+          top: 50%;
+          transform: translateY(-50%);
+     }
+
+     .example-track {
+          height: 4px;
+          width: 100%;
+          border-radius: 5px;
+          cursor: pointer;
+     }
+     .example-track-0 {
+          background-color: var(--primary);
+     }
+
+     .example-track-1 {
+          background-color: var(--color-main);
+     }
+
+     .example-track-2 {
+          background-color: var(--primary);
+     }
+}
