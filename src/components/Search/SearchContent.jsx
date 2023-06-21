@@ -33,7 +33,7 @@ const SearchContent = () => {
                });
                setIsLoading(false);
           })();
-     }, []), 500);
+     }, []), 800);
 
 
      const handleChange = e => {

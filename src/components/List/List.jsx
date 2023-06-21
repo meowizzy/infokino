@@ -5,7 +5,7 @@ import { Error } from '../Error';
 import styles from './List.module.scss';
 
 
-export const List = ({ items, isLoading, error }) => {
+export const List = ({ items, isLoading, error, errorMsg = "Ничего не найдено" }) => {
      if (!items.length && !error) {
           return (
                <UILoader />
@@ -13,7 +13,7 @@ export const List = ({ items, isLoading, error }) => {
      }
 
      if (error) {
-          return <Error message="Ничего не найдено"/>
+          return <Error message={errorMsg}/>
      }
 
      return (

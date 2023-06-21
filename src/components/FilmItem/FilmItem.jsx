@@ -25,15 +25,19 @@ export const FilmItem = memo(
                     <div className={styles.item__info}>
                          <p className={styles.item__title}>{name || alternativeName}</p>
                          <div className={styles.item__info_bot}>
-                              <p className={styles.item__year}>
-                                   {year} 
-                              </p>
-                              <p className={styles.item__duration}>
-                                   {movieLength ? filmDuration : "Сериал"}
-                              </p>
+                              { !!year && 
+                                   <p className={styles.item__year}>
+                                        {year} 
+                                   </p>
+                              }
+                              { !!movieLength &&
+                                   <p className={styles.item__duration}>
+                                        {movieLength ? filmDuration : "Сериал"}
+                                   </p>
+                              }
                          </div>
                     </div>
-                    <UIRating type="medium" text={rating.kp.toFixed(1)}/>
+                    { !!rating && <UIRating type="medium" text={rating.kp.toFixed(1)}/> }
                </div>
           )
      }

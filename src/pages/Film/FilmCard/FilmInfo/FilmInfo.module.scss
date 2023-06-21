@@ -1,14 +1,21 @@
 .info {
      .header {
-
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
      }    
+     :global(.heading) {
+          margin-bottom: 0;
+     }
      .altName {
-
+          width: 100%;
      }
 
      .list {
           flex-direction: column !important;
           row-gap: 15px;
+          margin-top: 30px;
      }
      li {
           display: flex;
@@ -29,6 +36,7 @@
           margin-right: 8px;
           color: var(--color-white);
           font-weight: 400;
+          line-height: 30px;
 
           &:before {
                content: '';
@@ -73,5 +81,6 @@
           border-radius: var(--radius-large);
           background: var(--primary);
           margin: -15px;
+          line-height: 30px;
      }
 }

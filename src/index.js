@@ -5,6 +5,7 @@ import store from '@store/store';
 import { BrowserRouter } from 'react-router-dom';
 import '@styles/index.scss';
 import App from '@containers/App';
+import "@services/firebase";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

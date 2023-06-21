@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { UITitle } from '@components/UI';
+import { UITitle, UIRating } from '@components/UI';
 import Item from './Item/Item';
 import styles from './FilmInfo.module.scss';
 
@@ -17,18 +17,23 @@ const FilmInfo = ({ data }) => {
      return (
           <div className={styles.info}>
                <div className={styles.header}>
-                    <UITitle title={data.name}/>
+                    <UITitle title={data.name} classes="heading"/>
+                    <UIRating type="medium" text={data.rating.kp.toFixed(1)}/>
                     <p className={styles.altName}>{data.alternativeName}</p>
                </div>
                <ul className={styles.list}>
                     { info.map(item => <Item key={item.label} label={item.label} value={item.value} link={item.link}/>) }
                </ul>
-               <div className={styles.description}>
-                    <UITitle title="Описание: "/>
-                    <div className={styles.description_body}>
-                         {data.description}
+               {
+                    !!data.description && 
+                    
+                    <div className={styles.description}>
+                         <UITitle title="Описание: "/>
+                         <div className={styles.description_body}>
+                              {data.description}
+                         </div>
                     </div>
-               </div>
+               }
           </div>
      );
 };
