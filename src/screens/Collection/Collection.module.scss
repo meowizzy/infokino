@@ -13,4 +13,8 @@
      :global(.swiper-button-next) {
           right: 20px;
      }
+
+     @media all and (max-width: 768px) {
+          padding-bottom: 30px;
+     }
 }

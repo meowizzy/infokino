@@ -1,0 +1,27 @@
+.container {
+     max-width: 400px;
+     width: 100%;
+     border-radius: var(--radius-large);
+     background-color: var(--primary-dark);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-direction: column;
+     padding: 60px 40px;
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+
+     form {
+          div {
+               min-width: 300px;
+          }
+     }
+
+     :global(.auth_form) {
+          display: flex;
+          flex-direction: column;
+          row-gap: 15px;
+     }
+}

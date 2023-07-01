@@ -1,15 +1,26 @@
-.base {
+.base, .large {
      $self: &;
      background-color: var(--primary);
      border-radius: var(--radius-medium);
      border: 0;
      outline: none;
-     padding: 8px;
      color: var(--color-white);
      font-size: 16px;
      transition: var(--transition);
+     width: 100%;
+     font-family: var(--font);
 
      &::placeholder {
           color: var(--color-white)
      }
+}
+
+.base {
+     padding: 8px;
+}
+
+
+.large {
+     padding: 15px;
+     font-size: 15px;
 }

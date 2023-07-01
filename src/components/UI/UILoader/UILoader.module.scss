@@ -5,6 +5,14 @@
      display: flex;
      align-items: center;
      justify-content: center;
+
+     @media all and (max-width: 768px) {
+          min-height: 300px;
+     }
+
+     @media all and (max-width: 479px) {
+          min-height: 150px;
+     }
 }
 .lds_ellipsis {
      display: inline-block;

@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
      allFilmsReducer,
      filmByIdReducer,
      countriesReducer,
-     authReducer
+     auth: authReducer
 });
 
 

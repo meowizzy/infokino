@@ -3,4 +3,9 @@
      font-size: 40px;
      color: var(--color-white);
      margin-bottom: 27px;
+
+     @media all and (max-width: 479px) {
+          font-size: 25px;
+          margin-bottom: 20px;
+     }
 }

@@ -43,7 +43,7 @@ const Film = () => {
                          enName={data.alternativeName}
                     /> 
 
-                    <div className="container" style={{paddingTop: "150px"}}>
+                    <div className="container" style={{paddingTop: "100px"}}>
                          <UITabs 
                               data={tabs}
                          />

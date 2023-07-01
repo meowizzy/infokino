@@ -3,10 +3,10 @@ import cn from 'classnames';
 import styles from './UIInput.module.scss';
 
 
-const UIInput = ({ value, type = "text", onChange, name, classes, placeholder, ...props }) => {
+const UIInput = ({ value, type = "text", onChange, name, classes, placeholder, inputStyle = 'base', ...props }) => {
      return (
           <input 
-               className={cn(styles.base, classes)} 
+               className={cn(styles[inputStyle], classes)} 
                type={type} 
                onChange={onChange} 
                value={value} 

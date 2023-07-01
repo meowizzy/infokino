@@ -84,6 +84,11 @@
      background-color: #222225;
      color: #fff;
      flex-direction: column;
+
+     @media all and (max-width: 479px) {
+          right: auto;
+          left: 0;
+     }
 }
 
 .dropDown li {

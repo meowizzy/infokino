@@ -1,25 +1,25 @@
-import HomePage from "@pages/HomePage/HomePage";
-import FilmsPage from "@pages/FilmsPage/FilmsPage";
-import Film from "@pages/Film/Film";
-import NotFoundPage from "@pages/NotFoundPage/NotFoundPage";
+import HomePageAsync from "@pages/HomePage/HomePage.async";
+import FilmsPageAsync from "@pages/FilmsPage/FilmsPage.async";
+import FilmAsync from "@pages/Film/Film.async";
+import NotFoundPageAsync from "@pages/NotFoundPage/NotFoundPage.async";
 
 
 const routes = {
      home: {
           path: '/',
-          element: <HomePage />
+          element: <HomePageAsync />
      },
      films: {
           path: 'films/:type',
-          element: <FilmsPage/>
+          element: <FilmsPageAsync/>
      },
      film: {
           path: 'film/:id',
-          element: <Film/>
+          element: <FilmAsync/>
      },
      notFound: {
           path: '*',
-          element: <NotFoundPage/>
+          element: <NotFoundPageAsync/>
      }
 }
 

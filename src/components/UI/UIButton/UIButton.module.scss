@@ -1,10 +1,22 @@
-.primary {
-     background-color: var(--primary);
+.primary, .accent {
      border-radius: var(--radius-semi);
      padding: 15px 26px;
+}
+
+.primary {
+     background-color: var(--primary);
      
      &:hover {
           background-color: var(--primary-hover);
+     }
+}
+
+
+.accent {
+     background-color: var(--color-main);
+
+     &:hover {
+          background-color: var(--color-main-hover);
      }
 }
 

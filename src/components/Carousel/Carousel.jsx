@@ -15,7 +15,8 @@ export const Carousel = ({ sliderOptions, items, Item}) => {
           centeredSlides = false, 
           spaceBetween = 0,
           autoPlay = 9000000000,
-          speed = 900
+          speed = 900,
+          breakpoints
      } = sliderOptions;
 
      if (!items.length) {
@@ -35,6 +36,7 @@ export const Carousel = ({ sliderOptions, items, Item}) => {
                          autoplay={{delay: autoPlay}}
                          speed={speed} 
                          loop={loop}
+                         breakpoints={breakpoints}
                          centeredSlides={centeredSlides}>
                          {
                               items.map(item => (

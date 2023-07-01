@@ -1,9 +1,8 @@
-import { UIButton } from "@components/UI";
-import { ReactComponent as AuthIcon } from "@public/images/user-icon.svg";
 import { Header } from "@components/Header";
 import { Logo } from "@components/Logo";
 import { MenuList } from "@components/MenuList";
 import { SearchButton } from "@components/Search";
+import { AuthButton } from "@components/AuthComponent/AuthButton";
 
 export const HeaderPanel = () => {
 
@@ -18,11 +17,7 @@ export const HeaderPanel = () => {
                RightSide={
                     <>
                          <SearchButton />
-                         <UIButton 
-                              Icon={AuthIcon}
-                              text="Авторизация"
-                              type="default"
-                         />      
+                         <AuthButton />
                     </>  
                }
           />
