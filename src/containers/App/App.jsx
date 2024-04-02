@@ -3,10 +3,14 @@ import RoutesCustom from '../RoutesCustom/RoutesCustom';
 import Layout from "@layouts/Layout";
 import routes from "@api/routes";
 import { ModalContextProvider } from "@contexts";
-import { Suspense } from "react";
+import {Suspense, useEffect} from "react";
 import { UILoader } from "@components/UI";
+import {useDispatch} from "react-redux";
+import {loginAction} from "../../store/reducers/loginReducer";
 
 export const App = () => {
+     const dispatch = useDispatch();
+
      return (
           <ModalContextProvider>
                <div className="App">

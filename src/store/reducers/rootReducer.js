@@ -4,7 +4,9 @@ import filmsErrorReducer from "./filmsByGenreErrorReducer";
 import { allFilmsReducer } from "./allFilmsReducer";
 import { filmByIdReducer } from "./filmByIdReducer";
 import { countriesReducer } from "./countriesReducer";
-import { authReducer } from "./authReducer";
+import { registerReducer } from "./registerReducer";
+import { loginReducer } from "./loginReducer";
+import { userReducer } from "./userReducer";
 
 const rootReducer = combineReducers({
      filmsReducer,
@@ -12,7 +14,9 @@ const rootReducer = combineReducers({
      allFilmsReducer,
      filmByIdReducer,
      countriesReducer,
-     auth: authReducer
+     registerReducer,
+     loginReducer,
+     userReducer
 });
 
 

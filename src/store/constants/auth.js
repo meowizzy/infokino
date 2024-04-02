@@ -1,2 +1,14 @@
-export const SET_USER = "SET_USER";
-export const REMOVE_USER = "REMOVE_USER";
+export const SET_USER_EMAIL = "SET_USER_EMAIL";
+export const SET_USER_NAME = "SET_USER_NAME";
+export const SET_USER_PASSWORD = "SET_USER_PASSWORD";
+export const SET_USER_AVATAR = "SET_USER_AVATAR";
+export const REGISTER = "REGISTER";
+export const LOGIN = "LOGIN";
+
+export const CLEAR_FORM = "CLEAR_FORM";
+export const SET_USER_DATA = "SET_USER_DATA";
+export const CLEAR_USER_DATA = "CLEAR_USER_DATA";
+export const SET_USER_IS_LOADING = "SET_USER_IS_LOADING";
+export const SET_USER_ERROR = "SET_USER_ERROR";
+
+export const SET_REGISTER_VALIDATE_ERROR = "SET_REGISTER_VALIDATE_ERROR";

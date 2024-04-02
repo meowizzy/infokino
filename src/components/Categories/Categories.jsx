@@ -10,17 +10,16 @@ import { ReactComponent as ComedyIcon } from "@public/images/Frame-5.svg";
 import { ReactComponent as FamilyIcon } from "@public/images/Frame-6.svg";
 import { ReactComponent as TrillerIcon } from "@public/images/trillerssvg.svg";
 
-
+const list = [
+     { path: "/films/movie?sorting=year", text: "Новинки", icon: NewIcon},
+     { path: "/films/movie?genres.name=приключения", text: "Приключения", icon: FantasyIcon},
+     { path: "/films/movie?genres.name=ужасы", text: "Ужасы", icon: TrillerIcon},
+     { path: "/films/movie?genres.name=комедия", text: "Комедии", icon: ComedyIcon},
+     { path: "/films/movie?sorting=rating.kp", text: "Популярное", icon: PopularIcon},
+     { path: "/films/movie?genres.name=семейный", text: "Семейные", icon: FamilyIcon},
+     { path: "/films/movie?genres.name=драма", text: "Драмы", icon: RomanticIcon},
+];
 export const Categories = () => {
-     const list = [
-          { path: "/films/movie?sorting=year", text: "Новинки", icon: NewIcon},
-          { path: "/films/movie?genres.name=приключения", text: "Приключения", icon: FantasyIcon},
-          { path: "/films/movie?genres.name=ужасы", text: "Ужасы", icon: TrillerIcon},
-          { path: "/films/movie?genres.name=комедия", text: "Комедии", icon: ComedyIcon},
-          { path: "/films/movie?sorting=rating.kp", text: "Популярное", icon: PopularIcon},
-          { path: "/films/movie?genres.name=семейный", text: "Семейные", icon: FamilyIcon},
-          { path: "/films/movie?genres.name=драма", text: "Драмы", icon: RomanticIcon},
-     ];
 
      return (
           <div className={styles.container}>

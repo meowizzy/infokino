@@ -11,13 +11,12 @@ export const PlayerPanel = ({ poster, background, title, enName, id }) => {
      const iframe = useRef();
      const backgroundUrl = background ? background.replace('orig', '1280x720') : poster?.url || poster?.previewUrl;
 
-     const handleIframeLoading = () => {
-          setIframeIsLoaded(true);
-     };
-
      useEffect(() => {
           const video = iframe.current;
           if (video) {
+               const handleIframeLoading = () => {
+                    setIframeIsLoaded(true);
+               };
 
                video.addEventListener('load', handleIframeLoading);
                

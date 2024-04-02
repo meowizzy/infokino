@@ -1,5 +1,5 @@
 .container {
-     max-width: 400px;
+     max-width: 500px;
      width: 100%;
      border-radius: var(--radius-large);
      background-color: var(--primary-dark);
@@ -23,5 +23,9 @@
           display: flex;
           flex-direction: column;
           row-gap: 15px;
+     }
+
+     .tabsWrap {
+          width: 100%;
      }
 }

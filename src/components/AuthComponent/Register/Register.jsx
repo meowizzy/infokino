@@ -1,20 +1,112 @@
 import styles from './Register.module.scss';
 import { UIForm, UIInput, UIButton } from '@components/UI';
+import {useCallback, useEffect, memo, useMemo} from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+    registerAction,
+    setRegisterAvatar,
+    setRegisterEmail,
+    setRegisterPassword,
+    setRegisterUserName,
+    clearForm
+} from "../../../store/reducers/registerReducer";
+import UIErrorMsg from "../../UI/UIErrorMsg/UIErrorMsg";
 
 const Register = () => {
+    const dispatch = useDispatch();
+    const {
+        name,
+        email,
+        password,
+        avatar,
+        error
+    } = useSelector(state => state.registerReducer)
+
+    const onChangeName = useCallback((value) => {
+        dispatch(setRegisterUserName(value));
+    }, [name]);
+
+    const onChangeEmail = useCallback((value) => {
+        dispatch(setRegisterEmail(value));
+    }, [email]);
+
+    const onChangePassword = useCallback((value) => {
+        dispatch(setRegisterPassword(value));
+    }, [password]);
+
+    const onChangeAvatar = useCallback((value) => {
+        dispatch(setRegisterAvatar(value));
+    }, [avatar]);
+
+    const onSubmit = useCallback(() => {
+        dispatch(registerAction());
+    }, [dispatch]);
+
+    useEffect(() => {
+        return () => {
+            dispatch(clearForm());
+        }
+    }, []);
+
+    const validateErrors = useMemo(() => {
+        return Array.isArray(error) ? (
+            error?.map(item => (
+                <UIErrorMsg
+                    key={item}
+                    value={item}
+                />
+            ))
+        ) : <UIErrorMsg value={error}/>;
+    }, [error]);
+
      return (
-          <UIForm classes="auth_form">
-               <div className="form_field">
-                    <UIInput inputStyle="large" type="text" name="email" placeholder="Email"/>
-               </div>
-               <div className="form_field">
-                    <UIInput inputStyle="large" type="password" name="password" placeholder="Пароль"/>
-               </div>
-               <div className="form_submit">
-                    <UIButton text={"Зарегистрироваться"} type="accent"/>
-               </div>
-          </UIForm>
+         <UIForm classes="auth_form">
+             {validateErrors}
+             <div className="form_field">
+                 <UIInput
+                     inputStyle="large"
+                     type="text"
+                     placeholder="Имя"
+                     value={name}
+                     onChange={onChangeName}
+                 />
+             </div>
+             <div className="form_field">
+                 <UIInput
+                     inputStyle="large"
+                     type="email"
+                     value={email}
+                     placeholder="Email"
+                     onChange={onChangeEmail}
+                 />
+             </div>
+             <div className="form_field">
+                 <UIInput
+                     inputStyle="large"
+                     type="password"
+                     value={password}
+                     placeholder="Пароль"
+                     onChange={onChangePassword}
+                 />
+             </div>
+             <div className="form_field">
+                 <UIInput
+                     inputStyle="large"
+                     type="text"
+                     value={avatar}
+                     placeholder="Аватар"
+                     onChange={onChangeAvatar}
+                 />
+             </div>
+             <div className="form_submit">
+                 <UIButton
+                     text={"Зарегистрироваться"}
+                     type="accent"
+                     onClick={onSubmit}
+                 />
+             </div>
+         </UIForm>
      );
 };
 
-export default Register;
+export default memo(Register);
