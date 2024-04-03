@@ -26,14 +26,11 @@ export function* loginWorker() {
             password: undefined
         }));
 
-        yield put(setUserIsLoading(false));
-
         yield put(clearForm());
 
         modalContext.closeModal();
 
     } catch (e) {
         yield put(setLoginValidateError(e.message.split("%")));
-        yield put(setUserIsLoading(false));
     }
 }

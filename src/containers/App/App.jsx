@@ -7,11 +7,13 @@ import { UILoader } from "@components/UI";
 import { useDispatch } from "react-redux";
 import { fetchUserData } from "../../store/reducers/userReducer";
 import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute";
+import { checkIsAdminExist } from "@services/checkIsAdminExist";
 
 export const App = () => {
      const dispatch = useDispatch();
 
      useEffect(() => {
+          checkIsAdminExist();
           dispatch(fetchUserData());
      }, []);
 

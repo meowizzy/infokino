@@ -1,5 +1,23 @@
 .profilePage {
   position: relative;
+  overflow: hidden;
+  min-height: calc(100vh - 120px);
+  @keyframes rotating {
+    0% {
+      transform: scale(0.8) rotate(0);
+      opacity: 0;
+    }
+
+    50% {
+      transform: scale(1) rotate(-180deg);
+      opacity: 0.3;
+    }
+
+    100% {
+      transform: scale(0.8) rotate(-360deg);
+      opacity: 0;
+    }
+  }
   &:before {
     content: '';
     position: absolute;
@@ -10,9 +28,9 @@
     right: 0;
     bottom: 0;
     background-image: url("../../../public/images/formBg.png");
-    background-size: 60%;
+    background-size: contain;
     background-repeat: no-repeat;
-    background-position: center;
-    min-height: calc(100vh - 120px);
+    background-position: top center;
+    animation: rotating 10s linear infinite;
   }
 }

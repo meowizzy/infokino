@@ -18,7 +18,9 @@ export const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 authData: action.payload,
-                _inited: true
+                _inited: true,
+                isLoading: false,
+                error: undefined
             };
         case CLEAR_USER_DATA:
             localStorage.removeItem(LOCAL_STORAGE_AUTH);
@@ -30,9 +32,18 @@ export const userReducer = (state = initialState, action) => {
                 _inited: false
             };
         case SET_USER_IS_LOADING:
-            return { ...state, isLoading: action.payload }
+            return { 
+                ...state, 
+                error: undefined,
+                isLoading: action.payload 
+            }
         case SET_USER_ERROR:
-            return { ...state, error: action.payload, _inited: true }
+            return { 
+                ...state, 
+                error: action.payload, 
+                _inited: true, 
+                isLoading: false 
+            }
         default:
             return state;
     }
