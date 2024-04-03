@@ -1,8 +1,9 @@
-import { CLEAR_FORM, SET_USER_EMAIL, SET_USER_PASSWORD, LOGIN } from "../constants/auth";
+import { CLEAR_FORM, SET_USER_EMAIL, SET_USER_PASSWORD, LOGIN, SET_LOGIN_VALIDATE_ERROR } from "../constants/auth";
 
 const initialState = {
     email: "",
     password: "",
+    error: undefined
 }
 export const loginReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -10,30 +11,40 @@ export const loginReducer = (state = initialState, action) => {
             return { ...state, email: action.payload }
         case SET_USER_PASSWORD:
             return { ...state, password: action.payload }
+        case SET_LOGIN_VALIDATE_ERROR:
+            return { ...state, error: action.payload }
         case CLEAR_FORM:
             return {
                 ...state,
                 email: "",
-                password: ""
+                password: "",
+                error: ""
             }
         default:
             return state;
     }
 };
 
-export const setLoginEmail = (value) => {
+export const setLoginEmail = (payload) => {
     return {
         type: SET_USER_EMAIL,
-        payload: value
+        payload
     }
 };
 
-export const setLoginPassword = (value) => {
+export const setLoginPassword = (payload) => {
     return {
         type: SET_USER_PASSWORD,
-        payload: value
+        payload
     }
 };
+
+export const setLoginValidateError = (payload) => {
+    return {
+        type: SET_LOGIN_VALIDATE_ERROR,
+        payload
+    }
+}
 
 export const clearForm = () => {
     return {

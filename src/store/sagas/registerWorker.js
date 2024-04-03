@@ -11,8 +11,8 @@ export function* registerWorker() {
 
         if (error?.length) throw new Error(error);
 
-        const data = yield call(register, formData);
         yield put(setUserIsLoading(true));
+        const data = yield call(register, formData);
 
         const loginResponseData = yield call(login, {
             email: formData?.email,

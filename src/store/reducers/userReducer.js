@@ -2,7 +2,7 @@ import {
     SET_USER_DATA,
     CLEAR_USER_DATA,
     SET_USER_IS_LOADING,
-    SET_USER_ERROR,
+    SET_USER_ERROR, USER,
 } from "../constants/auth";
 
 const initialState = {
@@ -45,3 +45,6 @@ export const setUserError = (payload) => {
     return { type: SET_USER_ERROR, payload }
 };
 
+export const fetchUserData = () => {
+    return { type: USER };
+};

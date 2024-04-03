@@ -21,6 +21,7 @@ const Register = () => {
         avatar,
         error
     } = useSelector(state => state.registerReducer)
+    const isLoading = useSelector(state => state.userReducer.isLoading);
 
     const onChangeName = useCallback((value) => {
         dispatch(setRegisterUserName(value));
@@ -61,7 +62,7 @@ const Register = () => {
 
      return (
          <UIForm classes="auth_form">
-             {validateErrors}
+             {validateErrors ? validateErrors : ""}
              <div className="form_field">
                  <UIInput
                      inputStyle="large"
@@ -103,6 +104,7 @@ const Register = () => {
                      text={"Зарегистрироваться"}
                      type="accent"
                      onClick={onSubmit}
+                     isLoading={isLoading}
                  />
              </div>
          </UIForm>

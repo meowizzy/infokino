@@ -12,6 +12,8 @@
 }
 
 
+
+
 .accent {
      background-color: var(--color-main);
 
@@ -30,6 +32,35 @@
                     stroke: var(--color-main);
                }
           }
+     }
+}
+
+.isLoading {
+     background-color: var(--color-main-hover);
+     position: relative;
+     display: inline-flex;
+     align-items: center;
+     pointer-events: none;
+     @keyframes rotation {
+          0% {
+               transform: rotate(0deg);
+          }
+          100% {
+               transform: rotate(360deg);
+          }
+     }
+     &:before {
+          content: '';
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          border: 3px solid var(--color-white);
+          border-bottom-color: transparent;
+          opacity: .6;
+          display: block;
+          animation: rotation 1s linear infinite;
+          margin-right: 5px;
+
      }
 }
 

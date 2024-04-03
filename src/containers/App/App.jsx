@@ -3,13 +3,17 @@ import RoutesCustom from '../RoutesCustom/RoutesCustom';
 import Layout from "@layouts/Layout";
 import routes from "@api/routes";
 import { ModalContextProvider } from "@contexts";
-import {Suspense, useEffect} from "react";
+import { Suspense, useEffect } from "react";
 import { UILoader } from "@components/UI";
-import {useDispatch} from "react-redux";
-import {loginAction} from "../../store/reducers/loginReducer";
+import { useDispatch } from "react-redux";
+import { fetchUserData } from "../../store/reducers/userReducer";
 
 export const App = () => {
      const dispatch = useDispatch();
+
+     useEffect(() => {
+          dispatch(fetchUserData());
+     }, []);
 
      return (
           <ModalContextProvider>

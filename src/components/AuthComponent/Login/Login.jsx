@@ -1,14 +1,17 @@
-import styles from './Login.module.scss';
 import { UIForm, UIInput, UIButton } from '@components/UI';
 import { useDispatch, useSelector } from "react-redux";
 import {clearForm, loginAction, setLoginEmail, setLoginPassword} from "../../../store/reducers/loginReducer";
-import { useCallback, useEffect, memo } from "react";
-import {registerAction} from "../../../store/reducers/registerReducer";
+import {useCallback, useEffect, memo, useMemo} from "react";
+import UIErrorMsg from "../../UI/UIErrorMsg/UIErrorMsg";
 
 const Login = () => {
     const dispatch = useDispatch();
-    const email = useSelector(state => state.loginReducer.email);
-    const password = useSelector(state => state.loginReducer.password);
+    const {
+        email,
+        password,
+        error
+    } = useSelector(state => state.loginReducer);
+    const isLoading = useSelector(state => state.userReducer.isLoading);
 
     const onChangeEmail = useCallback((value) => {
         dispatch(setLoginEmail(value));
@@ -28,8 +31,20 @@ const Login = () => {
         }
     }, []);
 
+    const validateErrors = useMemo(() => {
+        return Array.isArray(error) ? (
+            error?.map(item => (
+                <UIErrorMsg
+                    key={item}
+                    value={item}
+                />
+            ))
+        ) : <UIErrorMsg value={error}/>;
+    }, [error]);
+
      return (
           <UIForm classes="auth_form">
+              {validateErrors ? validateErrors : ""}
                <div className="form_field">
                     <UIInput
                         inputStyle="large"
@@ -53,6 +68,7 @@ const Login = () => {
                         onClick={onSubmit}
                         text={"Войти"}
                         type="accent"
+                        isLoading={isLoading}
                     />
                </div>
           </UIForm>
