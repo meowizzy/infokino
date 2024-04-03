@@ -2,10 +2,10 @@ import axios from "axios";
 import {LOCAL_STORAGE_AUTH} from "../services/constants";
 
 export const API_URL = "https://api.kinopoisk.dev/";
+export const API_KEY = "F37HY9W-CTD4G9Q-P7CY00J-SRM59AW";
 
-export const AUTH_URL = "https://api.escuelajs.co/api/v1/";
-export const API_KEY = "1F37HY9W-CTD4G9Q-P7CY00J-SRM59AW";
-// export const API_KEY = "F37HY9W-CTD4G9Q-P7CY00J-SRM59AW";
+export const AUTH_API = "https://api.escuelajs.co/api/v1/";
+
 export const VIDEOS_API = "https://voidboost.net/embed/";
 export const VIDEOS_POSTER = "?poster=1&poster_id=4&df=1";
 
@@ -35,7 +35,7 @@ export const reqInstance = axios.create({
 
 export const AUTH_TOKEN = localStorage.getItem(LOCAL_STORAGE_AUTH);
 export const authInstance = axios.create({
-     baseURL: AUTH_URL,
+     baseURL: AUTH_API,
      headers: {
           Authorization: `Bearer ${AUTH_TOKEN?.access_token}`
      }
