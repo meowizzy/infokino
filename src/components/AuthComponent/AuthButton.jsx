@@ -3,35 +3,40 @@ import { ModalContext } from '@contexts';
 import { UIButton } from "@components/UI";
 import { AuthComponent } from './AuthComponent';
 import { ReactComponent as AuthIcon } from "@public/images/user-icon.svg";
+import { UIAvatar, UIAvatarLoader } from "../UI/UIAvatar/UIAvatar";
 import {useSelector} from "react-redux";
 
 export const AuthButton = () => {
      const { openModal } = useContext(ModalContext);
-     const authData = useSelector(state => state?.userReducer?.authData);
-
+     const { authData, isLoading } = useSelector(state => state.userReducer);
      const handleClick = e => {
           e.preventDefault();
           openModal({
-               content: <AuthComponent />
+               content: <AuthComponent/>
           });
      };
 
+     if (isLoading) {
+          return (
+               <UIAvatarLoader/>
+          );
+     }
+
      if (authData) {
           return (
-              <UIButton
-                  Icon={AuthIcon}
-                  text={authData.name}
-                  type="default"
+              <UIAvatar
+                  name={authData?.name}
+                  avatar={authData?.avatar}
               />
           );
      }
 
      return (
-          <UIButton 
-               Icon={AuthIcon}
-               text="Авторизация"
-               type="default"
-               onClick={handleClick}
-          />
+         <UIButton
+             Icon={AuthIcon}
+             text="Авторизация"
+             type="default"
+             onClick={handleClick}
+         />
      )
 };

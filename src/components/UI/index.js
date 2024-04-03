@@ -7,5 +7,6 @@ import UISelect from "./UISelect/UISelect";
 import UIInput from "./UIInput/UIInput";
 import UITabs from "./UITabs/UITabs";
 import UIForm from "./UIForm/UIForm";
+import { UIAvatar } from "./UIAvatar/UIAvatar";
 
-export { UIButton, UILoader, UIRating, UITitle, UIPlayerButton, UISelect, UIInput, UITabs, UIForm };
+export { UIAvatar, UIButton, UILoader, UIRating, UITitle, UIPlayerButton, UISelect, UIInput, UITabs, UIForm };
