@@ -15,9 +15,7 @@ export function* loginWorker() {
 
         yield put(setUserIsLoading(true));
 
-        const loginData = yield call(login, formData);
-
-
+        const loginData = yield call(login, { email: formData.email, password: formData.password });
 
         yield localStorage.setItem(LOCAL_STORAGE_AUTH, JSON.stringify(loginData));
 
