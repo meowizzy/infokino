@@ -1,10 +1,11 @@
 import { UIForm, UIInput, UIButton } from '@components/UI';
 import { useDispatch, useSelector } from "react-redux";
 import {clearForm, loginAction, setLoginEmail, setLoginPassword} from "../../../store/reducers/loginReducer";
-import {useCallback, useEffect, memo, useMemo} from "react";
+import {useCallback, useEffect, memo, useMemo, useContext} from "react";
 import UIErrorMsg from "../../UI/UIErrorMsg/UIErrorMsg";
 
-const Login = () => {
+
+const Login = ({ closeModal }) => {
     const dispatch = useDispatch();
     const {
         email,
