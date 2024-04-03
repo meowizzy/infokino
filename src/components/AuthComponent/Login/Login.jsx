@@ -44,7 +44,7 @@ const Login = () => {
 
      return (
           <UIForm classes="auth_form">
-              {validateErrors ? validateErrors : ""}
+              {error ? validateErrors : ""}
                <div className="form_field">
                     <UIInput
                         inputStyle="large"
