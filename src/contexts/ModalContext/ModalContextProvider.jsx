@@ -3,6 +3,8 @@ import { useLocation } from "react-router";
 import { ModalContext } from "./ModalContext";
 import { Modal } from "@components/Modal";
 
+let globalModalContextValue = {};
+export const getGlobalModalContextValue = () => globalModalContextValue;
 export const ModalContextProvider = ({ children }) => {
      const [modalOpened, setModalOpened] = useState(false);
      const [modalContent, setModalContent] = useState(null);
@@ -17,6 +19,11 @@ export const ModalContextProvider = ({ children }) => {
           setModalContent(null);
           setModalOpened(false);
      };
+
+     useEffect(() => {
+          globalModalContextValue.closeModal = closeModal;
+          globalModalContextValue.openModal = openModal;
+     }, []);
 
      const valueModalProvider = {
           openModal,

@@ -4,9 +4,11 @@ import { clearForm, setLoginValidateError } from "../reducers/loginReducer";
 import { setUserData, setUserIsLoading } from "../reducers/userReducer";
 import { LOCAL_STORAGE_AUTH } from "../../services/constants";
 import {validateLoginForm} from "../../components/AuthComponent/Login/validateLoginForm";
+import { getGlobalModalContextValue } from "@contexts";
 export function* loginWorker() {
     try {
         const formData = yield select(state => state.loginReducer);
+        const modalContext = yield getGlobalModalContextValue();
         const error = yield validateLoginForm(formData);
 
         if (error?.length) throw new Error(error);
@@ -29,6 +31,8 @@ export function* loginWorker() {
         yield put(setUserIsLoading(false));
 
         yield put(clearForm());
+
+        modalContext.closeModal();
 
     } catch (e) {
         yield put(setLoginValidateError(e.message.split("%")));

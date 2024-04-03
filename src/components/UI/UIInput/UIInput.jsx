@@ -21,7 +21,6 @@ const UIInput = ({ value, type = "text", onChange, name, classes, placeholder, i
 export default memo(UIInput);
 
 UIInput.propTypes = {
-     value: PropTypes.string,
      type: PropTypes.string,
      onChange: PropTypes.func,
      name: PropTypes.string,

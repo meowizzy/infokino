@@ -1,13 +1,15 @@
 import { put, call, select } from 'redux-saga/effects';
 import { validateRegisterForm } from "../../components/AuthComponent/Register/validateRegisterForm";
-import {login, register} from "../../services/auth";
-import {clearForm, setRegisterValidateError} from "../reducers/registerReducer";
-import {setUserData, setUserIsLoading} from "../reducers/userReducer";
-import {LOCAL_STORAGE_AUTH} from "../../services/constants";
+import { login, register } from "../../services/auth";
+import { clearForm, setRegisterValidateError } from "../reducers/registerReducer";
+import { setUserData, setUserIsLoading } from "../reducers/userReducer";
+import { LOCAL_STORAGE_AUTH } from "../../services/constants";
+import { getGlobalModalContextValue } from "@contexts";
 export function* registerWorker() {
     try {
         const formData = yield select(state => state.registerReducer);
         const error = yield validateRegisterForm(formData);
+        const modalContext = yield getGlobalModalContextValue();
 
         if (error?.length) throw new Error(error);
 
@@ -27,6 +29,8 @@ export function* registerWorker() {
         }));
         yield put(setUserIsLoading(false));
         yield put(clearForm());
+
+        modalContext.closeModal();
 
     } catch (e) {
         yield put(setRegisterValidateError(e.message.split("%")));
