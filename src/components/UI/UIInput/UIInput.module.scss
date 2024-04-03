@@ -10,6 +10,10 @@
      width: 100%;
      font-family: var(--font);
 
+     &:focus {
+          box-shadow: inset 0 0 0 2px var(--color-main-hover);
+     }
+
      &::placeholder {
           color: var(--color-white)
      }

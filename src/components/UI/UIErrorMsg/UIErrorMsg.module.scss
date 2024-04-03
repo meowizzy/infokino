@@ -1,4 +1,7 @@
 .error {
   font-size: 14px;
-  color: red;
+  color: var(--color-white);
+  background-color: indianred;
+  border-radius: var(--radius-medium);
+  padding: 10px;
 }

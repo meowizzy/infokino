@@ -7,7 +7,7 @@ import { memo } from "react";
 const UIInput = ({ value, type = "text", onChange, name, classes, placeholder, inputStyle = 'base', ...props }) => {
      return (
           <input 
-               className={cn(styles[inputStyle], classes)} 
+               className={cn(styles[inputStyle], styles.input, classes)}
                type={type} 
                onChange={e => onChange && onChange(e.target.value)}
                value={value} 
