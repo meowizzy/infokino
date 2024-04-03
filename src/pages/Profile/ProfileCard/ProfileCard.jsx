@@ -51,7 +51,7 @@ const ProfileCard = (props) => {
                 </li>
                 <li className={cls.infoTableRow}>
                     <span className={cls.infoTableLabel}>
-                        Аккаунт создан:
+                        Профиль создан:
                     </span>
                     <span className={cls.infoTableValue}>
                         {authData?.creationAt ? new Date(authData?.creationAt).toLocaleString() : "-"}
