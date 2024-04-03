@@ -1,8 +1,8 @@
-import React from 'react';
 import { UITitle, UILoader } from "@components/UI";
 import { useSelector } from "react-redux";
 import ProfileCard from "./ProfileCard/ProfileCard";
 import UIErrorMsg from "../../components/UI/UIErrorMsg/UIErrorMsg";
+import cls from "./Profile.module.scss";
 
 const Profile = () => {
     const {
@@ -26,12 +26,12 @@ const Profile = () => {
     }
 
     return (
-        <>
+        <div className={cls.profilePage}>
             <UITitle title="Профиль"/>
             <ProfileCard
                 authData={authData}
             />
-        </>
+        </div>
     );
 };
 
