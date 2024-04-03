@@ -1,0 +1,32 @@
+.base, .large {
+    $self: &;
+    background-color: var(--primary);
+    border-radius: var(--radius-medium);
+    border: 0;
+    outline: none;
+    color: var(--color-white);
+    font-size: 16px;
+    transition: var(--transition);
+    width: 100%;
+    resize: none;
+    font-family: var(--font);
+
+    &:focus {
+         box-shadow: inset 0 0 0 2px var(--color-main-hover);
+    }
+
+    &::placeholder {
+         color: var(--color-white)
+    }
+}
+
+.base {
+    padding: 10px;
+    font-size: 15px;
+}
+
+
+.large {
+    padding: 15px;
+    font-size: 20px;
+}

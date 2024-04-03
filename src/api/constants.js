@@ -1,13 +1,9 @@
 import axios from "axios";
-import {LOCAL_STORAGE_AUTH} from "../services/constants";
+import { LOCAL_STORAGE_AUTH } from "../services/constants";
 
+// movies api
 export const API_URL = "https://api.kinopoisk.dev/";
 export const API_KEY = "F37HY9W-CTD4G9Q-P7CY00J-SRM59AW";
-
-export const AUTH_API = "https://api.escuelajs.co/api/v1/";
-
-export const VIDEOS_API = "https://voidboost.net/embed/";
-export const VIDEOS_POSTER = "?poster=1&poster_id=4&df=1";
 
 export const API_VERSIONS = {
      API_VER_1: "v1",
@@ -24,7 +20,6 @@ export const API_GENRES = {
      family: "семейный"
 }
 
-
 export const reqInstance = axios.create({
      baseURL: API_URL,
      headers: {
@@ -33,6 +28,13 @@ export const reqInstance = axios.create({
      }
 });
 
+export const VIDEOS_API = "https://voidboost.net/embed/";
+export const VIDEOS_POSTER = "?poster=1&poster_id=4&df=1";
+
+// movies api end
+
+// auth api
+export const AUTH_API = "https://api.escuelajs.co/api/v1/";
 export const AUTH_TOKEN = localStorage.getItem(LOCAL_STORAGE_AUTH);
 export const authInstance = axios.create({
      baseURL: AUTH_API,
@@ -40,6 +42,7 @@ export const authInstance = axios.create({
           Authorization: `Bearer ${AUTH_TOKEN?.access_token}`
      }
 });
+
 authInstance.interceptors.request.use((config) => {
      const token = localStorage.getItem(LOCAL_STORAGE_AUTH);
 
@@ -52,5 +55,17 @@ authInstance.interceptors.request.use((config) => {
           return config;
      }
 });
+
+// auth api end
+
+// movie comments api
+export const COMMENTS_API = "https://660d9e1f6ddfa2943b34daa4.mockapi.io/api/v1/comments";
+
+export const commentsInstance = axios.create({
+     baseURL: COMMENTS_API
+});
+// movie comments api end
+
+
 
 

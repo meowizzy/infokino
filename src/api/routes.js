@@ -3,12 +3,15 @@ import FilmsPageAsync from "@pages/FilmsPage/FilmsPage.async";
 import FilmAsync from "@pages/Film/Film.async";
 import NotFoundPageAsync from "@pages/NotFoundPage/NotFoundPage.async";
 import ProfileAsync from "@pages/Profile/Profile.async";
+import { TempPage } from "@pages/TempPage/TempPage";
 
 export const routesPath = {
      HOME: "/",
      FILMS: "films/:type",
      FILM: "film/:id",
-     PROFILE: "profile"
+     PROFILE: "profile",
+     TEMP: "temp",
+     NOT_FOUND: "*"
 }
 
 const routes = {
@@ -29,8 +32,13 @@ const routes = {
           element: <ProfileAsync />,
           isPrivate: true
      },
+     tempPage: {
+          path: routesPath.TEMP,
+          element: <TempPage/>,
+          isPrivate: true
+     },
      notFound: {
-          path: '*',
+          path: routesPath.NOT_FOUND,
           element: <NotFoundPageAsync/>
      }
 }

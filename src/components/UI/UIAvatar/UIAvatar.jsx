@@ -10,27 +10,33 @@ export const UIAvatar = memo((props) => {
         name,
         className,
         hasLink = true,
-        type = "small"
+        type = "small",
+        email
     } = props;
 
     let content;
+    let info = (
+        <>
+            <div className={cls.avatar_pic}>
+                <img src={avatar} alt="avatar"/>
+            </div>
+            <div className={cls.avatar_info}>
+                <span className={cls.avatar_name}>{name}</span>
+                { email ? <span className={cls.avatar_email}>{email}</span> : "" }
+            </div>
+        </>
+    );
 
     if (hasLink) {
         content = (
             <Link to={routesPath.PROFILE} className={cn(cls.avatar, { [cls.withLink]: hasLink })}>
-                <div className={cls.avatar_pic}>
-                    <img src={avatar} alt="avatar"/>
-                </div>
-                <span className={cls.avatar_name}>{name}</span>
+                {info}
             </Link>
         );
     } else {
         content = (
             <div className={cls.avatar}>
-                <div className={cls.avatar_pic}>
-                    <img src={avatar} alt="avatar"/>
-                </div>
-                <span className={cls.avatar_name}>{name}</span>
+                {info}
             </div>
         );
     }
