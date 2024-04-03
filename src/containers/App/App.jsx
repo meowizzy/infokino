@@ -6,6 +6,7 @@ import { Suspense, useEffect } from "react";
 import { UILoader } from "@components/UI";
 import { useDispatch } from "react-redux";
 import { fetchUserData } from "../../store/reducers/userReducer";
+import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute";
 
 export const App = () => {
      const dispatch = useDispatch();
@@ -20,7 +21,16 @@ export const App = () => {
                     <RoutesCustom>
                          <Route path="/" element={<Layout />}>
                               {
-                                   Object.entries(routes).map(route => <Route key={route[1].path} path={route[1].path} element={route[1].element}/>)
+                                   Object
+                                       .entries(routes)
+                                       .map(route => {
+                                            return <Route
+                                                key={route[1].path}
+                                                path={route[1].path}
+                                                element={
+                                                     <ProtectedRoute isPrivate={route[1].isPrivate}>{route[1].element}</ProtectedRoute>
+                                                }/>
+                                       })
                               }
                          </Route>
                     </RoutesCustom>

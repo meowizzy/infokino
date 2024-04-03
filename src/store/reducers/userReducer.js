@@ -9,6 +9,7 @@ import { LOCAL_STORAGE_AUTH } from "@services/constants";
 const initialState = {
     authData: undefined,
     isLoading: false,
+    _inited: false,
     error: undefined
 }
 export const userReducer = (state = initialState, action) => {
@@ -16,7 +17,8 @@ export const userReducer = (state = initialState, action) => {
         case SET_USER_DATA:
             return {
                 ...state,
-                authData: action.payload
+                authData: action.payload,
+                _inited: true
             };
         case CLEAR_USER_DATA:
             localStorage.removeItem(LOCAL_STORAGE_AUTH);
@@ -24,12 +26,13 @@ export const userReducer = (state = initialState, action) => {
                 ...state,
                 authData: undefined,
                 isLoading: false,
-                error: undefined
+                error: undefined,
+                _inited: false
             };
         case SET_USER_IS_LOADING:
             return { ...state, isLoading: action.payload }
         case SET_USER_ERROR:
-            return { ...state, error: action.payload }
+            return { ...state, error: action.payload, _inited: true }
         default:
             return state;
     }

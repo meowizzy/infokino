@@ -26,7 +26,8 @@ const routes = {
      },
      profile: {
           path: routesPath.PROFILE,
-          element: <ProfileAsync />
+          element: <ProfileAsync />,
+          isPrivate: true
      },
      notFound: {
           path: '*',
