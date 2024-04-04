@@ -1,13 +1,58 @@
 import { useContext, useState } from "react";
-import cn from "classnames";
-import styles from './Comments.module.scss';
-import { UIButton, UITextArea, UIAvatar } from "../UI";
+import PropTypes from "prop-types";
+import {
+    UIButton,
+    UITextArea,
+    UIAvatar,
+    UILoader,
+    UIErrorMsg
+} from "../UI";
 import { AuthComponent } from "../AuthComponent";
 import { ModalContext } from "@contexts";
+import cn from "classnames";
+import cls from './Comments.module.scss';
 
-const Comments = () => {
-    return <></>;
+const Comments = (props) => {
+    const {
+        isLoading,
+        data,
+        error
+    } = props;
+
+    if (isLoading) {
+        return (
+            <UILoader />
+        );
+    }
+
+    if (error) {
+        return (
+            <UIErrorMsg value={error}/>
+        )
+    }
+
+    return (
+        <div className={cn(cls.list)}>
+            {
+                data.map(comment => (
+                    <Comments.Item
+                        avatar={comment?.avatar}
+                        name={comment?.name}
+                        email={comment?.email}
+                        comment={comment?.comment}
+                    />
+                ))
+            }
+        </div>
+    );
 };
+
+Comments.propTypes = {
+    className: PropTypes.string,
+    data: PropTypes.array,
+    isLoading: PropTypes.bool,
+    error: PropTypes.string
+}
 
 const Item = (props) => {
     const {
@@ -19,22 +64,24 @@ const Item = (props) => {
     } = props;
 
     return (
-        <div className={cn(styles.commentItem, className)}>
-            <div className={styles.info}>
-                <UIAvatar 
+        <div className={cn(cls.commentItem, className)}>
+            <div className={cls.info}>
+                <UIAvatar
                     name={name}
                     email={email}
                     avatar={avatar}
                     type="medium"
                     hasLink={false}
-                />  
+                />
             </div>
-            <p className={styles.comment}>
+            <p className={cls.comment}>
                 {comment}
             </p>
         </div>
     );
 };
+
+
 
 const Form = (props) => {
     const {
@@ -54,10 +101,10 @@ const Form = (props) => {
 
     if (!authData) {
         return (
-            <div className={styles.noAuthForm}>
-                <UIButton 
+            <div className={cls.noAuthForm}>
+                <UIButton
                     type={"default"}
-                    text="Авторизуйтесь,"  
+                    text="Авторизуйтесь,"
                     onClick={handleOpenModalClick}
                 />
                 <span>&nbsp;чтоб оставить комментарий</span>
@@ -66,15 +113,15 @@ const Form = (props) => {
     }
 
     return (
-        <div className={cn(styles.form, className)}>
-            <div className={styles.formField}>
-                <UITextArea 
+        <div className={cn(cls.form, className)}>
+            <div className={cls.formField}>
+                <UITextArea
                     value={value}
                     onChange={setValue}
                     placeholder="Комментарий"
                     inputStyle="large"
                     rows="7"
-                    className={styles.field}
+                    className={cls.field}
                 />
             </div>
             <UIButton
@@ -88,5 +135,19 @@ const Form = (props) => {
 
 Comments.Item = Item;
 Comments.Form = Form;
+
+Comments.Item.propTypes = {
+    className: PropTypes.string,
+    avatar: PropTypes.string,
+    name: PropTypes.string,
+    email: PropTypes.string,
+    comment: PropTypes.string
+}
+
+Comments.Form.propTypes = {
+    className: PropTypes.string,
+    authData: PropTypes.object,
+    isLoading: PropTypes.bool
+}
 
 export default Comments;

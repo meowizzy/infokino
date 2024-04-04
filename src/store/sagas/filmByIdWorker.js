@@ -7,6 +7,7 @@ import {  setFilmByIdErrorAction,
 export function* handleFilmByIdWorker() {
      try {
           const id = yield select(state => state.filmByIdReducer.id);
+
           if (id) {
                const data = yield call(getFilmById, id);
                yield put(setFilmByIdAction(data));

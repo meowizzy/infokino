@@ -7,6 +7,7 @@ import { countriesReducer } from "./countriesReducer";
 import { registerReducer } from "./registerReducer";
 import { loginReducer } from "./loginReducer";
 import { userReducer } from "./userReducer";
+import { commentsReducer } from "./commentsReducer";
 
 const rootReducer = combineReducers({
      filmsReducer,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
      countriesReducer,
      registerReducer,
      loginReducer,
-     userReducer
+     userReducer,
+     commentsReducer
 });
 
 

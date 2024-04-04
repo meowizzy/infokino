@@ -9,6 +9,7 @@ import UITabs from "./UITabs/UITabs";
 import UIForm from "./UIForm/UIForm";
 import { UIAvatar } from "./UIAvatar/UIAvatar";
 import UITextArea from "./UITextArea/UITextArea";
+import UIErrorMsg from "./UIErrorMsg/UIErrorMsg";
 
 export { 
     UIAvatar, 
@@ -21,5 +22,6 @@ export {
     UIInput, 
     UITabs, 
     UIForm, 
-    UITextArea 
+    UITextArea,
+    UIErrorMsg
 };

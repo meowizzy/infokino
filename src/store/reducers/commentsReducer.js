@@ -1,0 +1,73 @@
+import {
+    SET_COMMENTS,
+    SET_COMMENTS_LOADING,
+    SET_COMMENTS_ERROR,
+    CLEAR_COMMENTS, FILM_COMMENTS
+} from "../constants/comments";
+
+const initialState = {
+    data: undefined,
+    isLoading: false,
+    error: undefined
+};
+export const commentsReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case SET_COMMENTS:
+            return {
+                ...state,
+                data: action.payload,
+                isLoading: false,
+                error: undefined
+            };
+        case SET_COMMENTS_LOADING:
+            return {
+                ...state,
+                isLoading: true
+            };
+        case SET_COMMENTS_ERROR:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload
+            };
+        case CLEAR_COMMENTS:
+            return {
+                ...state,
+                data: undefined,
+                error: undefined,
+                isLoading: false
+            };
+        default:
+            return state;
+    }
+};
+
+export const setComments = (payload) => {
+    return {
+        type: SET_COMMENTS,
+        payload
+    }
+}
+
+export const setCommentsLoading = () => {
+    return {
+        type: SET_COMMENTS_LOADING
+    }
+}
+
+export const setCommentsError = (payload) => {
+    return {
+        type: SET_COMMENTS_ERROR,
+        payload
+    }
+}
+export const clearComments = () => {
+    return {
+        type: CLEAR_COMMENTS
+    }
+}
+export const fetchFilmCommentsAction = () => {
+    return {
+        type: FILM_COMMENTS
+    }
+};

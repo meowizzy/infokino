@@ -15,6 +15,7 @@ const Film = () => {
      const { id } = useParams();
      const dispatch = useDispatch();
      const data = useSelector(state => state.filmByIdReducer.data);
+
      useFetching(getFilmByIdAction);
      
      useEffect(() => {
@@ -26,10 +27,10 @@ const Film = () => {
 
      const tabs = useMemo(() => {
          return [
-             { id: 0, label: "Информация о фильме", content: <FilmCard data={data}/> },
+             { id: 0, label: "Информация о фильме", content: data ? <FilmCard data={data}/> : "" },
              { id: 1, label: "Отзывы", content: <FilmReviews/> },
          ];
-     }, []);
+     }, [data]);
 
      const StyledCollection = styled.div`
           padding-top: 100px;

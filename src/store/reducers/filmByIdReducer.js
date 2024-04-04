@@ -8,7 +8,8 @@ const initialState = {
 
 export const filmByIdReducer = (state = initialState, action) => {
      switch(action.type) {
-          case SET_FILM_BY_ID: 
+          case SET_FILM_BY_ID:
+               console.log(action.payload)
                return { ...state, data: action.payload }
           case SET_FILM_ID: 
                return { ...state, id: action.payload }

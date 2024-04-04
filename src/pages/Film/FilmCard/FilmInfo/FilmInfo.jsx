@@ -12,9 +12,9 @@ const FilmInfo = ({ data }) => {
              { label: "Год: ", value: data?.year, link: `/films/movie/?year=${data?.year}` },
              { label: "Страны: ", value: data?.countries, link: `/films/movie/?countries.name=` },
              { label: "Жанры: ", value: data?.genres, link: `/films/movie/?genres.name=` },
-             { label: "Актеры: ", value: data?.persons.filter(item => item.enProfession === 'actor'), link: '/name/' },
-             { label: "Режиссёры: ", value: data?.persons.filter(item => item.enProfession === 'director'), link: '/name/' },
-             { label: "Редакторы: ", value: data?.persons.filter(item => item.enProfession === 'writer'), link: '/name/' }
+             { label: "Актеры: ", value: data?.persons.filter(item => item?.enProfession === 'actor'), link: '/name/' },
+             { label: "Режиссёры: ", value: data?.persons.filter(item => item?.enProfession === 'director'), link: '/name/' },
+             { label: "Редакторы: ", value: data?.persons.filter(item => item?.enProfession === 'writer'), link: '/name/' }
          ];
      }, []);
 
