@@ -4,7 +4,7 @@ import { GET_ALL_FILMS } from '../constants/allfilms';
 import { GET_FILMS_BY_GENRE } from '../constants/genre';
 import { GET_COUNTRIES } from '../reducers/countriesReducer';
 import { REGISTER, LOGIN, USER } from "../constants/auth";
-import { FILM_COMMENTS } from "../constants/comments";
+import { CREATE_COMMENT, FILM_COMMENTS } from "../constants/comments";
 import { handleAllFilmsWorker } from './allFilmsWorker';
 import { handleFilmsByGenreWorker } from './filmsByGenreWorker';
 import { handleFilmByIdWorker } from './filmByIdWorker';
@@ -13,6 +13,7 @@ import { registerWorker } from "./registerWorker";
 import { loginWorker } from "./loginWorker";
 import { fetchUserDataWorker } from "./fetchUserDataWorker";
 import { fetchCommentsWorker } from "./fetchCommentsWorker";
+import { createCommentWorker } from "./createCommentWorker";
 
 export function* watcherSaga() {
      yield takeLatest(SET_FILM_ID, handleFilmByIdWorker);
@@ -23,6 +24,7 @@ export function* watcherSaga() {
      yield takeLatest(LOGIN, loginWorker);
      yield takeLatest(USER, fetchUserDataWorker);
      yield takeLatest(FILM_COMMENTS, fetchCommentsWorker);
+     yield takeLatest(CREATE_COMMENT, createCommentWorker);
 }
 
 export default function* rootSaga() {

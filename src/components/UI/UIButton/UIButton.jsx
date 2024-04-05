@@ -1,3 +1,4 @@
+import { memo } from "react";
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import styles from './UIButton.module.scss';
@@ -18,4 +19,4 @@ UIButton.propTypes = {
      text: PropTypes.string
 };
 
-export default UIButton;
+export default memo(UIButton);

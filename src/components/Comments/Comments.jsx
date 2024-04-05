@@ -1,16 +1,19 @@
-import { useContext, useState } from "react";
+import {useContext, useState, memo, useCallback} from "react";
 import PropTypes from "prop-types";
 import {
     UIButton,
     UITextArea,
     UIAvatar,
     UILoader,
-    UIErrorMsg
+    UIErrorMsg, UITitle
 } from "../UI";
 import { AuthComponent } from "../AuthComponent";
 import { ModalContext } from "@contexts";
+import { setCommentFormData } from "@store/reducers/createCommentReducer";
 import cn from "classnames";
 import cls from './Comments.module.scss';
+import { useDispatch, useSelector } from "react-redux";
+import {clearCommentForm, createCommentAction} from "../../store/reducers/createCommentReducer";
 
 const Comments = (props) => {
     const {
@@ -27,18 +30,30 @@ const Comments = (props) => {
 
     if (error) {
         return (
-            <UIErrorMsg value={error}/>
+            <UIErrorMsg
+                value={error}
+            />
         )
+    }
+
+    if (!data?.length) {
+        return (
+            <UIErrorMsg
+                value="Комментариев к этому фильму пока нет. Будьте первым, кто оставит комментарий."
+            />
+        );
     }
 
     return (
         <div className={cn(cls.list)}>
             {
-                data.map(comment => (
+                data?.map(comment => (
                     <Comments.Item
-                        avatar={comment?.avatar}
-                        name={comment?.name}
-                        email={comment?.email}
+                        key={comment.id}
+                        role={comment.reviewe?.role}
+                        avatar={comment.reviewer?.avatar}
+                        name={comment.reviewer?.name}
+                        email={comment.reviewer?.email}
                         comment={comment?.comment}
                     />
                 ))
@@ -60,8 +75,10 @@ const Item = (props) => {
         avatar,
         name,
         email,
-        comment
+        comment,
+        role
     } = props;
+
 
     return (
         <div className={cn(cls.commentItem, className)}>
@@ -69,6 +86,7 @@ const Item = (props) => {
                 <UIAvatar
                     name={name}
                     email={email}
+                    role={role}
                     avatar={avatar}
                     type="medium"
                     hasLink={false}
@@ -81,23 +99,32 @@ const Item = (props) => {
     );
 };
 
-
-
 const Form = (props) => {
     const {
         className,
-        authData,
-        isLoading,
+        authData
     } = props;
-    const [value, setValue] = useState();
     const { openModal } = useContext(ModalContext);
-
+    const dispatch = useDispatch();
+    const { isLoading, error, formData } = useSelector(state => state.createCommentReducer);
     const handleOpenModalClick = e => {
         e.preventDefault();
         openModal({
              content: <AuthComponent/>
         });
-   };
+    };
+
+    const onChangeComment = useCallback((value) => {
+        dispatch(setCommentFormData({ ...formData, comment: value }));
+    }, [dispatch, formData]);
+
+    const onSubmitFormData = useCallback(() => {
+        dispatch(createCommentAction());
+    }, [dispatch])
+
+    // const onChangeCommentRating = useCallback((value) => {
+    //    dispatch(setCommentFormData({ ...formData, rating: String(value) }));
+    // }, [dispatch, formData]);
 
     if (!authData) {
         return (
@@ -116,8 +143,8 @@ const Form = (props) => {
         <div className={cn(cls.form, className)}>
             <div className={cls.formField}>
                 <UITextArea
-                    value={value}
-                    onChange={setValue}
+                    value={formData?.comment}
+                    onChange={onChangeComment}
                     placeholder="Комментарий"
                     inputStyle="large"
                     rows="7"
@@ -126,6 +153,7 @@ const Form = (props) => {
             </div>
             <UIButton
                 isLoading={isLoading}
+                onClick={onSubmitFormData}
                 type={"accent"}
                 text="Оставить комментарий"
             />

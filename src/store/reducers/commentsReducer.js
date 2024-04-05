@@ -22,7 +22,7 @@ export const commentsReducer = (state = initialState, action) => {
         case SET_COMMENTS_LOADING:
             return {
                 ...state,
-                isLoading: true
+                isLoading: action.payload
             };
         case SET_COMMENTS_ERROR:
             return {
@@ -49,9 +49,10 @@ export const setComments = (payload) => {
     }
 }
 
-export const setCommentsLoading = () => {
+export const setCommentsLoading = (payload) => {
     return {
-        type: SET_COMMENTS_LOADING
+        type: SET_COMMENTS_LOADING,
+        payload
     }
 }
 

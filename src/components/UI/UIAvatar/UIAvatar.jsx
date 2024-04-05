@@ -11,7 +11,8 @@ export const UIAvatar = memo((props) => {
         className,
         hasLink = true,
         type = "small",
-        email
+        email,
+        role
     } = props;
 
     let content;
@@ -21,7 +22,9 @@ export const UIAvatar = memo((props) => {
                 <img src={avatar} alt="avatar"/>
             </div>
             <div className={cls.avatar_info}>
-                <span className={cls.avatar_name}>{name}</span>
+                <span className={cls.avatar_name}>
+                    {name}{role ? ` - ${role}` : ""}
+                </span>
                 { email ? <span className={cls.avatar_email}>{email}</span> : "" }
             </div>
         </>

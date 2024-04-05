@@ -15,9 +15,11 @@ export const FilmReviews = () => {
 
     useEffect(() => {
         dispatch(fetchFilmCommentsAction());
-    }, [dispatch, fetchFilmCommentsAction]);
 
-    console.log(data);
+        return () => {
+            dispatch(clearComments());
+        };
+    }, [dispatch, fetchFilmCommentsAction]);
 
     return (
         <div>
@@ -28,7 +30,6 @@ export const FilmReviews = () => {
                 error={error}
             />
             <Comments.Form
-                isLoading={isLoading}
                 authData={authData}
             />
         </div>
