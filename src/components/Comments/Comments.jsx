@@ -5,7 +5,8 @@ import {
     UITextArea,
     UIAvatar,
     UILoader,
-    UIErrorMsg, UITitle
+    UIErrorMsg,
+    UISelect
 } from "../UI";
 import { AuthComponent } from "../AuthComponent";
 import { ModalContext } from "@contexts";
@@ -13,7 +14,7 @@ import { setCommentFormData } from "@store/reducers/createCommentReducer";
 import cn from "classnames";
 import cls from './Comments.module.scss';
 import { useDispatch, useSelector } from "react-redux";
-import {clearCommentForm, createCommentAction} from "../../store/reducers/createCommentReducer";
+import { createCommentAction } from "../../store/reducers/createCommentReducer";
 
 const Comments = (props) => {
     const {
@@ -50,7 +51,7 @@ const Comments = (props) => {
                 data?.map(comment => (
                     <Comments.Item
                         key={comment.id}
-                        role={comment.reviewe?.role}
+                        role={comment.reviewer?.role}
                         avatar={comment.reviewer?.avatar}
                         name={comment.reviewer?.name}
                         email={comment.reviewer?.email}
@@ -99,6 +100,13 @@ const Item = (props) => {
     );
 };
 
+
+const ratingOptions = [
+    {title: "Рекомендуемые", param: ''},
+    {title: "По дате", param: 'year'},
+    {title: "По рейтингу", param: 'rating.kp'}
+];
+
 const Form = (props) => {
     const {
         className,
@@ -120,7 +128,11 @@ const Form = (props) => {
 
     const onSubmitFormData = useCallback(() => {
         dispatch(createCommentAction());
-    }, [dispatch])
+    }, [dispatch]);
+
+    const onSelectChange = () => {
+
+    };
 
     // const onChangeCommentRating = useCallback((value) => {
     //    dispatch(setCommentFormData({ ...formData, rating: String(value) }));
@@ -141,6 +153,12 @@ const Form = (props) => {
 
     return (
         <div className={cn(cls.form, className)}>
+            <div className={cls.formField}>
+                <UISelect
+                    options={ratingOptions}
+                    onChange={onSelectChange}
+                />
+            </div>
             <div className={cls.formField}>
                 <UITextArea
                     value={formData?.comment}

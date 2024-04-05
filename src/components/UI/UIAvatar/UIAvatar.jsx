@@ -1,8 +1,10 @@
-import { memo } from "react";
+import {memo, useCallback, useState} from "react";
 import { Link } from "react-router-dom";
 import cls from "./UIAvatar.module.scss";
 import cn from "classnames";
 import { routesPath } from "../../../api/routes";
+import { roles } from "@pages/Profile/ProfileCard/ProfileCard";
+import { ReactComponent as AvatarIcon } from "@public/images/avatarIcon.svg";
 
 export const UIAvatar = memo((props) => {
     const {
@@ -14,16 +16,23 @@ export const UIAvatar = memo((props) => {
         email,
         role
     } = props;
+    const [isValidImg, setIsValidImg] = useState(true);
+
+    const onImgError = useCallback(() => {
+        setIsValidImg(false);
+    }, []);
 
     let content;
     let info = (
         <>
             <div className={cls.avatar_pic}>
-                <img src={avatar} alt="avatar"/>
+                {
+                    isValidImg ? <img src={avatar} alt="avatar" onError={onImgError}/> : <AvatarIcon/>
+                }
             </div>
             <div className={cls.avatar_info}>
                 <span className={cls.avatar_name}>
-                    {name}{role ? ` - ${role}` : ""}
+                    {name}{role ? ` - ${roles[role]}` : ""}
                 </span>
                 { email ? <span className={cls.avatar_email}>{email}</span> : "" }
             </div>

@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import {memo, useCallback, useState} from "react";
 import { useParams } from "react-router";
 import PropTypes from "prop-types";
 import cn from "classnames";
@@ -17,15 +17,15 @@ const UISelect = memo(({ options, onChange }) => {
                setSelectedOption(options[0]);
           }, [params.type]);
           
-          const handleOpenClick = () => {
+          const handleOpenClick = useCallback(() => {
                setIsOpened(!isOpened);
-          };
+          }, [isOpened, setIsOpened]);
 
-          const handleSelect = (option) => {
+          const handleSelect = useCallback((option) => {
                setSelectedOption(option);
                onChange(option);
                setIsOpened(false);
-          };
+          }, [onChange, setIsOpened]);
 
           return (
                <div ref={selectRef} className={styles.wrapper}>
