@@ -11,7 +11,6 @@ import { ModalContextProvider } from "@contexts";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
     <BrowserRouter>
         <Provider store={store}>
             <ModalContextProvider>
@@ -19,5 +18,4 @@ root.render(
             </ModalContextProvider>
         </Provider>
     </BrowserRouter>
-  </React.StrictMode>
 );

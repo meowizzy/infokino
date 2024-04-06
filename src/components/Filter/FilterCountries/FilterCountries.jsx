@@ -9,13 +9,18 @@ const FilterCountries = () => {
 	const [countries, setCountries] = useState(null);
 	const [currentOptions, setCurrentOptions] = useState(null);
 	const animatedComponents = makeAnimated();
-     const state = useSelector(state => state.countriesReducer.countries);
+     const state = useSelector(state => state.countriesReducer);
      const dispatch = useDispatch();
      const params = useParams();
 
 	useEffect(() => {
 		setCurrentOptions(null);
 	}, [params.type]);
+
+     useEffect(() => {
+          dispatch(getCountriesAction());
+          // if (state && !countries) setCountries(state);
+     }, []);
 
 	const getValue = () => {
 		if (currentOptions) {
@@ -26,9 +31,9 @@ const FilterCountries = () => {
 	};
 
      const getOptions = () => {
-          if (!countries) return;
+          if (!state?.countries) return;
 
-          const newCountries = countries.map(item => {
+          const newCountries = state?.countries.map(item => {
                return { label: item.name, value: item.name }
           });
 
@@ -38,11 +43,6 @@ const FilterCountries = () => {
 	const handleChange = newValue => {
 		setCurrentOptions(newValue.map(option => option.value));
 	};	
-
-     useEffect(() => {
-          if (!state) dispatch(getCountriesAction());
-          if (state && !countries) setCountries(state);
-     }, [state]);
 
      return (
           <div>
@@ -54,8 +54,9 @@ const FilterCountries = () => {
                     options={getOptions()} 
                     placeholder="Страны" 
                     isMulti={true}
+                    isLoading={state.isLoading}
                     isClearable={true}/>
-			{ countries && getValue().length ? <input type="hidden" name="countries.name" value={getValue().map(op => op.value).join('+')}/> : '' }
+			{ state?.countries && getValue().length ? <input type="hidden" name="countries.name" value={getValue().map(op => op.value).join('+')}/> : '' }
 		</div> 
      );
 };

@@ -30,7 +30,16 @@ const FilterGenres = () => {
 
      return (
           <div>
-			<Select components={animatedComponents} value={getValue()} onChange={handleChange} classNamePrefix="custom-select" options={genres} placeholder="Жанры" isMulti={true} isClearable={true}/>
+			<Select 
+				components={animatedComponents} 
+				value={getValue()} 
+				onChange={handleChange} 
+				classNamePrefix="custom-select" 
+				options={genres} 
+				placeholder="Жанры" 
+				isMulti={true} 
+				isClearable={true}
+			/>
 			{ getValue().length ? <input type="hidden" name="genres.name" value={getValue().map(op => op.value).join('+')}/> : '' }
 		</div>
      );

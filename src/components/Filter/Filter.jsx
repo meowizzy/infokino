@@ -29,21 +29,25 @@ export const Filter = () => {
                     <div className={styles.filter_panel__filter_button_wrap}>
                          <UIButton text="Фильтр" classes={styles.filter_panel__filter_btn} Icon={FilterIcon} onClick={() => setFilterOpened(!filterOpened)}/>
                     </div>
-                    <div className={cn(styles.filter_panel__dropdown, {
-                         [styles.opened]: filterOpened
-                    })}>
-                         <form action="#" onSubmit={handleFilterSubmit} className={styles.filter_panel__form}>
-                              <div className={styles.filter_panel__fields}>
-                                   <FilterYear />
-                                   <FilterGenres />
-                                   <FilterCountries />
+                    {
+                         filterOpened ?
+                              <div className={cn(styles.filter_panel__dropdown, {
+                                   [styles.opened]: filterOpened
+                              })}>
+                                   <form action="#" onSubmit={handleFilterSubmit} className={styles.filter_panel__form}>
+                                        <div className={styles.filter_panel__fields}>
+                                             <FilterYear />
+                                             <FilterGenres />
+                                             <FilterCountries />
+                                        </div>
+                                        <div className={styles.filter_panel__btns}>
+                                             <UIButton text="Очистить" type="primary"/>
+                                             <UIButton text="Поиск" type="primary"/>
+                                        </div>
+                                   </form>
                               </div>
-                              <div className={styles.filter_panel__btns}>
-                                   <UIButton text="Очистить" type="primary"/>
-                                   <UIButton text="Поиск" type="primary"/>
-                              </div>
-                         </form>
-                    </div>
+                              : ""
+                    }
                </div>
                <Sorting />
           </div>

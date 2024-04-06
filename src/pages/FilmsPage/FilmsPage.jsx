@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, memo } from "react";
 import { useParams, useSearchParams } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { setFilmsFilter } from "@store/actions/actionCreator";
@@ -50,4 +50,4 @@ const FilmsPage = () => {
      );
 };
 
-export default FilmsPage;
+export default memo(FilmsPage);
