@@ -3,14 +3,13 @@ import {
     CREATE_COMMENT,
     CREATE_COMMENT_ERROR,
     CREATE_COMMENT_LOADING,
-    SET_COMMENT_FORM_DATA
+    SET_COMMENT_FORM_DATA,
+    SET_CREATED_COMMENT
 } from "../constants/comments";
 
 const initialState = {
-    // formData: undefined,
-    // temp
     formData: {
-        rating: "5",
+        rating: "",
         comment: ""
     },
     isLoading: false,
@@ -68,6 +67,13 @@ export const createCommentLoading = () => {
     return {
         type: CREATE_COMMENT_LOADING
     };
+};
+
+export const setCreatedComment = (payload) => {
+    return {
+        type: SET_CREATED_COMMENT,
+        payload
+    }
 };
 
 export const createCommentError = (payload) => {

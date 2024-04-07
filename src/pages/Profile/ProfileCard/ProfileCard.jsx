@@ -6,6 +6,10 @@ import { useDispatch } from "react-redux";
 import { clearUserData } from "@store/reducers/userReducer";
 import { useNavigate } from "react-router";
 import { routesPath } from "../../../api/routes";
+import { ReactComponent as UserIcon } from "@public/images/username.svg";
+import { ReactComponent as RolesIcon } from "@public/images/roles.svg";
+import { ReactComponent as EmailIcon } from "@public/images/emailicon.svg";
+import { ReactComponent as CalendarIcon } from "@public/images/calendar.svg"
 
 export const roles = {
     "admin": "Администратор",
@@ -30,12 +34,13 @@ const ProfileCard = (props) => {
                 avatar={authData?.avatar}
                 name={authData?.name}
                 type="large"
+                withZoom="true"
                 hasLink={false}
             />
             <ul className={cls.infoTable}>
                 <li className={cls.infoTableRow}>
                     <span className={cls.infoTableLabel}>
-                        Имя:
+                        <UserIcon /> Имя:
                     </span>
                     <span className={cls.infoTableValue}>
                         {authData?.name ? authData?.name : "-"}
@@ -43,7 +48,7 @@ const ProfileCard = (props) => {
                 </li>
                 <li className={cls.infoTableRow}>
                     <span className={cls.infoTableLabel}>
-                        Email:
+                        <EmailIcon /> Email:
                     </span>
                     <span className={cls.infoTableValue}>
                         {authData?.email ? authData?.email : "-"}
@@ -51,7 +56,7 @@ const ProfileCard = (props) => {
                 </li>
                 <li className={cls.infoTableRow}>
                     <span className={cls.infoTableLabel}>
-                        Профиль создан:
+                        <CalendarIcon /> Профиль создан:
                     </span>
                     <span className={cls.infoTableValue}>
                         {authData?.creationAt ? new Date(authData?.creationAt).toLocaleString() : "-"}
@@ -59,7 +64,7 @@ const ProfileCard = (props) => {
                 </li>
                 <li className={cls.infoTableRow}>
                     <span className={cls.infoTableLabel}>
-                        Роль:
+                        <RolesIcon /> Роль:
                     </span>
                     <span className={cls.infoTableValue}>
                         {authData?.role ? roles[authData?.role] : "-"}

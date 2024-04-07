@@ -1,7 +1,8 @@
 import { commentsInstance } from "@api/constants";
 
 export const fetchCommentsByMovieId = async (movieId) => {
-    const response = await commentsInstance.get(`?movieId=${movieId}`);
+    const response = await commentsInstance.get(`?sortBy=commentId&order=desc&movieId=${movieId}`);
+    console.log(response);
 
     return response.data;
 };

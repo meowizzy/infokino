@@ -10,7 +10,8 @@ export const FilmReviews = () => {
     const {
         data,
         error,
-        isLoading
+        isLoading,
+        isFinalPage
     } = useSelector(state => state.commentsReducer);
 
     useEffect(() => {
@@ -28,6 +29,7 @@ export const FilmReviews = () => {
                 data={data}
                 isLoading={isLoading}
                 error={error}
+                isFinalPage={isFinalPage}
             />
             <Comments.Form
                 authData={authData}

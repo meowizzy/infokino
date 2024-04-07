@@ -1,7 +1,8 @@
 import { put, call, select } from 'redux-saga/effects';
 import { createComment } from "../../services/movieComments";
-import { setComments } from "../reducers/commentsReducer";
-import {clearCommentForm, createCommentError, createCommentLoading} from "../reducers/createCommentReducer";
+import { setCreatedComment } from "../reducers/createCommentReducer";
+import { clearCommentForm, createCommentError, createCommentLoading} from "../reducers/createCommentReducer";
+import { setComments } from '../reducers/commentsReducer';
 export function* createCommentWorker() {
     try {
         yield put(createCommentLoading(true));
@@ -20,13 +21,14 @@ export function* createCommentWorker() {
                 name: userData?.name,
                 email: userData?.email
             },
-            userId: String(userData.id)
+            userId: String(userData.id),
+            commentId: comments ? Number(comments[0].id) + 1 : 1
         });
 
-        if (!comments) {
-            yield put(setComments([ data ]));
+        if (comments) {
+            yield put(setComments([data, ...comments]));
         } else {
-            yield put(setComments([ ...comments, data ]));
+            yield put(setComments([data]));
         }
 
         yield put(clearCommentForm());

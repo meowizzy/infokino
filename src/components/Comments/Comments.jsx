@@ -1,20 +1,21 @@
-import {useContext, useState, memo, useCallback} from "react";
+import {useContext, useRef, useCallback, useEffect, useState} from "react";
+import { Rate } from "antd";
 import PropTypes from "prop-types";
+import { AuthComponent } from "../AuthComponent";
+import { ModalContext } from "@contexts";
+import { setCommentFormData } from "@store/reducers/createCommentReducer";
+import { useDispatch, useSelector } from "react-redux";
+import { createCommentAction } from "../../store/reducers/createCommentReducer";
+import { fetchFilmCommentsAction } from "../../store/reducers/commentsReducer";
 import {
     UIButton,
     UITextArea,
     UIAvatar,
     UILoader,
     UIErrorMsg,
-    UISelect
 } from "../UI";
-import { AuthComponent } from "../AuthComponent";
-import { ModalContext } from "@contexts";
-import { setCommentFormData } from "@store/reducers/createCommentReducer";
 import cn from "classnames";
 import cls from './Comments.module.scss';
-import { useDispatch, useSelector } from "react-redux";
-import { createCommentAction } from "../../store/reducers/createCommentReducer";
 
 const Comments = (props) => {
     const {
@@ -22,8 +23,16 @@ const Comments = (props) => {
         data,
         error
     } = props;
+    const dispatch = useDispatch();
+    const listRef = useRef();
 
-    if (isLoading) {
+    useEffect(() => {
+        if (listRef.current) {
+            listRef.current.scrollTop = 0;
+        }
+    }, [data]);
+
+    if (isLoading && !data?.length) {
         return (
             <UILoader />
         );
@@ -45,21 +54,31 @@ const Comments = (props) => {
         );
     }
 
+    const onLoadMoreComments = () => {
+        dispatch(fetchFilmCommentsAction());
+    };
+
     return (
-        <div className={cn(cls.list)}>
-            {
-                data?.map(comment => (
-                    <Comments.Item
-                        key={comment.id}
-                        role={comment.reviewer?.role}
-                        avatar={comment.reviewer?.avatar}
-                        name={comment.reviewer?.name}
-                        email={comment.reviewer?.email}
-                        comment={comment?.comment}
-                    />
-                ))
-            }
-        </div>
+        <>
+            <div className={cls.listWrap}>
+                <div className={cn(cls.list)} ref={listRef}>
+                    {
+                        
+                        data?.map(comment => (
+                            <Comments.Item
+                                key={comment.id}
+                                role={comment.reviewer?.role}
+                                rating={comment?.rating}
+                                avatar={comment.reviewer?.avatar}
+                                name={comment.reviewer?.name}
+                                email={comment.reviewer?.email}
+                                comment={comment?.comment}
+                            />
+                        ))
+                    }
+                </div>
+            </div>
+        </>
     );
 };
 
@@ -75,6 +94,7 @@ const Item = (props) => {
         className,
         avatar,
         name,
+        rating,
         email,
         comment,
         role
@@ -93,19 +113,19 @@ const Item = (props) => {
                     hasLink={false}
                 />
             </div>
-            <p className={cls.comment}>
-                {comment}
-            </p>
+            <div className={cls.comment}>
+                {
+                    rating ?
+                    <div className={cls.commentRate}>
+                        <span className={cls.formFieldLabel}>Оценка: </span>
+                        <Rate disabled allowHalf defaultValue={Number(rating)}/>
+                    </div> : ""
+                }
+                <p>{comment}</p>
+            </div>
         </div>
     );
 };
-
-
-const ratingOptions = [
-    {title: "Рекомендуемые", param: ''},
-    {title: "По дате", param: 'year'},
-    {title: "По рейтингу", param: 'rating.kp'}
-];
 
 const Form = (props) => {
     const {
@@ -130,13 +150,9 @@ const Form = (props) => {
         dispatch(createCommentAction());
     }, [dispatch]);
 
-    const onSelectChange = () => {
-
+    const onChangeCommentRating = (value) => {
+        dispatch(setCommentFormData({ ...formData, rating: String(value) }));
     };
-
-    // const onChangeCommentRating = useCallback((value) => {
-    //    dispatch(setCommentFormData({ ...formData, rating: String(value) }));
-    // }, [dispatch, formData]);
 
     if (!authData) {
         return (
@@ -153,10 +169,12 @@ const Form = (props) => {
 
     return (
         <div className={cn(cls.form, className)}>
-            <div className={cls.formField}>
-                <UISelect
-                    options={ratingOptions}
-                    onChange={onSelectChange}
+            <div className={cn(cls.formField, cls.rateField)}>
+                <span className={cls.formFieldLabel}>Оценка: </span>
+                <Rate  
+                    allowHalf
+                    value={Number(formData?.rating)}
+                    onChange={onChangeCommentRating}
                 />
             </div>
             <div className={cls.formField}>

@@ -2,7 +2,8 @@ import {
     SET_COMMENTS,
     SET_COMMENTS_LOADING,
     SET_COMMENTS_ERROR,
-    CLEAR_COMMENTS, FILM_COMMENTS
+    CLEAR_COMMENTS, FILM_COMMENTS,
+    SET_CREATED_COMMENT
 } from "../constants/comments";
 
 const initialState = {
@@ -19,6 +20,14 @@ export const commentsReducer = (state = initialState, action) => {
                 isLoading: false,
                 error: undefined
             };
+        case SET_CREATED_COMMENT: {
+            return {
+                ...state,
+                data: [ action.payload, ...state.data ],
+                isLoading: false,
+                error: undefined
+            }    
+        }
         case SET_COMMENTS_LOADING:
             return {
                 ...state,

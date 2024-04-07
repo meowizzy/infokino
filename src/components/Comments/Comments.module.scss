@@ -8,8 +8,18 @@
     border-radius: var(--radius-medium);
 }
 
+.getMoreBtn {
+    margin-left: 70px;
+    margin-top: 20px;
+}
+.listWrap {
+    padding: 20px;
+    border-radius: var(--radius-large);
+    border: 2px solid var(--primary);
+}
 .list {
-    max-height: 700px;
+    max-height: 500px;
+    scroll-behavior: smooth;
     overflow: auto;
     &::-webkit-scrollbar {
         width: 4px;
@@ -42,11 +52,32 @@
     }
 }
 
+.formFieldLabel {
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
 .comment {
-    background-color: var(--color-main);
+    background-color: var(--primary);
     border-radius: 0 var(--radius-large) var(--radius-large) var(--radius-large);
     margin-left: 70px;
     padding: 15px;
     margin-top: 5px;
+    font-size: 20px;
     max-width: max-content;
+}
+
+.commentRate {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    :global(.ant-rate-star) {
+        font-size: 16px;
+        margin-inline-end: 2px !important;
+    }
+    .formFieldLabel {
+        margin-bottom: 0;
+        font-size: 15px;
+        margin-right: 5px;
+    }
 }

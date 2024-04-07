@@ -5,6 +5,7 @@ import cn from "classnames";
 import { routesPath } from "../../../api/routes";
 import { roles } from "@pages/Profile/ProfileCard/ProfileCard";
 import { ReactComponent as AvatarIcon } from "@public/images/avatarIcon.svg";
+import { Image } from "antd";
 
 export const UIAvatar = memo((props) => {
     const {
@@ -14,7 +15,8 @@ export const UIAvatar = memo((props) => {
         hasLink = true,
         type = "small",
         email,
-        role
+        role,
+        withZoom = false
     } = props;
     const [isValidImg, setIsValidImg] = useState(true);
 
@@ -23,12 +25,16 @@ export const UIAvatar = memo((props) => {
     }, []);
 
     let content;
+    let image = isValidImg ? withZoom ? 
+            <Image 
+                width="100%" 
+                height="100%" 
+                src={avatar}
+            /> : <img src={avatar} alt="avatar" onError={onImgError}/> : <AvatarIcon/>;
     let info = (
         <>
             <div className={cls.avatar_pic}>
-                {
-                    isValidImg ? <img src={avatar} alt="avatar" onError={onImgError}/> : <AvatarIcon/>
-                }
+                {image}
             </div>
             <div className={cls.avatar_info}>
                 <span className={cls.avatar_name}>

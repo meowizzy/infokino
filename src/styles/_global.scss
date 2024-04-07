@@ -249,3 +249,24 @@ html body .custom-select {
           background-color: var(--primary);
      }
 }
+
+
+.anticon svg {
+     fill: var(--color-gray);
+}
+
+.ant-rate-star-full {
+     .anticon svg {
+          fill: var(--color-main-hover);
+     }
+}
+
+.ant-rate-star-half {
+     .ant-rate-star-first svg {
+          fill: var(--color-main-hover);
+     }
+}
+
+#root ul.ant-rate {
+     column-gap: 0;
+}
