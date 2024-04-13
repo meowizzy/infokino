@@ -1,10 +1,13 @@
+import { act } from "react-dom/test-utils";
 import {
     SET_COMMENTS,
     SET_COMMENTS_LOADING,
     SET_COMMENTS_ERROR,
     CLEAR_COMMENTS, FILM_COMMENTS,
-    SET_CREATED_COMMENT
+    SET_CREATED_COMMENT,
+    DELETE_COMMENT
 } from "../constants/comments";
+import { deleteComment } from "@services/movieComments";
 
 const initialState = {
     data: undefined,
@@ -20,14 +23,21 @@ export const commentsReducer = (state = initialState, action) => {
                 isLoading: false,
                 error: undefined
             };
-        case SET_CREATED_COMMENT: {
+        case SET_CREATED_COMMENT: 
             return {
                 ...state,
                 data: [ action.payload, ...state.data ],
                 isLoading: false,
                 error: undefined
             }    
-        }
+        case DELETE_COMMENT:
+            const newData = state.data.filter(item => item.id !== action.payload);
+            deleteComment(action.payload);
+
+            return {
+                ...state,
+                data: newData
+            }
         case SET_COMMENTS_LOADING:
             return {
                 ...state,
@@ -55,6 +65,13 @@ export const setComments = (payload) => {
     return {
         type: SET_COMMENTS,
         payload
+    }
+}
+
+export const deleteCommentAction = (id) => {
+    return {
+        type: DELETE_COMMENT,
+        payload: id
     }
 }
 

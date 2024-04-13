@@ -25,12 +25,12 @@ export const UIAvatar = memo((props) => {
     }, []);
 
     let content;
-    let image = isValidImg ? withZoom ? 
-            <Image 
-                width="100%" 
-                height="100%" 
-                src={avatar}
-            /> : <img src={avatar} alt="avatar" onError={onImgError}/> : <AvatarIcon/>;
+    let image = isValidImg ? ( withZoom ? 
+        <Image 
+            width="100%" 
+            height="100%" 
+            src={avatar}
+        /> : <img src={avatar} alt="avatar" onError={onImgError}/> ) : <AvatarIcon/>;
     let info = (
         <>
             <div className={cls.avatar_pic}>

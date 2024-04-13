@@ -9,6 +9,7 @@ import {
 
 const initialState = {
     formData: {
+        id: "",
         rating: "",
         comment: ""
     },

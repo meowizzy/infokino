@@ -6,7 +6,7 @@ import { ModalContext } from "@contexts";
 import { setCommentFormData } from "@store/reducers/createCommentReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { createCommentAction } from "../../store/reducers/createCommentReducer";
-import { fetchFilmCommentsAction } from "../../store/reducers/commentsReducer";
+import { fetchFilmCommentsAction, deleteCommentAction } from "../../store/reducers/commentsReducer";
 import {
     UIButton,
     UITextArea,
@@ -15,6 +15,9 @@ import {
     UIErrorMsg,
 } from "../UI";
 import { WithPermission } from "@hoc/WithPermission"; 
+import { ReactComponent as DotsIcon } from "@public/images/dots.svg";
+import { ReactComponent as DeleteIcon } from "@public/images/delete.svg";
+import { ReactComponent as EditIcon } from "@public/images/edit.svg";
 import cn from "classnames";
 import cls from './Comments.module.scss';
 
@@ -33,7 +36,7 @@ const Comments = (props) => {
         }
     }, [data]);
 
-    if (isLoading && !data?.length) {
+    if (isLoading) {
         return (
             <UILoader />
         );
@@ -68,6 +71,7 @@ const Comments = (props) => {
                         data?.map(comment => (
                             <Comments.Item
                                 key={comment.id}
+                                id={comment?.id}
                                 role={comment.reviewer?.role}
                                 rating={comment?.rating}
                                 avatar={comment.reviewer?.avatar}
@@ -92,6 +96,7 @@ Comments.propTypes = {
 
 const Item = (props) => {
     const {
+        id,
         className,
         avatar,
         name,
@@ -100,15 +105,21 @@ const Item = (props) => {
         comment,
         role
     } = props;
+    const dispatch = useDispatch();
+
+    const onEditComment = useCallback(() => {
+        
+    }, []);
+
+    const onDeleteComment = useCallback(() => {
+        console.log(id);
+        dispatch(deleteCommentAction(id));
+    }, []);
 
 
     return (
         <div className={cn(cls.commentItem, className)}>
             <div className={cls.info}>
-                <WithPermission>
-                    <span>delete</span>
-                    <span>edit</span>
-                </WithPermission>
                 <UIAvatar
                     name={name}
                     email={email}
@@ -117,6 +128,29 @@ const Item = (props) => {
                     type="medium"
                     hasLink={false}
                 />
+                <WithPermission>
+                    <div className={cls.dropDown}>
+                        <div className={cls.dropDownTrigger}>
+                            <DotsIcon />
+                        </div>
+                        <div className={cls.dropDownList}>
+                            <UIButton
+                                Icon={EditIcon}
+                                classes={cls.editBtn}
+                                type={"primary"}
+                                text="Редактировать"
+                                onClick={onEditComment}
+                            />
+                            <UIButton
+                                Icon={DeleteIcon}
+                                classes={cls.deleteBtn}
+                                type={"primary"}
+                                text="Удалить"
+                                onClick={onDeleteComment}
+                            />
+                        </div>
+                    </div>
+                </WithPermission>
             </div>
             <div className={cls.comment}>
                 {

@@ -28,7 +28,7 @@ const Film = () => {
      const tabs = useMemo(() => {
          return [
              { id: 0, label: "Информация о фильме", content: data ? <FilmCard data={data}/> : "" },
-             { id: 1, label: "Отзывы", content: <FilmReviews/> },
+             { id: 1, label: "Комментарии", content: <FilmReviews/> },
          ];
      }, [data]);
 

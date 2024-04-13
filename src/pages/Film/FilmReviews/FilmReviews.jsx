@@ -24,7 +24,7 @@ export const FilmReviews = () => {
 
     return (
         <div>
-            <UITitle title="Отзывы" classes="heading"/>
+            <UITitle title="Комментарии" classes="heading"/>
             <Comments
                 data={data}
                 isLoading={isLoading}

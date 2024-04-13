@@ -36,7 +36,7 @@ export const PlayerPanel = ({ poster, background, title, enName, id }) => {
                               {
                                    !showVideo && <div className={styles.info}>
                                         <WithAuth
-                                             info={<UITitle type="title-s" title="Авторизуйтесь, чтобы начать просмотр."/>}
+                                             info={<UITitle type="title-s" title="Пожалуйста, авторизуйтесь для просмотра."/>}
                                         >
                                              <UIPlayerButton 
                                                   customClass="playerButton" 
