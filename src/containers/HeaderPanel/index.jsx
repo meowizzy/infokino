@@ -3,6 +3,8 @@ import { Logo } from "@components/Logo";
 import { MenuList } from "@components/MenuList";
 import { SearchButton } from "@components/Search";
 import { AuthButton } from "@components/AuthComponent/AuthButton";
+import { UIFavoritesBtn } from "@components/UI";
+import { WithAuth } from "@hoc/WithAuth";
 
 export const HeaderPanel = () => {
 
@@ -16,7 +18,10 @@ export const HeaderPanel = () => {
                }
                RightSide={
                     <>
-                         <SearchButton />
+                         <WithAuth>
+                              <UIFavoritesBtn />
+                              <SearchButton />
+                         </WithAuth>
                          <AuthButton />
                     </>  
                }

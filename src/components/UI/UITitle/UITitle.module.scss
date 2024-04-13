@@ -1,6 +1,5 @@
 .title {
      font-weight: 400;
-     font-size: 40px;
      color: var(--color-white);
      margin-bottom: 27px;
 
@@ -8,4 +7,16 @@
           font-size: 25px;
           margin-bottom: 20px;
      }
+}
+
+.title-xl {
+     font-size: 40px;
+}
+
+.title-l {
+     font-size: 30px;
+}
+
+.title-s {
+     font-size: 25px;
 }

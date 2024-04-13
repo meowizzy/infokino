@@ -1,0 +1,14 @@
+.link {
+    text-decoration: none;
+}
+
+.btn {
+    svg {
+        fill: var(--color-white);
+    }
+    &:hover {
+        svg {
+            fill: var(--color-main);
+        }
+    }
+}

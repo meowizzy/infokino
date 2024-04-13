@@ -3,9 +3,9 @@ import { memo } from 'react';
 import cn from 'classnames';
 import styles from './UITitle.module.scss';
 
-const UITitle = ({ title, classes = '', ...props }) => {
+const UITitle = ({ title, classes = '', type = "title-xl", ...props }) => {
      return (
-          <p className={cn(styles.title, classes)} {...props}>{title}</p>
+          <p className={cn(styles.title, classes, styles[type])} {...props}>{title}</p>
      );
 };
 

@@ -8,9 +8,7 @@ export function* handleAllFilmsWorker() {
           const filters = yield select(state => state.allFilmsReducer.params);
           const data = yield call(getFilmsByGenre, 20, filters, page, filters.type, filters.sorting);
 
-          console.log(data.docs)
-
-          if (yield data.docs.length) {
+          if (data?.docs?.length) {
                yield put(setAllFilmsLoadingAction(false));
                yield put(setAllFilmsAction(data.docs));
                yield put(setFilmsPages(data.pages));

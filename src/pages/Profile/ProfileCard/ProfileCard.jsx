@@ -1,20 +1,17 @@
-import cn from "classnames";
-import cls from "./ProfileCard.module.scss";
 import { UIButton, UIAvatar } from "@components/UI";
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { clearUserData } from "@store/reducers/userReducer";
 import { useNavigate } from "react-router";
 import { routesPath } from "../../../api/routes";
+import { rolesTranslation } from "@api/roles";
 import { ReactComponent as UserIcon } from "@public/images/username.svg";
 import { ReactComponent as RolesIcon } from "@public/images/roles.svg";
 import { ReactComponent as EmailIcon } from "@public/images/emailicon.svg";
-import { ReactComponent as CalendarIcon } from "@public/images/calendar.svg"
+import { ReactComponent as CalendarIcon } from "@public/images/calendar.svg";
+import cn from "classnames";
+import cls from "./ProfileCard.module.scss";
 
-export const roles = {
-    "admin": "Администратор",
-    "customer": "Пользователь"
-}
 const ProfileCard = (props) => {
     const {
         className,
@@ -67,7 +64,7 @@ const ProfileCard = (props) => {
                         <RolesIcon /> Роль:
                     </span>
                     <span className={cls.infoTableValue}>
-                        {authData?.role ? roles[authData?.role] : "-"}
+                        {authData?.role ? rolesTranslation[authData?.role] : "-"}
                     </span>
                 </li>
             </ul>

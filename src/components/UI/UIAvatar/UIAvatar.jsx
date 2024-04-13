@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import cls from "./UIAvatar.module.scss";
 import cn from "classnames";
 import { routesPath } from "../../../api/routes";
-import { roles } from "@pages/Profile/ProfileCard/ProfileCard";
+import { rolesTranslation } from "@api/roles";
 import { ReactComponent as AvatarIcon } from "@public/images/avatarIcon.svg";
 import { Image } from "antd";
 
@@ -38,7 +38,7 @@ export const UIAvatar = memo((props) => {
             </div>
             <div className={cls.avatar_info}>
                 <span className={cls.avatar_name}>
-                    {name}{role ? ` - ${roles[role]}` : ""}
+                    {name}{role ? ` - ${rolesTranslation[role]}` : ""}
                 </span>
                 { email ? <span className={cls.avatar_email}>{email}</span> : "" }
             </div>

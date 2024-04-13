@@ -4,6 +4,7 @@ import FilmAsync from "@pages/Film/Film.async";
 import NotFoundPageAsync from "@pages/NotFoundPage/NotFoundPage.async";
 import ProfileAsync from "@pages/Profile/Profile.async";
 import { TempPage } from "@pages/TempPage/TempPage";
+import FavoritesPageAsync from "@pages/Favorites/Favorites.async";
 
 export const routesPath = {
      HOME: "/",
@@ -11,7 +12,8 @@ export const routesPath = {
      FILM: "film/:id",
      PROFILE: "profile",
      TEMP: "temp",
-     NOT_FOUND: "*"
+     NOT_FOUND: "*",
+     FAVORITES: "favorites"
 }
 
 const routes = {
@@ -31,6 +33,11 @@ const routes = {
           path: routesPath.PROFILE,
           element: <ProfileAsync />,
           isPrivate: true
+     },
+     favoritesPage: {
+          path: routesPath.FAVORITES,
+          element: <FavoritesPageAsync/>,
+          isPrivate: false
      },
      tempPage: {
           path: routesPath.TEMP,

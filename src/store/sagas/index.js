@@ -14,6 +14,8 @@ import { loginWorker } from "./loginWorker";
 import { fetchUserDataWorker } from "./fetchUserDataWorker";
 import { fetchCommentsWorker } from "./fetchCommentsWorker";
 import { createCommentWorker } from "./createCommentWorker";
+import { favoritesWotker } from './favoritesWorker';
+import { FAVORITES_ACTION } from '../constants/favorites';
 
 export function* watcherSaga() {
      yield takeLatest(SET_FILM_ID, handleFilmByIdWorker);
@@ -25,6 +27,7 @@ export function* watcherSaga() {
      yield takeLatest(USER, fetchUserDataWorker);
      yield takeLatest(FILM_COMMENTS, fetchCommentsWorker);
      yield takeLatest(CREATE_COMMENT, createCommentWorker);
+     yield takeLatest(FAVORITES_ACTION, favoritesWotker);
 }
 
 export default function* rootSaga() {

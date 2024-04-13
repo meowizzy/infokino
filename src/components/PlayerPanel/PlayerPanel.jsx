@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import getVideoUrl from "@helpers/getVideoUrl";
 import { UILoader, UITitle, UIPlayerButton} from "@components/UI";
+import { WithAuth } from "@hoc/WithAuth";
 import cn from 'classnames';
 import styles from './PlayerPanel.module.scss';
 
@@ -34,7 +35,15 @@ export const PlayerPanel = ({ poster, background, title, enName, id }) => {
                          <div className={styles.slot}>
                               {
                                    !showVideo && <div className={styles.info}>
-                                        <UIPlayerButton customClass="playerButton" size="medium" onClick={() => setShowVideo(!showVideo)}/>
+                                        <WithAuth
+                                             info={<UITitle type="title-s" title="Авторизуйтесь, чтобы начать просмотр."/>}
+                                        >
+                                             <UIPlayerButton 
+                                                  customClass="playerButton" 
+                                                  size="medium" 
+                                                  onClick={() => setShowVideo(!showVideo)}
+                                             />
+                                        </WithAuth>
                                         <h1>
                                              <UITitle title={title}/>
                                         </h1>

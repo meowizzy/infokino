@@ -10,7 +10,7 @@ export function* fetchCommentsWorker() {
 
         yield put(setComments(data));
     } catch (e) {
-        const err = yield validateCommentsList(e);
+        const err = yield validateCommentsList(e.message);
         yield put(setCommentsError(err));
     }
 }

@@ -59,10 +59,10 @@ authInstance.interceptors.request.use((config) => {
 // auth api end
 
 // movie comments api
-export const COMMENTS_API = "https://660d9e1f6ddfa2943b34daa4.mockapi.io/api/v1/comments";
+export const MOCKAPI = "https://660d9e1f6ddfa2943b34daa4.mockapi.io/api/v1";
 
-export const commentsInstance = axios.create({
-     baseURL: COMMENTS_API
+export const mockInstance = axios.create({
+     baseURL: MOCKAPI
 });
 // movie comments api end
 

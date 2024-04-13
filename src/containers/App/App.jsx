@@ -24,13 +24,17 @@ export const App = () => {
                          <Route path="/" element={<Layout />}>
                               {
                                    Object
-                                       .entries(routes)
-                                       .map(route => {
+                                       .values(routes)
+                                       .map(value => {
                                             return <Route
-                                                key={route[1].path}
-                                                path={route[1].path}
+                                                key={value.path}
+                                                path={value.path}
                                                 element={
-                                                     <ProtectedRoute isPrivate={route[1].isPrivate}>{route[1].element}</ProtectedRoute>
+                                                     <ProtectedRoute 
+                                                       isPrivate={value.isPrivate}
+                                                       >
+                                                            {value.element}
+                                                       </ProtectedRoute>
                                                 }/>
                                        })
                               }

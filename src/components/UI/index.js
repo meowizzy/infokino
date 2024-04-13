@@ -10,6 +10,7 @@ import UIForm from "./UIForm/UIForm";
 import { UIAvatar } from "./UIAvatar/UIAvatar";
 import UITextArea from "./UITextArea/UITextArea";
 import UIErrorMsg from "./UIErrorMsg/UIErrorMsg";
+import { UIFavoritesBtn } from "./UIFavoritesBtn/UIFavoritesBtn";
 
 export { 
     UIAvatar, 
@@ -23,5 +24,6 @@ export {
     UITabs, 
     UIForm, 
     UITextArea,
-    UIErrorMsg
+    UIErrorMsg,
+    UIFavoritesBtn
 };

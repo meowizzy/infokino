@@ -9,7 +9,7 @@ const useScrollFetching = (props) => {
      const dispatch = useDispatch();
 
      useEffect(() => {
-          if (!data.length && !error) dispatch(getAllFilms());
+          if (!data?.length && !error) dispatch(getAllFilms());
      }, [data, dispatch]);
 
      useEffect(() => {

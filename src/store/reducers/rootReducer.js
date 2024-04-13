@@ -9,6 +9,7 @@ import { loginReducer } from "./loginReducer";
 import { userReducer } from "./userReducer";
 import { commentsReducer } from "./commentsReducer";
 import { createCommentReducer } from "./createCommentReducer";
+import { favoritesReducer } from "./favoritesReducer";
 
 
 const rootReducer = combineReducers({
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
      loginReducer,
      userReducer,
      commentsReducer,
-     createCommentReducer
+     createCommentReducer,
+     favoritesReducer
 });
 
 

@@ -14,6 +14,7 @@ import {
     UILoader,
     UIErrorMsg,
 } from "../UI";
+import { WithPermission } from "@hoc/WithPermission"; 
 import cn from "classnames";
 import cls from './Comments.module.scss';
 
@@ -104,6 +105,10 @@ const Item = (props) => {
     return (
         <div className={cn(cls.commentItem, className)}>
             <div className={cls.info}>
+                <WithPermission>
+                    <span>delete</span>
+                    <span>edit</span>
+                </WithPermission>
                 <UIAvatar
                     name={name}
                     email={email}
@@ -158,17 +163,24 @@ const Form = (props) => {
         return (
             <div className={cls.noAuthForm}>
                 <UIButton
+                    classes={cls.noAuthButton}
                     type={"default"}
                     text="Авторизуйтесь,"
                     onClick={handleOpenModalClick}
                 />
-                <span>&nbsp;чтоб оставить комментарий</span>
+                <span>&nbsp;чтобы оставить комментарий</span>
             </div>
         );
     }
 
     return (
         <div className={cn(cls.form, className)}>
+            {error && error.map(err => (
+                <div key={err} className={cn(cls.formField, cls.formFieldError)}>
+                    <UIErrorMsg value={err}/>  
+                </div>
+            ))}
+            
             <div className={cn(cls.formField, cls.rateField)}>
                 <span className={cls.formFieldLabel}>Оценка: </span>
                 <Rate  
