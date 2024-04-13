@@ -1,8 +1,10 @@
 import { 
     put, 
-    call 
+    call,
+    select
 } from 'redux-saga/effects';
 import { fetchFavorites } from "@services/favorites";
+import { getFilmsByIds } from "@services/kinoinfo";
 import { 
     setFavorites, 
     setFavoritesError, 
@@ -11,9 +13,17 @@ import {
 
 export function* favoritesWotker() {
     try {
+        const userData = yield select(state => state.userReducer.authData);
         yield put(setFavoritesLoading());
-        const data = yield call(fetchFavorites());
-        yield put(setFavorites(data));
+        
+        if (userData) {
+            const favoritesData = yield call(fetchFavorites, userData?.id);
+            const ids = yield favoritesData[0]?.favorites;
+
+            const data = yield call(getFilmsByIds, 1, ids);
+
+            yield put(setFavorites(data?.docs));
+        }
     } catch(e) {
         yield put(setFavoritesError(e.message));
     }

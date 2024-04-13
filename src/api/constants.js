@@ -9,6 +9,7 @@ export const API_VERSIONS = {
      API_VER_1: "v1",
      API_VER_1_3: "v1.3",
      API_VER_1_2: "v1.2",
+     API_VER_1_4: "v1.4",
 }
 
 export const API_GENRES = {

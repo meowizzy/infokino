@@ -21,6 +21,12 @@ const kinoinfoApi = {
           return await response.data;
      },
 
+     async getFilmsByIds(page = 1, ids) {
+          const response = await reqInstance.get(`${API_VERSIONS.API_VER_1_4}/movie?page=${page}&limit=40&id=${ids.join("&id=")}`);
+          
+          return await response.data.docs;
+     },
+
      async getNewFilms(limit = 10) {
           const resposne = await reqInstance.get(`${API_VERSIONS.API_VER_1_3}/movie`, {
                params: {
@@ -90,6 +96,7 @@ const kinoinfoApi = {
 export const { 
      getAllFilms,
      getFilmById,
+     getFilmsByIds,
      getNewFilms,
      getFilmsByGenre,
      getSearchQuery,

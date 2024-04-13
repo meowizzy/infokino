@@ -1,13 +1,13 @@
 import { useRef, useEffect } from "react";
 
 const useClickOutside = (handler) => {
-     const filterRef = useRef();
+     const ref = useRef();
 
      useEffect(() => {
-          if (!filterRef) return;
+          if (!ref) return;
           const handleClick = e => {
-               if (!filterRef.current) return;
-               if (!filterRef.current.contains(e.target)) {
+               if (!ref.current) return;
+               if (!ref.current.contains(e.target)) {
                     handler(false);
                }
           };
@@ -16,7 +16,7 @@ const useClickOutside = (handler) => {
           return () => document.removeEventListener('mouseup', handleClick);
      }, [handler]);
 
-     return filterRef;
+     return ref;
 };
 
 export default useClickOutside;

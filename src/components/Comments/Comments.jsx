@@ -5,6 +5,7 @@ import { AuthComponent } from "../AuthComponent";
 import { ModalContext } from "@contexts";
 import { setCommentFormData } from "@store/reducers/createCommentReducer";
 import { useDispatch, useSelector } from "react-redux";
+import useClickOutside from "@hooks/useClickOutside";
 import { createCommentAction } from "../../store/reducers/createCommentReducer";
 import { fetchFilmCommentsAction, deleteCommentAction } from "../../store/reducers/commentsReducer";
 import {
@@ -105,7 +106,11 @@ const Item = (props) => {
         comment,
         role
     } = props;
+    const [isDropdownVisible, setIsDropDownVisible] = useState(false);
+    const dropDownRef = useClickOutside(setIsDropDownVisible);
     const dispatch = useDispatch();
+
+    const onToggleDropdown = () => setIsDropDownVisible(!isDropdownVisible);
 
     const onEditComment = useCallback(() => {
         
@@ -129,11 +134,11 @@ const Item = (props) => {
                     hasLink={false}
                 />
                 <WithPermission>
-                    <div className={cls.dropDown}>
-                        <div className={cls.dropDownTrigger}>
+                    <div className={cls.dropDown} ref={dropDownRef}>
+                        <div className={cn(cls.dropDownTrigger, {[cls.active]: isDropdownVisible})} onClick={onToggleDropdown}>
                             <DotsIcon />
                         </div>
-                        <div className={cls.dropDownList}>
+                        <div className={cn(cls.dropDownList, {[cls.visible]: isDropdownVisible})}>
                             <UIButton
                                 Icon={EditIcon}
                                 classes={cls.editBtn}

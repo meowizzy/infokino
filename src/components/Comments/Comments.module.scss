@@ -53,19 +53,35 @@
             fill: var(--color-white);
             opacity: .3;
         }
+
+        &.active {
+            svg {
+                opacity: .8;
+            }
+        }
+
+        &:hover {
+            svg {
+                opacity: .5;
+            }
+        }
     }
 
-    &:hover {
-        .dropDownList {
-            opacity: 1;
-            pointer-events: all;
-        }
-        .dropDownTrigger {
-            svg {
-                opacity: .7;
-            }   
-        }
+    .dropDownList.visible {
+        opacity: 1;
+        pointer-events: all;
     }
+}
+
+.test {
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    transition: .3s;
+}
+
+.itemVisible {
+    transform: rotate(180deg);
 }
 
 .deleteBtn {
@@ -114,6 +130,7 @@
 
 .commentItem {
     margin-bottom: 20px;
+    transition: var(--transition);
     &:last-child {
         margin-bottom: 0;
     }
