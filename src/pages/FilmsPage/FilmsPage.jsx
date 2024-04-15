@@ -1,4 +1,4 @@
-import { useEffect, memo } from "react";
+import { useEffect, memo, useMemo } from "react";
 import { useParams, useSearchParams } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { setFilmsFilter } from "@store/actions/actionCreator";
@@ -17,11 +17,13 @@ const FilmsPage = () => {
      const [ searchParams ] = useSearchParams();
      const title = convertMovieType(param.type).main;
 
-     const config = {
-          data: data.allFilms,
-          error: data.allFilmsError,
-          isLoading
-     };
+     const config = useMemo(() => {
+          return {
+               data: data.allFilms,
+               error: data.allFilmsError,
+               isLoading
+          };
+     }, [data]);
 
      useEffect(() => {
           dispatch(setFilmsFilter({

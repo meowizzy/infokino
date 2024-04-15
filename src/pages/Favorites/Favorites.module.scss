@@ -1,0 +1,7 @@
+.items {
+    display: flex;
+    flex-wrap: wrap;
+    & > div {
+        width: 250px;
+    }
+}

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { favoritesAction } from "@store/reducers/favoritesReducer";
+import { FilmItem } from "@components/FilmItem"; 
 import { 
     UILoader, 
     UIErrorMsg, 
@@ -31,9 +32,8 @@ const Favorites = () => {
     if (error) {
         return (
             <UIErrorMsg value={error}/>
-        )
+        );
     }
-
 
     return (
         <>
@@ -41,7 +41,11 @@ const Favorites = () => {
                 <UITitle title="Избранные"/>
             </h1>
 
-            {/* <List items={data} isLoading={isLoading} error={error}/>  */}
+            <div className={cls.items}>
+                {
+                    data?.map(item => <FilmItem key={item.id} item={item}/>)
+                }
+            </div>
         </> 
     );
 };

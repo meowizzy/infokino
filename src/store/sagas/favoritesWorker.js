@@ -19,10 +19,10 @@ export function* favoritesWotker() {
         if (userData) {
             const favoritesData = yield call(fetchFavorites, userData?.id);
             const ids = yield favoritesData[0]?.favorites;
-
-            const data = yield call(getFilmsByIds, 1, ids);
-
-            yield put(setFavorites(data?.docs));
+            if (ids?.length) {
+                const data = yield call(getFilmsByIds, 1, ids);
+                yield put(setFavorites(data));
+            }
         }
     } catch(e) {
         yield put(setFavoritesError(e.message));
