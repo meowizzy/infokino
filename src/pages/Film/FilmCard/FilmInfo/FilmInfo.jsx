@@ -1,8 +1,9 @@
 import {useMemo} from "react";
 import PropTypes from 'prop-types';
-import { UITitle, UIRating } from '@components/UI';
+import { UIButton, UITitle, UIRating } from '@components/UI';
 import Item from './Item/Item';
 import styles from './FilmInfo.module.scss';
+import {FavoritesButton} from "../../../../components/FavoritesButton/FavoritesButton";
 
 
 const FilmInfo = ({ data }) => {
@@ -28,9 +29,12 @@ const FilmInfo = ({ data }) => {
                <ul className={styles.list}>
                     { info.map(item => <Item key={item.label} label={item.label} value={item.value} link={item.link}/>) }
                </ul>
+              <FavoritesButton
+                filmId={data.id}
+              />
                {
                     !!data?.description &&
-                    
+
                     <div className={styles.description}>
                          <UITitle title="Описание: "/>
                          <div className={styles.description_body}>

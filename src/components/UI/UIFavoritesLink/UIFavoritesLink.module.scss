@@ -1,0 +1,30 @@
+.link {
+    text-decoration: none;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.btn {
+    svg {
+        fill: var(--color-white);
+    }
+    &:hover {
+        svg {
+            fill: var(--color-main);
+        }
+    }
+}
+
+.favoritesCount {
+    color: var(--color-white);
+    font-size: 14px;
+    background-color: var(--color-main);
+    min-width: 20px;
+    line-height: 20px;
+    text-align: center;
+    display: inline-block;
+    border-radius: 50%;
+    margin-left: 5px;
+    margin-top: 2px;
+}

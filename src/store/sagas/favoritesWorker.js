@@ -1,30 +1,34 @@
-import { 
-    put, 
+import {
+    put,
     call,
     select
 } from 'redux-saga/effects';
 import { fetchFavorites } from "@services/favorites";
 import { getFilmsByIds } from "@services/kinoinfo";
-import { 
-    setFavorites, 
-    setFavoritesError, 
-    setFavoritesLoading 
+import {
+    setFavorites,
+    setFavoritesError,
+    setFavoritesLoading
 } from "../reducers/favoritesReducer";
 
-export function* favoritesWotker() {
+export function* favoritesWorker() {
     try {
         const userData = yield select(state => state.userReducer.authData);
+        const userFavoritesData = yield select(state => state.favoritesReducer.userFavorites);
         yield put(setFavoritesLoading());
-        
+        console.log(userFavoritesData)
+
         if (userData) {
-            const favoritesData = yield call(fetchFavorites, userData?.id);
-            const ids = yield favoritesData[0]?.favorites;
-            if (ids?.length) {
-                const data = yield call(getFilmsByIds, 1, ids);
+            if (userFavoritesData && userFavoritesData.favorites.length) {
+                const data = yield call(getFilmsByIds, 1, userFavoritesData.favorites);
                 yield put(setFavorites(data));
             }
         }
     } catch(e) {
-        yield put(setFavoritesError(e.message));
+        if (e?.response?.status === 404) {
+            yield put(setFavorites([]));
+        } else {
+            yield put(setFavoritesError(e.message));
+        }
     }
 }

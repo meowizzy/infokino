@@ -1,9 +1,9 @@
 import { put, call, select } from 'redux-saga/effects';
-import { login, profile } from "../../services/auth";
+import { login, profile } from "@services/auth";
+import { LOCAL_STORAGE_AUTH } from "@services/constants";
 import { clearForm, setLoginValidateError } from "../reducers/loginReducer";
 import { setUserData, setUserIsLoading } from "../reducers/userReducer";
-import { LOCAL_STORAGE_AUTH } from "../../services/constants";
-import {validateLoginForm} from "../../components/AuthComponent/Login/validateLoginForm";
+import { validateLoginForm } from "@components/AuthComponent/Login/validateLoginForm";
 import { getGlobalModalContextValue } from "@contexts";
 export function* loginWorker() {
     try {
@@ -15,12 +15,16 @@ export function* loginWorker() {
 
         yield put(setUserIsLoading(true));
 
+        // логинимся
         const loginData = yield call(login, { email: formData.email, password: formData.password });
 
+        // записываем токен в localstorage
         yield localStorage.setItem(LOCAL_STORAGE_AUTH, JSON.stringify(loginData));
 
+        // запрашиваем данные пользователя
         const profileData = yield call(profile);
 
+        // кладем в стор данные пользователя
         yield put(setUserData({
             ...profileData,
             password: undefined

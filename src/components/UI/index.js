@@ -10,20 +10,20 @@ import UIForm from "./UIForm/UIForm";
 import { UIAvatar } from "./UIAvatar/UIAvatar";
 import UITextArea from "./UITextArea/UITextArea";
 import UIErrorMsg from "./UIErrorMsg/UIErrorMsg";
-import { UIFavoritesBtn } from "./UIFavoritesBtn/UIFavoritesBtn";
+import { UIFavoritesLink } from "./UIFavoritesLink/UIFavoritesLink";
 
-export { 
-    UIAvatar, 
-    UIButton, 
-    UILoader, 
-    UIRating, 
-    UITitle, 
-    UIPlayerButton, 
-    UISelect, 
-    UIInput, 
-    UITabs, 
-    UIForm, 
+export {
+    UIAvatar,
+    UIButton,
+    UILoader,
+    UIRating,
+    UITitle,
+    UIPlayerButton,
+    UISelect,
+    UIInput,
+    UITabs,
+    UIForm,
     UITextArea,
     UIErrorMsg,
-    UIFavoritesBtn
+    UIFavoritesLink
 };

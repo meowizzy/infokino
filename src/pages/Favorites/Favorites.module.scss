@@ -5,3 +5,21 @@
         width: 250px;
     }
 }
+
+.noFavorites {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 400px);
+
+    svg {
+        fill: var(--color-gray);
+        width: 100px;
+        height: 100px;
+    }
+
+    .noFavoritesTitle {
+        color: var(--color-gray);
+    }
+}
