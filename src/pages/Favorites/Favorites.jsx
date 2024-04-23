@@ -15,7 +15,6 @@ import cls from "./Favorites.module.scss";
 
 const Favorites = () => {
     const dispatch = useDispatch();
-    const authData = useSelector(state => state.userReducer.authData);
     const {
         ids,
         data,
@@ -25,7 +24,7 @@ const Favorites = () => {
 
     useEffect(() => {
         dispatch(getFavoritesAction());
-    }, [authData]);
+    }, [ids]);
 
     if (isLoading) {
         return (

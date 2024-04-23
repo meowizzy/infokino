@@ -17,7 +17,7 @@ const Film = () => {
      const data = useSelector(state => state.filmByIdReducer.data);
 
      useFetching(getFilmByIdAction);
-     
+
      useEffect(() => {
           dispatch(setFilmId(id));
           return () => {
@@ -37,18 +37,18 @@ const Film = () => {
      `;
 
      return (
-          data ? 
+          data ?
                <>
-                    <PlayerPanel 
-                         poster={data.poster} 
-                         background={data.backdrop.url} 
-                         id={id} 
-                         title={data.name} 
+                    <PlayerPanel
+                         poster={data?.poster}
+                         background={data?.backdrop?.url}
+                         id={id}
+                         title={data.name}
                          enName={data.alternativeName}
-                    /> 
+                    />
 
                     <div className="container" style={{paddingTop: "100px"}}>
-                         <UITabs 
+                         <UITabs
                               data={tabs}
                          />
                     </div>
