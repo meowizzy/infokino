@@ -18,9 +18,11 @@ export function* fetchUserDataWorker() {
             password: undefined
         }));
 
-        const userFavoritesData = yield call(fetchFavorites, String(profileData.id));
+        if (profileData) {
+            const userFavoritesData = yield call(fetchFavorites, String(profileData.id));
 
-        yield put(setUserFavoritesData(...userFavoritesData));
+            yield put(setUserFavoritesData(...userFavoritesData));
+        }
 
         yield put(setUserIsLoading(false));
     } catch (e) {
