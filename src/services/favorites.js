@@ -19,8 +19,8 @@ export const toggleFavorites = async (id, data) => {
     return response.data;
 }
 
-export const clearFavorites = async (userId) => {
-    const response = await mockInstance.delete(`/favorites?userId=${userId}`);
+export const clearFavorites = async (id) => {
+    const response = await mockInstance.delete(`/favorites/${id}`);
 
     return response.data;
 }

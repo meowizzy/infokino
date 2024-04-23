@@ -6,7 +6,8 @@ import cls from "./UIFavoritesLink.module.scss";
 import { useSelector } from "react-redux";
 
 export const UIFavoritesLink = () => {
-    const data = useSelector(state => state.favoritesReducer.userFavorites);
+    const userFavoritesData = useSelector(state => state.favoritesReducer.userFavoritesData);
+    const favoritesCount = userFavoritesData && userFavoritesData?.favorites ? userFavoritesData.favorites.length : 0;
     return (
         <Link to={routesPath.FAVORITES} className={cls.link}>
             <UIButton
@@ -15,7 +16,7 @@ export const UIFavoritesLink = () => {
                 Icon={FavoritesIcon}
                 text="Избранные"
             />
-            { data?.favorites?.length ? <span className={cls.favoritesCount}>{data.favorites.length}</span> : "" }
+            { favoritesCount ? <span className={cls.favoritesCount}>{userFavoritesData.favorites.length}</span> : "" }
         </Link>
     );
 };

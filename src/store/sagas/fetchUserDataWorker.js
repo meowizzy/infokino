@@ -1,9 +1,9 @@
 import { put, call } from 'redux-saga/effects';
 import { profile } from "@services/auth";
 import { LOCAL_STORAGE_AUTH } from "@services/constants";
-import { fetchFavorites } from "@services/favorites";
 import { setUserData, setUserError, setUserIsLoading } from "../reducers/userReducer";
-import { setUserFavorites} from "../reducers/favoritesReducer";
+import {fetchFavorites} from "../../services/favorites";
+import {setUserFavoritesData} from "../reducers/favoritesReducer";
 
 export function* fetchUserDataWorker() {
     try {
@@ -13,17 +13,14 @@ export function* fetchUserDataWorker() {
 
         const profileData = yield call(profile);
 
-        // запрашиваем список id избранных
-        const favoritesData = yield call(fetchFavorites, profileData?.id);
-        const userFavoritesData = yield favoritesData[0];
-
-        // кладем в стор избранные
-        yield put(setUserFavorites(userFavoritesData));
-
         yield put(setUserData({
             ...profileData,
             password: undefined
         }));
+
+        const userFavoritesData = yield call(fetchFavorites, String(profileData.id));
+
+        yield put(setUserFavoritesData(...userFavoritesData));
 
         yield put(setUserIsLoading(false));
     } catch (e) {

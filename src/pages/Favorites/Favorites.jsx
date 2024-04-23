@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { favoritesAction } from "@store/reducers/favoritesReducer";
 import { FilmItem } from "@components/FilmItem";
 import { Grid } from "@components/List/List";
+import { getFavoritesAction } from "@store/reducers/favoritesReducer";
 import { ReactComponent as FavoritesIcon } from "@public/images/favorites.svg";
+import { FavoritesHeading } from "./components/FavoritesHeading";
 import {
     UILoader,
     UIErrorMsg,
@@ -16,13 +17,14 @@ const Favorites = () => {
     const dispatch = useDispatch();
     const authData = useSelector(state => state.userReducer.authData);
     const {
+        ids,
         data,
         isLoading,
         error
     } = useSelector(state => state.favoritesReducer);
 
     useEffect(() => {
-        dispatch(favoritesAction());
+        dispatch(getFavoritesAction());
     }, [authData]);
 
     if (isLoading) {
@@ -37,29 +39,32 @@ const Favorites = () => {
         );
     }
 
-    let content;
-
-    if (data && data.length) {
-        content = (<Grid>{data?.map(item => <FilmItem key={item.id} item={item}/>)}</Grid>)
-    } else {
-        content = (
-            <div className={cls.noFavorites}>
-                <FavoritesIcon />
-                <UITitle
-                    classes={cls.noFavoritesTitle}
-                    title="Здесь пока пусто"
-                    type="title-l"
+    if (!ids || !ids.length) {
+        return (
+            <>
+                <FavoritesHeading
+                    title="Избранные"
                 />
-            </div>
+                <div className={cls.noFavorites}>
+                    <FavoritesIcon/>
+                    <UITitle
+                        classes={cls.noFavoritesTitle}
+                        title="Здесь пока пусто"
+                        type="title-l"
+                    />
+                </div>
+            </>
         )
     }
 
     return (
         <>
-            <h1>
-                <UITitle title="Избранные"/>
-            </h1>
-            {content}
+            <FavoritesHeading
+                isLoading={isLoading}
+                title="Избранные"
+                hasBtn={true}
+            />
+            <Grid>{data?.map(item => <FilmItem key={item.id} item={item}/>)}</Grid>
         </>
     );
 };

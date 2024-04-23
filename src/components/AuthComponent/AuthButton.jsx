@@ -4,7 +4,7 @@ import { UIButton } from "@components/UI";
 import { AuthComponent } from './AuthComponent';
 import { ReactComponent as AuthIcon } from "@public/images/user-icon.svg";
 import { UIAvatar, UIAvatarLoader } from "../UI/UIAvatar/UIAvatar";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 
 export const AuthButton = () => {
      const { openModal } = useContext(ModalContext);

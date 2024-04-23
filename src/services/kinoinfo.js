@@ -17,13 +17,14 @@ const kinoinfoApi = {
                     type: type
                }
           });
-          
+
           return await response.data;
      },
 
      async getFilmsByIds(page = 1, ids) {
+          console.log(ids);
           const response = await reqInstance.get(`${API_VERSIONS.API_VER_1_4}/movie?page=${page}&limit=40&id=${ids.join("&id=")}`);
-          
+
           return await response.data.docs;
      },
 
@@ -58,7 +59,7 @@ const kinoinfoApi = {
                     page: page
                }
           });
-          
+
           return await response.data;
      },
 
@@ -67,7 +68,7 @@ const kinoinfoApi = {
 
           return await response.data;
      },
-     
+
      async getSearchQuery(params) {
           const response = await reqInstance.get(`${API_VERSIONS.API_VER_1_2}/${params.type}/search?limit=50&query=${params.query}`, {
                params: {
@@ -93,7 +94,7 @@ const kinoinfoApi = {
 };
 
 
-export const { 
+export const {
      getAllFilms,
      getFilmById,
      getFilmsByIds,

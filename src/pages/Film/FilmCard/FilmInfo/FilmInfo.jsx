@@ -1,9 +1,10 @@
-import {useMemo} from "react";
+import { useMemo } from "react";
 import PropTypes from 'prop-types';
-import { UIButton, UITitle, UIRating } from '@components/UI';
+import { UITitle, UIRating } from '@components/UI';
 import Item from './Item/Item';
 import styles from './FilmInfo.module.scss';
-import {FavoritesButton} from "../../../../components/FavoritesButton/FavoritesButton";
+import { CardFavoritesButton } from "../../../../components/CardFavoritesButton/CardFavoritesButton";
+import { WithAuth } from "@hoc/WithAuth";
 
 
 const FilmInfo = ({ data }) => {
@@ -29,9 +30,9 @@ const FilmInfo = ({ data }) => {
                <ul className={styles.list}>
                     { info.map(item => <Item key={item.label} label={item.label} value={item.value} link={item.link}/>) }
                </ul>
-              <FavoritesButton
-                filmId={data.id}
-              />
+              <WithAuth>
+                  <CardFavoritesButton filmId={data.id} />
+              </WithAuth>
                {
                     !!data?.description &&
 

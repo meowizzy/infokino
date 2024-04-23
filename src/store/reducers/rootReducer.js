@@ -10,7 +10,6 @@ import { userReducer } from "./userReducer";
 import { commentsReducer } from "./commentsReducer";
 import { createCommentReducer } from "./createCommentReducer";
 import { favoritesReducer } from "./favoritesReducer";
-import { toggleFavoriteReducer } from "./toggleFavoriteReducer";
 
 
 const rootReducer = combineReducers({
@@ -24,8 +23,7 @@ const rootReducer = combineReducers({
      userReducer,
      commentsReducer,
      createCommentReducer,
-     favoritesReducer,
-     toggleFavoriteReducer
+     favoritesReducer
 });
 
 

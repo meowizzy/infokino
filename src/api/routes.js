@@ -37,7 +37,7 @@ const routes = {
      favoritesPage: {
           path: routesPath.FAVORITES,
           element: <FavoritesPageAsync/>,
-          isPrivate: false
+          isPrivate: true
      },
      tempPage: {
           path: routesPath.TEMP,
