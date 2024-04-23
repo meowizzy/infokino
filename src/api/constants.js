@@ -3,8 +3,8 @@ import { LOCAL_STORAGE_AUTH } from "../services/constants";
 
 // movies api
 export const API_URL = "https://api.kinopoisk.dev/";
-export const API_KEY = "F37HY9W-CTD4G9Q-P7CY00J-SRM59AW";
-
+// export const API_KEY = "F37HY9W-CTD4G9Q-P7CY00J-SRM59AW";
+export const API_KEY = "YTSG5HS-3V6MTV4-Q4WGHB6-9CT1EAP";
 export const API_VERSIONS = {
      API_VER_1: "v1",
      API_VER_1_3: "v1.3",
