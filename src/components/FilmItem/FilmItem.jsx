@@ -2,8 +2,10 @@ import { memo } from 'react';
 import PropTypes from 'prop-types';
 import getFilmDuration from '@helpers/getFilmDuration';
 import { Link } from 'react-router-dom';
-import cn from 'classnames';
 import { UIRating } from '../UI';
+import { ListFavoritesButton } from '../ListFavoritesButton';
+import { WithAuth } from '@hoc/WithAuth';
+import cn from 'classnames';
 
 import styles from './FilmItem.module.scss';
 
@@ -37,6 +39,9 @@ export const FilmItem = memo(
                               }
                          </div>
                     </div>
+                    <WithAuth>
+                         <ListFavoritesButton className={styles.favoriteBtn} filmId={id}/>
+                    </WithAuth>
                     { !!rating && <UIRating type="medium" text={rating.kp.toFixed(1)}/> }
                </div>
           )

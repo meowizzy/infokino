@@ -119,6 +119,11 @@
           :global(.global-rating) {
                opacity: 1;
           }
+
+          .favoriteBtn {
+               opacity: 1;
+               pointer-events: all;
+          }
      }
 
      

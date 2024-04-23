@@ -10,7 +10,7 @@ const UIButton = ({ text, classes, Icon, type = 'primary', isLoading = false, ..
      return (
           <button className={cn(styles.button, styles[type], classes, { [styles.isLoading]: isLoading })} {...props}>
                {icon}
-               <span>{text}</span>
+               { text ? <span>{text}</span> : "" }
           </button>
      )
 }
