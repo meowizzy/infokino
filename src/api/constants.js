@@ -29,7 +29,7 @@ export const reqInstance = axios.create({
      }
 });
 
-export const VIDEOS_API = "https://voidboost.net/embed/";
+export const VIDEOS_API = "https://api.linktodo.ws/embed/kp/";
 export const VIDEOS_POSTER = "?poster=1&poster_id=4&df=1";
 
 // movies api end
