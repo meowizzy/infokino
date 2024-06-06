@@ -13,8 +13,6 @@ export const ListFavoritesButton = ({ filmId, className }) => {
     } = useSelector(state => state.favoritesReducer);
     const dispatch = useDispatch();
 
-    console.log(userFavoritesData);
-
     const toggleFavorites = useCallback(() => {
         dispatch(toggleFavoritesAction(filmId));
     }, [dispatch, filmId]);
