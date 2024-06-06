@@ -1,11 +1,12 @@
 import { put, call, select } from 'redux-saga/effects';
-import { validateRegisterForm } from "../../components/AuthComponent/Register/validateRegisterForm";
-import { login, register } from "../../services/auth";
-import { clearForm, setRegisterValidateError } from "../reducers/registerReducer";
-import { setUserData, setUserIsLoading } from "../reducers/userReducer";
-import { LOCAL_STORAGE_AUTH } from "../../services/constants";
+import { LOCAL_STORAGE_AUTH } from "@app/constants";
 import { getGlobalModalContextValue } from "@contexts";
-export function* registerWorker() {
+import { signUp, profile } from "@services/auth.service";
+import { validateRegisterForm } from "@components/AuthComponent/Register/validateRegisterForm";
+import { clearForm, setRegisterValidateError } from "../../reducers/registerReducer";
+import { setUserData, setUserIsLoading } from "../../reducers/userReducer";
+
+export function* signUpWorker() {
     try {
         const formData = yield select(state => state.registerReducer);
         const error = yield validateRegisterForm(formData);
@@ -14,19 +15,17 @@ export function* registerWorker() {
         if (error?.length) throw new Error(error);
 
         yield put(setUserIsLoading(true));
-        const data = yield call(register, formData);
+        const { data: tokens } = yield call(signUp, formData);
 
-        const loginResponseData = yield call(login, {
-            email: formData?.email,
-            password: formData?.password
-        });
+        yield localStorage.setItem(LOCAL_STORAGE_AUTH, JSON.stringify(tokens));
 
-        yield localStorage.setItem(LOCAL_STORAGE_AUTH, JSON.stringify(loginResponseData));
+        const { data: profileData } = yield call(profile);
 
         yield put(setUserData({
-            ...data,
+            ...profileData,
             password: undefined
         }));
+
         yield put(setUserIsLoading(false));
         yield put(clearForm());
 

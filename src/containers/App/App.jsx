@@ -1,19 +1,17 @@
 import { Route } from "react-router-dom";
 import RoutesCustom from '../RoutesCustom/RoutesCustom';
 import Layout from "@layouts/Layout";
-import routes from "@api/routes";
+import routes from "@app/config/routes";
 import { Suspense, useEffect } from "react";
 import { UILoader } from "@components/UI";
 import { useDispatch } from "react-redux";
-import { fetchUserData } from "../../store/reducers/userReducer";
+import { fetchUserData } from "@store/reducers/userReducer";
 import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute";
-import { checkIsAdminExist } from "@services/checkIsAdminExist";
 
 export const App = () => {
      const dispatch = useDispatch();
 
      useEffect(() => {
-          checkIsAdminExist();
           dispatch(fetchUserData());
      }, []);
 
@@ -30,7 +28,7 @@ export const App = () => {
                                                 key={value.path}
                                                 path={value.path}
                                                 element={
-                                                     <ProtectedRoute 
+                                                     <ProtectedRoute
                                                        isPrivate={value.isPrivate}
                                                        >
                                                             {value.element}

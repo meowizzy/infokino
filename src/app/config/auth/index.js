@@ -1,9 +1,9 @@
 export const roles = {
-    ADMIN: "admin",
-    CUSTONER: "customer" 
+    ADMIN: "ADMIN",
+    USER: "USER"
 }
 
 export const rolesTranslation = {
     [roles.ADMIN]: "Администратор",
-    [roles.CUSTONER]: "Пользователь"
+    [roles.USER]: "Пользователь"
 }

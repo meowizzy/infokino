@@ -1,10 +1,9 @@
 import HomePageAsync from "@pages/HomePage/HomePage.async";
 import FilmsPageAsync from "@pages/FilmsPage/FilmsPage.async";
 import FilmAsync from "@pages/Film/Film.async";
-import NotFoundPageAsync from "@pages/NotFoundPage/NotFoundPage.async";
 import ProfileAsync from "@pages/Profile/Profile.async";
-import { TempPage } from "@pages/TempPage/TempPage";
 import FavoritesPageAsync from "@pages/Favorites/Favorites.async";
+import NotFoundPageAsync from "@pages/NotFoundPage/NotFoundPage.async";
 
 export const routesPath = {
      HOME: "/",
@@ -16,7 +15,7 @@ export const routesPath = {
      FAVORITES: "favorites"
 }
 
-const routes = {
+const index = {
      home: {
           path: routesPath.HOME,
           element: <HomePageAsync />
@@ -39,11 +38,6 @@ const routes = {
           element: <FavoritesPageAsync/>,
           isPrivate: true
      },
-     tempPage: {
-          path: routesPath.TEMP,
-          element: <TempPage/>,
-          isPrivate: true
-     },
      notFound: {
           path: routesPath.NOT_FOUND,
           element: <NotFoundPageAsync/>
@@ -51,4 +45,4 @@ const routes = {
 }
 
 
-export default routes;
+export default index;

@@ -15,7 +15,7 @@ import {
     UILoader,
     UIErrorMsg,
 } from "../UI";
-import { WithPermission } from "@hoc/WithPermission"; 
+import { WithPermission } from "@hoc/WithPermission";
 import { ReactComponent as DotsIcon } from "@public/images/dots.svg";
 import { ReactComponent as DeleteIcon } from "@public/images/delete.svg";
 import { ReactComponent as EditIcon } from "@public/images/edit.svg";
@@ -68,16 +68,16 @@ const Comments = (props) => {
             <div className={cls.listWrap}>
                 <div className={cn(cls.list)} ref={listRef}>
                     {
-                        
+
                         data?.map(comment => (
                             <Comments.Item
-                                key={comment.id}
-                                id={comment?.id}
+                                key={comment._id}
+                                id={comment?._id}
                                 role={comment.reviewer?.role}
                                 rating={comment?.rating}
-                                avatar={comment.reviewer?.avatar}
-                                name={comment.reviewer?.name}
-                                email={comment.reviewer?.email}
+                                avatar={comment?.avatar}
+                                name={comment?.username}
+                                createdAt={comment?.createdAt}
                                 comment={comment?.comment}
                             />
                         ))
@@ -102,7 +102,7 @@ const Item = (props) => {
         avatar,
         name,
         rating,
-        email,
+        createdAt,
         comment,
         role
     } = props;
@@ -113,11 +113,10 @@ const Item = (props) => {
     const onToggleDropdown = () => setIsDropDownVisible(!isDropdownVisible);
 
     const onEditComment = useCallback(() => {
-        
+
     }, []);
 
     const onDeleteComment = useCallback(() => {
-        console.log(id);
         dispatch(deleteCommentAction(id));
     }, []);
 
@@ -126,8 +125,8 @@ const Item = (props) => {
         <div className={cn(cls.commentItem, className)}>
             <div className={cls.info}>
                 <UIAvatar
-                    name={name}
-                    email={email}
+                    username={name}
+                    email={new Date(createdAt).toLocaleString()}
                     role={role}
                     avatar={avatar}
                     type="medium"
@@ -195,7 +194,7 @@ const Form = (props) => {
     }, [dispatch]);
 
     const onChangeCommentRating = (value) => {
-        dispatch(setCommentFormData({ ...formData, rating: String(value) }));
+        dispatch(setCommentFormData({ ...formData, rating: value }));
     };
 
     if (!authData) {
@@ -216,13 +215,13 @@ const Form = (props) => {
         <div className={cn(cls.form, className)}>
             {error && error.map(err => (
                 <div key={err} className={cn(cls.formField, cls.formFieldError)}>
-                    <UIErrorMsg value={err}/>  
+                    <UIErrorMsg value={err}/>
                 </div>
             ))}
-            
+
             <div className={cn(cls.formField, cls.rateField)}>
                 <span className={cls.formFieldLabel}>Оценка: </span>
-                <Rate  
+                <Rate
                     allowHalf
                     value={Number(formData?.rating)}
                     onChange={onChangeCommentRating}

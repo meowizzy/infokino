@@ -6,10 +6,9 @@ import {
     REGISTER,
     SET_REGISTER_VALIDATE_ERROR, CLEAR_FORM
 } from "../constants/auth";
-import {validateRegisterForm} from "../../components/AuthComponent/Register/validateRegisterForm";
 
 const initialState = {
-    name: "",
+    username: "",
     email: "",
     password: "",
     avatar: "",
@@ -18,7 +17,7 @@ const initialState = {
 export const registerReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER_NAME:
-            return { ...state, name: action.payload }
+            return { ...state, username: action.payload }
         case SET_USER_EMAIL:
             return { ...state, email: action.payload }
         case SET_USER_PASSWORD:

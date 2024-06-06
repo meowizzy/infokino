@@ -1,5 +1,5 @@
 const initialState = {
-    ids: undefined,
+    movieId: undefined,
     data: undefined,
     userFavoritesData: undefined,
     isLoading: false,
@@ -9,29 +9,13 @@ const initialState = {
 export const favoritesReducer = (state = initialState, action) => {
     switch (action.type) {
         case "TOGGLE_FAVORITES":
-            let ids;
-            if (state.ids?.includes(action.payload)) {
-                ids = state.ids.filter(id => !id.includes(action.payload));
-                return {
-                    ...state,
-                    ids
-                };
-            }
-
-            if (state.ids) {
-                ids = [...state.ids, action.payload];
-            } else {
-                ids = [action.payload];
-            }
-
             return {
                 ...state,
-                ids
+                movieId: action.payload
             };
         case "SET_USER_FAVORITES_DATA":
             return {
                 ...state,
-                ids: action.payload ? [...action.payload.favorites] : state.ids,
                 isLoading: false,
                 userFavoritesData: action.payload,
                 error: undefined
@@ -59,7 +43,7 @@ export const favoritesReducer = (state = initialState, action) => {
                 ...state,
                 data: undefined,
                 userFavoritesData: undefined,
-                ids: undefined,
+                movieId: undefined,
                 isLoading: false
             }
         default:

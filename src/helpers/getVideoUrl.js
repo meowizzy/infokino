@@ -1,7 +1,7 @@
-import { VIDEOS_API, VIDEOS_POSTER } from "@api/constants";
+import { MEDIA_URL, MEDIA_POSTER } from "@app/constants";
 
 const getVideoUrl = id => {
-     return `${VIDEOS_API}${id}${VIDEOS_POSTER}`;
+     return `${MEDIA_URL}${id}${MEDIA_POSTER}`;
 };
 
 export default getVideoUrl;

@@ -1,10 +1,10 @@
 import { UIButton, UIAvatar } from "@components/UI";
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
-import { clearUserData } from "@store/reducers/userReducer";
 import { useNavigate } from "react-router";
-import { routesPath } from "../../../api/routes";
-import { rolesTranslation } from "@api/roles";
+import { clearUserData } from "@store/reducers/userReducer";
+import { routesPath } from "@app/config/routes";
+import { rolesTranslation } from "@app/config/auth";
 import { ReactComponent as UserIcon } from "@public/images/username.svg";
 import { ReactComponent as RolesIcon } from "@public/images/roles.svg";
 import { ReactComponent as EmailIcon } from "@public/images/emailicon.svg";
@@ -29,7 +29,7 @@ const ProfileCard = (props) => {
         <div className={cn(cls.card_wrapper, className)}>
             <UIAvatar
                 avatar={authData?.avatar}
-                name={authData?.name}
+                username={authData?.name}
                 type="large"
                 withZoom="true"
                 hasLink={false}
@@ -40,7 +40,7 @@ const ProfileCard = (props) => {
                         <UserIcon /> Имя:
                     </span>
                     <span className={cls.infoTableValue}>
-                        {authData?.name ? authData?.name : "-"}
+                        {authData?.username ? authData?.username : "-"}
                     </span>
                 </li>
                 <li className={cls.infoTableRow}>
@@ -56,7 +56,7 @@ const ProfileCard = (props) => {
                         <CalendarIcon /> Профиль создан:
                     </span>
                     <span className={cls.infoTableValue}>
-                        {authData?.creationAt ? new Date(authData?.creationAt).toLocaleString() : "-"}
+                        {authData?.createdAt ? new Date(authData?.createdAt).toLocaleString() : "-"}
                     </span>
                 </li>
                 <li className={cls.infoTableRow}>

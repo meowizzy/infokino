@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { roles } from "@api/roles";
+import { roles } from "@app/config/auth";
 
 export const WithPermission = (props) => {
     const {
@@ -11,5 +11,5 @@ export const WithPermission = (props) => {
         return <>{children}</>;
     }
 
-    return "";
+    return null;
 };

@@ -1,9 +1,9 @@
-import { getFilmsByGenre } from "@store/actions/actionCreator";
 import { useSelector } from "react-redux/es/exports";
+import { getFilmsByGenre } from "@store/actions/actionCreator";
 import { Categories } from "@components/Categories/Categories";
 import { TopSlider } from "@screens/TopSlider/TopSlider";
 import { Collection } from "@screens/Collection";
-import { filmsTitleLocalization } from "@services/constants";
+import { collectionsTitles } from "@app/config/collections";
 import { useFetching } from "@hooks/useFetching";
 
 const HomePage = () => {
@@ -16,7 +16,8 @@ const HomePage = () => {
           <>
                <TopSlider items={newFilms}/>
                <Categories />
-               { Object.entries(films).map(pair => <Collection key={pair[0]} items={pair[1]} title={filmsTitleLocalization[pair[0]]}/>) }
+               { Object.entries(films).map(([key, value]) =>
+                   <Collection key={key} items={value} title={collectionsTitles[key]}/>) }
           </>
      );
 };

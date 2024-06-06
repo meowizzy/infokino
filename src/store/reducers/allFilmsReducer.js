@@ -15,24 +15,23 @@ const initialState = {
      }
 }
 
-
 export const allFilmsReducer = (state = initialState, action) => {
      switch(action.type) {
-          case SET_ALL_FILMS: 
+          case SET_ALL_FILMS:
                return { ...state, allFilms: [...state.allFilms, ...action.payload] }
           case SET_ALL_FILMS_ERROR:
                return { ...state, allFilmsError: action.payload }
-          case SET_FILMS_PAGE: 
-               return { ...state, page: action.payload } 
+          case SET_FILMS_PAGE:
+               return { ...state, page: action.payload }
           case SET_FILMS_PAGES:
                return { ...state, pages: action.payload }
           case SET_FILMS_FILTERS:
                return { ...state, params: action.payload }
-          case SET_ALL_FILMS_LOADING: 
+          case SET_ALL_FILMS_LOADING:
                return { ...state, loading: action.payload }
-          case CLEAR_FILMS_LIST: 
+          case CLEAR_FILMS_LIST:
                return { ...state, allFilms: [], page: 1, allFilmsError: false, pages: 10}
-          default: 
+          default:
                return state;
      }
 }

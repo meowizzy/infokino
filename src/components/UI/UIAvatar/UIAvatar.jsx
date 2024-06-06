@@ -1,16 +1,16 @@
 import {memo, useCallback, useState} from "react";
 import { Link } from "react-router-dom";
-import cls from "./UIAvatar.module.scss";
-import cn from "classnames";
-import { routesPath } from "../../../api/routes";
-import { rolesTranslation } from "@api/roles";
-import { ReactComponent as AvatarIcon } from "@public/images/avatarIcon.svg";
 import { Image } from "antd";
+import cn from "classnames";
+import {routesPath} from "@app/config/routes";
+import { rolesTranslation } from "@app/config/auth";
+import { ReactComponent as AvatarIcon } from "@public/images/avatarIcon.svg";
+import cls from "./UIAvatar.module.scss";
 
 export const UIAvatar = memo((props) => {
     const {
         avatar,
-        name,
+        username,
         className,
         hasLink = true,
         type = "small",
@@ -18,19 +18,14 @@ export const UIAvatar = memo((props) => {
         role,
         withZoom = false
     } = props;
-    const [isValidImg, setIsValidImg] = useState(true);
-
-    const onImgError = useCallback(() => {
-        setIsValidImg(false);
-    }, []);
 
     let content;
-    let image = isValidImg ? ( withZoom ? 
-        <Image 
-            width="100%" 
-            height="100%" 
+    let image = avatar ? ( withZoom ?
+        <Image
+            width="100%"
+            height="100%"
             src={avatar}
-        /> : <img src={avatar} alt="avatar" onError={onImgError}/> ) : <AvatarIcon/>;
+        /> : <img src={avatar} alt="avatar"/> ) : <AvatarIcon/>;
     let info = (
         <>
             <div className={cls.avatar_pic}>
@@ -38,7 +33,7 @@ export const UIAvatar = memo((props) => {
             </div>
             <div className={cls.avatar_info}>
                 <span className={cls.avatar_name}>
-                    {name}{role ? ` - ${rolesTranslation[role]}` : ""}
+                    {username}{role ? ` - ${rolesTranslation[role]}` : ""}
                 </span>
                 { email ? <span className={cls.avatar_email}>{email}</span> : "" }
             </div>

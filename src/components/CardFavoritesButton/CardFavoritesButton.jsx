@@ -13,10 +13,10 @@ export const CardFavoritesButton = ({ filmId }) => {
     const dispatch = useDispatch();
 
     const toggleFavorites = useCallback(() => {
-        dispatch(toggleFavoritesAction(String(filmId)));
+        dispatch(toggleFavoritesAction(filmId));
     }, [dispatch, filmId]);
 
-    if (userFavoritesData && userFavoritesData.favorites.includes(String(filmId))) {
+    if (userFavoritesData && userFavoritesData.includes(String(filmId))) {
         return (
             <div className={cls.removeFromFavoritesWrap}>
                 <div className={cls.removeFromFavoritesLabel}>

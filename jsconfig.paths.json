@@ -3,7 +3,7 @@
     "baseUrl": ".",
     "paths": {
           "@public/*": ["./public/"],
-          "@api/*": ["./src/api"],
+          "@app/*": ["./src/app"],
           "@containers/*": ["./src/containers"],
           "@helpers/*": ["./src/helpers"],
           "@services/*": ["./src/services"],

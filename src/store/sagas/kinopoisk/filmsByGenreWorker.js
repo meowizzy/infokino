@@ -1,20 +1,20 @@
 import { put, call, fork } from 'redux-saga/effects';
-import { getNewFilms, getFilmsByGenre } from '@services/kinoinfo';
-import { API_GENRES } from "@api/constants";
-import {  setNewFilmsAction, 
-          setComedyFilmsAction, 
-          setDramaFilmsAction, 
-          setFamilyFilmsAction, 
+import { getNewFilms, getFilmsByGenre } from '@services/kinopoisk.service';
+import { KINOPOISK_API_GENRES } from "@app/config/genres";
+import {  setNewFilmsAction,
+          setComedyFilmsAction,
+          setDramaFilmsAction,
+          setFamilyFilmsAction,
           setNewFilmsErrorAction,
           setFamilyFilmsErrorAction,
           setComedyFilmsErrorAction,
           setDramaFilmsErrorAction
-} from '../actions/actionCreator';
+} from '../../actions/actionCreator';
 
 export function* handleNewFilmsWorker() {
      try {
-          const data = yield call(getNewFilms, 10);
-          yield put(setNewFilmsAction(data));
+          const { data } = yield call(getNewFilms, 10);
+          yield put(setNewFilmsAction(data?.docs));
      } catch(e) {
           yield put(setNewFilmsErrorAction());
      }
@@ -22,8 +22,8 @@ export function* handleNewFilmsWorker() {
 
 export function* handleFamilyFilmsWorker() {
      try {
-          const data = yield call(getFilmsByGenre, 10, { "genres.name": API_GENRES.family })
-          yield put(setFamilyFilmsAction(data.docs));
+          const { data } = yield call(getFilmsByGenre, 10, { "genres.name": KINOPOISK_API_GENRES.family })
+          yield put(setFamilyFilmsAction(data?.docs));
      } catch(e) {
           yield put(setFamilyFilmsErrorAction());
      }
@@ -31,7 +31,7 @@ export function* handleFamilyFilmsWorker() {
 
 export function* handleComedyFilmsWorker() {
      try {
-          const data = yield call(getFilmsByGenre, 10, { "genres.name": API_GENRES.comedy })
+          const { data } = yield call(getFilmsByGenre, 10, { "genres.name": KINOPOISK_API_GENRES.comedy })
           yield put(setComedyFilmsAction(data.docs));
      } catch(e) {
           yield put(setComedyFilmsErrorAction());
@@ -40,7 +40,7 @@ export function* handleComedyFilmsWorker() {
 
 export function* handleDramaFilmsWorker() {
      try {
-          const data = yield call(getFilmsByGenre, 10, { "genres.name": API_GENRES.drama })
+          const { data } = yield call(getFilmsByGenre, 10, { "genres.name": KINOPOISK_API_GENRES.drama })
           yield put(setDramaFilmsAction(data.docs));
      } catch(e) {
           yield put(setDramaFilmsErrorAction());

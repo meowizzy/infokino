@@ -9,23 +9,22 @@ import {
     setRegisterPassword,
     setRegisterUserName,
     clearForm
-} from "../../../store/reducers/registerReducer";
+} from "@store/reducers/registerReducer";
 import UIErrorMsg from "../../UI/UIErrorMsg/UIErrorMsg";
 
 const Register = () => {
     const dispatch = useDispatch();
     const {
-        name,
+        username,
         email,
         password,
-        avatar,
         error
     } = useSelector(state => state.registerReducer)
     const isLoading = useSelector(state => state.userReducer.isLoading);
 
     const onChangeName = useCallback((value) => {
         dispatch(setRegisterUserName(value));
-    }, [name]);
+    }, [username]);
 
     const onChangeEmail = useCallback((value) => {
         dispatch(setRegisterEmail(value));
@@ -34,10 +33,6 @@ const Register = () => {
     const onChangePassword = useCallback((value) => {
         dispatch(setRegisterPassword(value));
     }, [password]);
-
-    const onChangeAvatar = useCallback((value) => {
-        dispatch(setRegisterAvatar(value));
-    }, [avatar]);
 
     const onSubmit = useCallback(() => {
         dispatch(registerAction());
@@ -68,7 +63,7 @@ const Register = () => {
                      inputStyle="large"
                      type="text"
                      placeholder="Имя"
-                     value={name}
+                     value={username}
                      onChange={onChangeName}
                  />
              </div>
@@ -88,15 +83,6 @@ const Register = () => {
                      value={password}
                      placeholder="Пароль"
                      onChange={onChangePassword}
-                 />
-             </div>
-             <div className="form_field">
-                 <UIInput
-                     inputStyle="large"
-                     type="text"
-                     value={avatar}
-                     placeholder="Аватар"
-                     onChange={onChangeAvatar}
                  />
              </div>
              <div className="form_submit">

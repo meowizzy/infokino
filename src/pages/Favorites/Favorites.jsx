@@ -16,7 +16,7 @@ import cls from "./Favorites.module.scss";
 const Favorites = () => {
     const dispatch = useDispatch();
     const {
-        ids,
+        userFavoritesData,
         data,
         isLoading,
         error
@@ -24,13 +24,13 @@ const Favorites = () => {
 
     useEffect(() => {
         dispatch(getFavoritesAction());
-    }, [ids]);
+    }, [userFavoritesData]);
 
-    if (isLoading) {
-        return (
-            <UILoader />
-        );
-    }
+    // if (isLoading) {
+    //     return (
+    //         <UILoader />
+    //     );
+    // }
 
     if (error) {
         return (
@@ -38,7 +38,7 @@ const Favorites = () => {
         );
     }
 
-    if (!ids || !ids.length) {
+    if (!userFavoritesData || !userFavoritesData.length) {
         return (
             <>
                 <FavoritesHeading

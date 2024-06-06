@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { getSearchQuery } from '@services/kinoinfo';
+import { getSearchQuery } from '@services/kinopoisk.service';
 import useDebounce from '@hooks/useDebounce';
 
 const withSearch = (Component) => {
@@ -13,7 +13,7 @@ const withSearch = (Component) => {
 
           const getData = useDebounce(useMemo(() => async (query) => {
                setIsLoading(true);
-               
+
                const request = await Promise.all([getSearchQuery({
                     query,
                     type: "movie"
@@ -21,7 +21,7 @@ const withSearch = (Component) => {
                     query,
                     type: "person"
                })]);
-               
+
                setData({
                     movies: request[0].docs.length ? request[0].docs : [],
                     persons: request[1].docs.length ? request[1].docs : []
@@ -40,7 +40,7 @@ const withSearch = (Component) => {
 
 
           return (
-               <Component 
+               <Component
                     query={query}
                     handleChange={handleChange}
                     isLoading={isLoading}

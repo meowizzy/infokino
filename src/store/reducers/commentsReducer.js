@@ -1,4 +1,3 @@
-import { act } from "react-dom/test-utils";
 import {
     SET_COMMENTS,
     SET_COMMENTS_LOADING,
@@ -7,13 +6,14 @@ import {
     SET_CREATED_COMMENT,
     DELETE_COMMENT
 } from "../constants/comments";
-import { deleteComment } from "@services/movieComments";
+import { deleteReview } from "@services/reviews.service";
 
 const initialState = {
     data: undefined,
     isLoading: false,
     error: undefined
 };
+
 export const commentsReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_COMMENTS:
@@ -23,16 +23,16 @@ export const commentsReducer = (state = initialState, action) => {
                 isLoading: false,
                 error: undefined
             };
-        case SET_CREATED_COMMENT: 
+        case SET_CREATED_COMMENT:
             return {
                 ...state,
                 data: [ action.payload, ...state.data ],
                 isLoading: false,
                 error: undefined
-            }    
+            }
         case DELETE_COMMENT:
             const newData = state.data.filter(item => item.id !== action.payload);
-            deleteComment(action.payload);
+            deleteReview(action.payload);
 
             return {
                 ...state,

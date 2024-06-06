@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { routesPath } from "@api/routes";
+import { routesPath } from "@app/config/routes";
 import { useEffect } from "react";
 
 export const ProtectedRoute = (props) => {

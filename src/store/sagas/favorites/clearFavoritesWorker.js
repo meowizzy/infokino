@@ -1,16 +1,18 @@
-import { put, call, select } from "redux-saga/effects";
+import { put, call } from "redux-saga/effects";
+import { clearFavorites } from "@services/favorites.service"
 import {
     resetFavoritesData,
     setFavoritesError,
     setFavoritesLoading,
-} from "../reducers/favoritesReducer";
-import { clearFavorites } from "@services/favorites";
+} from "../../reducers/favoritesReducer";
+;
 
 export function* clearFavoritesWorker() {
     try {
         yield put(setFavoritesLoading());
-        const { id } = yield select(state => state.favoritesReducer.userFavoritesData);
-        yield call(clearFavorites, id);
+
+        yield call(clearFavorites);
+
         yield put(resetFavoritesData());
     } catch (e) {
         yield put(setFavoritesError(e.message));

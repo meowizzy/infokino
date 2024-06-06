@@ -13,11 +13,13 @@ export const ListFavoritesButton = ({ filmId, className }) => {
     } = useSelector(state => state.favoritesReducer);
     const dispatch = useDispatch();
 
+    console.log(userFavoritesData);
+
     const toggleFavorites = useCallback(() => {
-        dispatch(toggleFavoritesAction(String(filmId)));
+        dispatch(toggleFavoritesAction(filmId));
     }, [dispatch, filmId]);
 
-    if (userFavoritesData && userFavoritesData.favorites.includes(String(filmId))) {
+    if (userFavoritesData && userFavoritesData?.includes(filmId)) {
         return (
             <UIButton
                 classes={cn(cls.btn, cls.removeBtn, className, { [cls.isLoading]: isLoading })}
