@@ -1,15 +1,15 @@
 import { useParams } from "react-router";
-import { getFilmByIdAction, setFilmId, setFilmByIdAction } from "@store/actions/actionCreator";
-import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import {useEffect, useMemo} from "react";
+import { useEffect, useMemo } from "react";
+import FilmCard from "./FilmCard/FilmCard";
+import { FilmReviews } from "./FilmReviews/FilmReviews";
+import { getFilmByIdAction, setFilmByIdAction, setFilmId } from "@store/reducers/kinopoisk/filmByIdReducer";
 import { useFetching } from "@hooks/useFetching";
 import { PlayerPanel } from "@components/PlayerPanel";
-import FilmCard from "./FilmCard/FilmCard";
 import { Collection } from '@screens/Collection';
 import { UITabs } from "@components/UI";
 import { UILoader } from "@components/UI";
-import {FilmReviews} from "./FilmReviews/FilmReviews";
+import styled from "styled-components";
 
 const Film = () => {
      const { id } = useParams();

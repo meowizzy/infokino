@@ -1,6 +1,12 @@
 import { put, call, select } from 'redux-saga/effects';
 import { getFilmsByGenre } from '@services/kinopoisk.service';
-import { setAllFilmsLoadingAction, setFilmsPages, setAllFilmsErrorAction, setAllFilmsAction } from '../../actions/actionCreator';
+import {
+     setAllFilmsAction,
+     setAllFilmsErrorAction,
+     setAllFilmsLoadingAction,
+     setFilmsPages
+} from "../../reducers/kinopoisk/allFilmsReducer";
+
 
 export function* handleAllFilmsWorker() {
      try {

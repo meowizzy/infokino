@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { UIButton } from "../UI";
-import { toggleFavoritesAction } from "@store/reducers/favoritesReducer";
+import { toggleFavoritesAction } from "@store/reducers/favorites/favoritesReducer";
 import { ReactComponent as FavoritesIcon } from "@public/images/favorites.svg";
 import cls from "./ListFavoritesButton.module.scss";
 import cn from "classnames";

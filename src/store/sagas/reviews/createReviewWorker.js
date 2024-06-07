@@ -1,8 +1,8 @@
 import { put, call, select } from 'redux-saga/effects';
 import { createReview } from "@services/reviews.service";
 import { validateCommentsForm } from '@components/Comments/validateCommentsForm';
-import { clearCommentForm, createCommentError, createCommentLoading} from "../../reducers/createCommentReducer";
-import { setComments } from '../../reducers/commentsReducer';
+import { clearCommentForm, createCommentError, createCommentLoading} from "../../reducers/reviews/createCommentReducer";
+import { setComments } from '../../reducers/reviews/commentsReducer';
 
 export function* createReviewWorker() {
     try {

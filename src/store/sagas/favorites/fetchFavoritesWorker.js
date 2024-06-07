@@ -4,7 +4,7 @@ import {
     setFavoritesData,
     setFavoritesError,
     setFavoritesLoading
-} from "../../reducers/favoritesReducer";
+} from "../../reducers/favorites/favoritesReducer";
 
 export function* fetchFavoritesWorker() {
     try {

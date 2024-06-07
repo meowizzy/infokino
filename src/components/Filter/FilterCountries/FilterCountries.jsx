@@ -3,15 +3,14 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import makeAnimated from 'react-select/animated';
 import Select from 'react-select';
-import { getCountriesAction } from '@store/reducers/countriesReducer';
+import { getCountriesAction } from '@store/reducers/kinopoisk/countriesReducer';
 
 const FilterCountries = () => {
-	const [countries, setCountries] = useState(null);
 	const [currentOptions, setCurrentOptions] = useState(null);
 	const animatedComponents = makeAnimated();
-     const state = useSelector(state => state.countriesReducer);
-     const dispatch = useDispatch();
-     const params = useParams();
+	const state = useSelector(state => state.countriesReducer);
+	const dispatch = useDispatch();
+	const params = useParams();
 
 	useEffect(() => {
 		setCurrentOptions(null);
@@ -42,22 +41,22 @@ const FilterCountries = () => {
 
 	const handleChange = newValue => {
 		setCurrentOptions(newValue.map(option => option.value));
-	};	
+	};
 
      return (
           <div>
-			<Select 
-                    components={animatedComponents} 
-                    value={getValue()} 
-                    onChange={handleChange} 
-                    classNamePrefix="custom-select" 
-                    options={getOptions()} 
-                    placeholder="Страны" 
+			<Select
+                    components={animatedComponents}
+                    value={getValue()}
+                    onChange={handleChange}
+                    classNamePrefix="custom-select"
+                    options={getOptions()}
+                    placeholder="Страны"
                     isMulti={true}
                     isLoading={state.isLoading}
                     isClearable={true}/>
 			{ state?.countries && getValue().length ? <input type="hidden" name="countries.name" value={getValue().map(op => op.value).join('+')}/> : '' }
-		</div> 
+		</div>
      );
 };
 

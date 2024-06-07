@@ -1,12 +1,12 @@
 import { Route } from "react-router-dom";
-import RoutesCustom from '../RoutesCustom/RoutesCustom';
-import Layout from "@layouts/Layout";
-import routes from "@app/config/routes";
 import { Suspense, useEffect } from "react";
-import { UILoader } from "@components/UI";
 import { useDispatch } from "react-redux";
-import { fetchUserData } from "@store/reducers/userReducer";
 import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute";
+import { fetchUserData } from "@store/reducers/auth/userReducer";
+import RoutesCustom from '../RoutesCustom/RoutesCustom';
+import routes from "@app/config/routes";
+import Layout from "@layouts/Layout";
+import { UILoader } from "@components/UI";
 
 export const App = () => {
      const dispatch = useDispatch();

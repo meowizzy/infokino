@@ -1,7 +1,7 @@
 import { useEffect, memo, useMemo } from "react";
 import { useParams, useSearchParams } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
-import { setFilmsFilter } from "@store/actions/actionCreator";
+import { setFilmsFilter } from "@store/reducers/kinopoisk/allFilmsReducer";
 import { CLEAR_FILMS_LIST } from "@store/constants/allfilms";
 import convertMovieType from "@helpers/convertMovieType";
 import useScrollFetching from "@hooks/useScrollFetching";
@@ -47,7 +47,7 @@ const FilmsPage = () => {
                     <UITitle title={title}/>
                </h1>
                <Filter />
-               <List items={data.allFilms} isLoading={isLoading} error={data.allFilmsError}/> 
+               <List items={data.allFilms} isLoading={isLoading} error={data.allFilmsError}/>
           </>
      );
 };

@@ -1,15 +1,16 @@
 import { put, call, fork } from 'redux-saga/effects';
 import { getNewFilms, getFilmsByGenre } from '@services/kinopoisk.service';
 import { KINOPOISK_API_GENRES } from "@app/config/genres";
-import {  setNewFilmsAction,
-          setComedyFilmsAction,
-          setDramaFilmsAction,
-          setFamilyFilmsAction,
-          setNewFilmsErrorAction,
-          setFamilyFilmsErrorAction,
-          setComedyFilmsErrorAction,
-          setDramaFilmsErrorAction
-} from '../../actions/actionCreator';
+import {
+    setComedyFilmsAction, setDramaFilmsAction,
+    setFamilyFilmsAction,
+    setNewFilmsAction
+} from "../../reducers/kinopoisk/filmsByGenreReducer";
+import {
+    setComedyFilmsErrorAction, setDramaFilmsErrorAction,
+    setFamilyFilmsErrorAction,
+    setNewFilmsErrorAction
+} from "../../reducers/kinopoisk/filmsByGenreErrorReducer";
 
 export function* handleNewFilmsWorker() {
      try {

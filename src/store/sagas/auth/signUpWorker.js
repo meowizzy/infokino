@@ -3,8 +3,8 @@ import { LOCAL_STORAGE_AUTH } from "@app/constants";
 import { getGlobalModalContextValue } from "@contexts";
 import { signUp, profile } from "@services/auth.service";
 import { validateRegisterForm } from "@components/AuthComponent/Register/validateRegisterForm";
-import { clearForm, setRegisterValidateError } from "../../reducers/registerReducer";
-import { setUserData, setUserIsLoading } from "../../reducers/userReducer";
+import { clearForm, setRegisterValidateError } from "../../reducers/auth/registerReducer";
+import { setUserData, setUserIsLoading } from "../../reducers/auth/userReducer";
 
 export function* signUpWorker() {
     try {

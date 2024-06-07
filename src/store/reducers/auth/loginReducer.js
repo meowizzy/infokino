@@ -1,4 +1,4 @@
-import { CLEAR_FORM, SET_USER_EMAIL, SET_USER_PASSWORD, LOGIN, SET_LOGIN_VALIDATE_ERROR } from "../constants/auth";
+import { CLEAR_FORM, SET_USER_EMAIL, SET_USER_PASSWORD, LOGIN, SET_LOGIN_VALIDATE_ERROR } from "../../constants/auth";
 
 const initialState = {
     email: "",

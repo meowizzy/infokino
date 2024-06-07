@@ -1,4 +1,13 @@
-import { SET_ALL_FILMS, SET_ALL_FILMS_ERROR, SET_ALL_FILMS_LOADING, SET_FILMS_PAGES, CLEAR_FILMS_LIST, SET_FILMS_FILTERS, SET_FILMS_PAGE } from "../constants/allfilms";
+import {
+     SET_ALL_FILMS,
+     SET_ALL_FILMS_ERROR,
+     SET_ALL_FILMS_LOADING,
+     SET_FILMS_PAGES,
+     CLEAR_FILMS_LIST,
+     SET_FILMS_FILTERS,
+     SET_FILMS_PAGE,
+     GET_ALL_FILMS
+} from "../../constants/allfilms";
 
 const initialState = {
      allFilms: [],
@@ -35,3 +44,50 @@ export const allFilmsReducer = (state = initialState, action) => {
                return state;
      }
 }
+
+export const getAllFilms = () => {
+     return { type: GET_ALL_FILMS }
+}
+
+
+export const setAllFilmsAction = data => {
+     return {
+          type: SET_ALL_FILMS,
+          payload: data
+     }
+}
+
+export const setAllFilmsErrorAction = (error = false) => {
+     return {
+          type: SET_ALL_FILMS_ERROR,
+          payload: error
+     }
+}
+
+export const setAllFilmsLoadingAction = (bool) => {
+     return {
+          type: SET_ALL_FILMS_LOADING,
+          payload: bool
+     }
+}
+
+export const setAllFilmsPage = page => {
+     return {
+          type: SET_FILMS_PAGE,
+          payload: page
+     }
+};
+
+export const setFilmsPages = data => {
+     return {
+          type: SET_FILMS_PAGES,
+          payload: data
+     }
+};
+
+export const setFilmsFilter = obj => {
+     return {
+          type: SET_FILMS_FILTERS,
+          payload: obj
+     }
+};

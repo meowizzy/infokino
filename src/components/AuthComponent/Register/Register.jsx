@@ -1,16 +1,15 @@
-import styles from './Register.module.scss';
-import { UIForm, UIInput, UIButton } from '@components/UI';
-import {useCallback, useEffect, memo, useMemo} from "react";
+import { useCallback, useEffect, memo, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
     registerAction,
-    setRegisterAvatar,
     setRegisterEmail,
     setRegisterPassword,
     setRegisterUserName,
     clearForm
-} from "@store/reducers/registerReducer";
+} from "@store/reducers/auth/registerReducer";
 import UIErrorMsg from "../../UI/UIErrorMsg/UIErrorMsg";
+import { UIForm, UIInput, UIButton } from '@components/UI';
+import styles from './Register.module.scss';
 
 const Register = () => {
     const dispatch = useDispatch();

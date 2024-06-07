@@ -1,8 +1,7 @@
 import { put, call, select } from 'redux-saga/effects';
 import { getFilmById  } from '@services/kinopoisk.service';
-import {  setFilmByIdErrorAction,
-          setFilmByIdAction
-} from '../../actions/actionCreator';
+import { setFilmByIdAction, setFilmByIdErrorAction } from "../../reducers/kinopoisk/filmByIdReducer";
+
 
 export function* handleFilmByIdWorker() {
      try {

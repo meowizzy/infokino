@@ -1,8 +1,8 @@
-import { UIForm, UIInput, UIButton } from '@components/UI';
 import { useDispatch, useSelector } from "react-redux";
-import {clearForm, loginAction, setLoginEmail, setLoginPassword} from "../../../store/reducers/loginReducer";
-import {useCallback, useEffect, memo, useMemo, useContext} from "react";
-import UIErrorMsg from "../../UI/UIErrorMsg/UIErrorMsg";
+import { useCallback, useEffect, memo, useMemo } from "react";
+import { clearForm, loginAction, setLoginEmail, setLoginPassword } from "@store/reducers/auth/loginReducer";
+import { UIForm, UIInput, UIButton } from '@components/UI';
+import UIErrorMsg from "@components/UI/UIErrorMsg/UIErrorMsg";
 
 
 const Login = ({ closeModal }) => {
@@ -16,11 +16,11 @@ const Login = ({ closeModal }) => {
 
     const onChangeEmail = useCallback((value) => {
         dispatch(setLoginEmail(value));
-    }, []);
+    }, [dispatch]);
 
     const onChangePassword = useCallback((value) => {
         dispatch(setLoginPassword(value));
-    }, []);
+    }, [dispatch]);
 
     const onSubmit = useCallback(() => {
         dispatch(loginAction());
@@ -30,7 +30,7 @@ const Login = ({ closeModal }) => {
         return () => {
             dispatch(clearForm());
         }
-    }, []);
+    }, [dispatch]);
 
     const validateErrors = useMemo(() => {
         return Array.isArray(error) ? (

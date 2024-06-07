@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux/es/exports";
-import { getFilmsByGenre } from "@store/actions/actionCreator";
+import { getFilmsByGenre } from "@store/reducers/kinopoisk/filmsByGenreReducer";
+import { useFetching } from "@hooks/useFetching";
 import { Categories } from "@components/Categories/Categories";
 import { TopSlider } from "@screens/TopSlider/TopSlider";
 import { Collection } from "@screens/Collection";
 import { collectionsTitles } from "@app/config/collections";
-import { useFetching } from "@hooks/useFetching";
 
 const HomePage = () => {
      const films = useSelector(state => state.filmsReducer);

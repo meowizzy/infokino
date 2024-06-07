@@ -5,7 +5,7 @@ import {
     CLEAR_COMMENTS, FILM_COMMENTS,
     SET_CREATED_COMMENT,
     DELETE_COMMENT
-} from "../constants/comments";
+} from "../../constants/comments";
 import { deleteReview } from "@services/reviews.service";
 
 const initialState = {

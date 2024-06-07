@@ -1,6 +1,6 @@
 import { put } from 'redux-saga/effects';
 import { getCountries } from '@services/kinopoisk.service';
-import { countriesErrorAction, setCountriesAction, setCountriesIsLoading } from '../../reducers/countriesReducer';
+import { countriesErrorAction, setCountriesAction, setCountriesIsLoading } from '../../reducers/kinopoisk/countriesReducer';
 
 
 export function* countriesWorker() {

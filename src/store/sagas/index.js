@@ -2,7 +2,7 @@ import { takeLatest } from 'redux-saga/effects';
 import { SET_FILM_ID } from '../constants/filmById';
 import { GET_ALL_FILMS } from '../constants/allfilms';
 import { GET_FILMS_BY_GENRE } from '../constants/genre';
-import { GET_COUNTRIES } from '../reducers/countriesReducer';
+import { GET_COUNTRIES } from '../reducers/kinopoisk/countriesReducer';
 import { REGISTER, LOGIN, USER } from "../constants/auth";
 import { CREATE_COMMENT, FILM_COMMENTS } from "../constants/comments";
 import { handleAllFilmsWorker } from './kinopoisk/allFilmsWorker';

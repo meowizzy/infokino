@@ -3,7 +3,7 @@ import {
     CLEAR_USER_DATA,
     SET_USER_IS_LOADING,
     SET_USER_ERROR, USER,
-} from "../constants/auth";
+} from "../../constants/auth";
 import { LOCAL_STORAGE_AUTH } from "@app/constants";
 
 const initialState = {

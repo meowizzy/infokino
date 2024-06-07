@@ -1,6 +1,6 @@
 import { select, put, call } from "redux-saga/effects";
 import { toggleFavorites } from "@services/favorites.service";
-import { setFavoritesLoading, setUserFavoritesData } from "../../reducers/favoritesReducer";
+import { setFavoritesLoading, setUserFavoritesData } from "../../reducers/favorites/favoritesReducer";
 
 export function* toggleFavoritesWorker() {
     try {

@@ -2,7 +2,7 @@ import { UIButton, UIAvatar } from "@components/UI";
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { clearUserData } from "@store/reducers/userReducer";
+import { clearUserData } from "@store/reducers/auth/userReducer";
 import { routesPath } from "@app/config/routes";
 import { rolesTranslation } from "@app/config/auth";
 import { ReactComponent as UserIcon } from "@public/images/username.svg";

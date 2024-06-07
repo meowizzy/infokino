@@ -5,7 +5,7 @@ import {
     SET_USER_PASSWORD,
     REGISTER,
     SET_REGISTER_VALIDATE_ERROR, CLEAR_FORM
-} from "../constants/auth";
+} from "../../constants/auth";
 
 const initialState = {
     username: "",

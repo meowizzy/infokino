@@ -3,8 +3,8 @@ import { getGlobalModalContextValue } from "@contexts";
 import { signIn, profile } from "@services/auth.service";
 import { LOCAL_STORAGE_AUTH } from "@app/constants";
 import { validateLoginForm } from "@components/AuthComponent/Login/validateLoginForm";
-import { clearForm, setLoginValidateError } from "../../reducers/loginReducer";
-import { setUserData, setUserIsLoading } from "../../reducers/userReducer";
+import { clearForm, setLoginValidateError } from "../../reducers/auth/loginReducer";
+import {setUserData, setUserError, setUserIsLoading} from "../../reducers/auth/userReducer";
 
 export function* signInWorker() {
     try {
@@ -27,6 +27,9 @@ export function* signInWorker() {
 
         modalContext.closeModal();
     } catch (e) {
-        yield put(setLoginValidateError(e.message.split("%")));
+        const error = e?.response ? e.response.data.message : e.message;
+        yield put(setLoginValidateError(error.split("%")));
+    } finally {
+        yield put(setUserIsLoading(false));
     }
 }

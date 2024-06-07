@@ -4,7 +4,7 @@ import {
     resetFavoritesData,
     setFavoritesError,
     setFavoritesLoading,
-} from "../../reducers/favoritesReducer";
+} from "../../reducers/favorites/favoritesReducer";
 ;
 
 export function* clearFavoritesWorker() {

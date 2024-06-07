@@ -2,8 +2,8 @@ import { put, call } from 'redux-saga/effects';
 import { profile } from "@services/auth.service";
 import { LOCAL_STORAGE_AUTH } from "@app/constants";
 import { fetchFavorites } from "@services/favorites.service";
-import { setUserData, setUserError, setUserIsLoading } from "../../reducers/userReducer";
-import { setUserFavoritesData } from "../../reducers/favoritesReducer";
+import { setUserData, setUserError, setUserIsLoading } from "../../reducers/auth/userReducer";
+import { setUserFavoritesData } from "../../reducers/favorites/favoritesReducer";
 
 export function* profileWorker() {
     try {

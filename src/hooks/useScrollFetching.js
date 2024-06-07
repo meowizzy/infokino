@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllFilms, setAllFilmsLoadingAction, setAllFilmsPage } from "@store/actions/actionCreator";
+import { getAllFilms, setAllFilmsLoadingAction, setAllFilmsPage } from "@store/reducers/kinopoisk/allFilmsReducer";
+
 
 const useScrollFetching = (props) => {
      const { data, isLoading, error } = props;
@@ -22,12 +23,12 @@ const useScrollFetching = (props) => {
      useEffect(() => {
           const handleScroll = event => {
                if (event.target.documentElement.scrollHeight - (event.target.documentElement.scrollTop + window.innerHeight) < 10 && page < pages) {
-                    dispatch(setAllFilmsLoadingAction(true));             
+                    dispatch(setAllFilmsLoadingAction(true));
                }
           };
 
           if (!error) document.addEventListener('scroll', handleScroll);
-          return () => document.removeEventListener('scroll', handleScroll);    
+          return () => document.removeEventListener('scroll', handleScroll);
      }, [page, isLoading, error]);
 };
 

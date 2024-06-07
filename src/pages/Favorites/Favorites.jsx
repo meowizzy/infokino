@@ -2,11 +2,10 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FilmItem } from "@components/FilmItem";
 import { Grid } from "@components/List/List";
-import { getFavoritesAction } from "@store/reducers/favoritesReducer";
+import { getFavoritesAction } from "@store/reducers/favorites/favoritesReducer";
 import { ReactComponent as FavoritesIcon } from "@public/images/favorites.svg";
 import { FavoritesHeading } from "./components/FavoritesHeading";
 import {
-    UILoader,
     UIErrorMsg,
     UITitle
 } from "@components/UI";
@@ -25,12 +24,6 @@ const Favorites = () => {
     useEffect(() => {
         dispatch(getFavoritesAction());
     }, [userFavoritesData]);
-
-    // if (isLoading) {
-    //     return (
-    //         <UILoader />
-    //     );
-    // }
 
     if (error) {
         return (

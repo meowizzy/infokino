@@ -5,7 +5,7 @@ import {
     CREATE_COMMENT_LOADING,
     SET_COMMENT_FORM_DATA,
     SET_CREATED_COMMENT
-} from "../constants/comments";
+} from "../../constants/comments";
 
 const initialState = {
     formData: {

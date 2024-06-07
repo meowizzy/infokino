@@ -1,7 +1,7 @@
 import { put, call, select } from 'redux-saga/effects';
 import { getAllReviews } from "@services/reviews.service";
 import { validateCommentsList } from "@components/Comments/validateCommentsList";
-import { setComments, setCommentsError, setCommentsLoading } from "../../reducers/commentsReducer";
+import { setComments, setCommentsError, setCommentsLoading } from "../../reducers/reviews/commentsReducer";
 
 export function* fetchReviewsWorker() {
     try {

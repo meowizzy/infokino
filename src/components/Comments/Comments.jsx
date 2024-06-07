@@ -1,13 +1,13 @@
-import {useContext, useRef, useCallback, useEffect, useState} from "react";
-import { Rate } from "antd";
-import PropTypes from "prop-types";
-import { AuthComponent } from "../AuthComponent";
-import { ModalContext } from "@contexts";
-import { setCommentFormData } from "@store/reducers/createCommentReducer";
+import { useContext, useRef, useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useClickOutside from "@hooks/useClickOutside";
-import { createCommentAction } from "../../store/reducers/createCommentReducer";
-import { fetchFilmCommentsAction, deleteCommentAction } from "../../store/reducers/commentsReducer";
+import { Rate } from "antd";
+import { ModalContext } from "@contexts";
+import { setCommentFormData, createCommentAction } from "@store/reducers/reviews/createCommentReducer";
+import { fetchFilmCommentsAction, deleteCommentAction } from "@store/reducers/reviews/commentsReducer";
+import { AuthComponent } from "../AuthComponent";
+import PropTypes from "prop-types";
+import { WithPermission } from "@hoc/WithPermission";
 import {
     UIButton,
     UITextArea,
@@ -15,7 +15,6 @@ import {
     UILoader,
     UIErrorMsg,
 } from "../UI";
-import { WithPermission } from "@hoc/WithPermission";
 import { ReactComponent as DotsIcon } from "@public/images/dots.svg";
 import { ReactComponent as DeleteIcon } from "@public/images/delete.svg";
 import { ReactComponent as EditIcon } from "@public/images/edit.svg";
