@@ -11,6 +11,12 @@ export const signIn = async (data) =>
         data
     });
 
+export const setAvatar = async (data) =>
+    await projectHttpPost({
+        url: "/users/profile/avatar",
+        data
+    });
+
 export const signUp = async (data) =>
     await projectHttpPost({
         url: "/auth/sign-up",

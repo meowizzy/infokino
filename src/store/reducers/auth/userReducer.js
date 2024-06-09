@@ -2,9 +2,10 @@ import {
     SET_USER_DATA,
     CLEAR_USER_DATA,
     SET_USER_IS_LOADING,
-    SET_USER_ERROR, USER,
+    SET_USER_ERROR, USER, SET_USER_DATA_AVATAR,
 } from "../../constants/auth";
 import { LOCAL_STORAGE_AUTH } from "@app/constants";
+import {toast} from "react-toastify";
 
 const initialState = {
     authData: undefined,
@@ -22,6 +23,12 @@ export const userReducer = (state = initialState, action) => {
                 isLoading: false,
                 error: undefined
             };
+        case SET_USER_DATA_AVATAR:
+            toast.success("Фотография профиля успешно изменена");
+            return {
+                ...state,
+                authData: { ...state.authData, avatar: action.payload }
+            }
         case CLEAR_USER_DATA:
             localStorage.removeItem(LOCAL_STORAGE_AUTH);
             return {
@@ -30,7 +37,7 @@ export const userReducer = (state = initialState, action) => {
                 isLoading: false,
                 error: undefined,
                 _inited: false
-            };
+            }
         case SET_USER_IS_LOADING:
             return {
                 ...state,
@@ -41,7 +48,7 @@ export const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 error: action.payload,
-                _inited: false,
+                _inited: true,
                 isLoading: false
             }
         default:
@@ -49,6 +56,9 @@ export const userReducer = (state = initialState, action) => {
     }
 };
 
+export const setUserDataAvatar = (payload) => {
+    return { type: "SET_USER_DATA_AVATAR", payload };
+}
 
 export const setUserData = (payload) => {
     return { type: SET_USER_DATA, payload }

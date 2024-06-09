@@ -7,8 +7,40 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   svg {
     fill: var(--color-white);
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 4px solid var(--color-white);
+    z-index: 2;
+    border-bottom: 4px solid transparent;
+    display: none;
+    animation: rotation 1s linear infinite;
+  }
+
+  &.isLoading {
+    &:before {
+      display: block;
+    }
+  }
+
+  @keyframes rotation {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
   }
 }
 
@@ -115,13 +147,15 @@
 
 .large {
   font-weight: 600;
+  .avatar_pic_wrapper {
+    margin-right: 30px;
+  }
   .avatar_pic {
     width: 150px;
     height: 150px;
     border-radius: 50%;
     background-color: var(--primary);
     overflow: hidden;
-    margin-right: 30px;
     border: 6px solid var(--color-main-hover);
     border-left-color: var(--color-main);
     transition: transform .6s;
@@ -151,4 +185,59 @@
   &:hover {
     color: var(--color-main);
   }
+}
+
+.avatar_pic_wrapper {
+  position: relative;
+}
+
+.uploadBtnCont, .cancelBtn, .submitBtn {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  font-size: 0;
+  padding: 0;
+  position: absolute;
+  overflow: hidden;
+  svg {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    path, polyline {
+      stroke: var(--color-white);
+    }
+  }
+}
+
+.uploadBtnCont, .submitBtn {
+  background-color: var(--color-main);
+  bottom: 10px;
+  right: 0;
+  transition: var(--transition);
+  &:hover {
+    background-color: var(--color-main-hover);
+  }
+}
+
+.cancelBtn {
+  bottom: 50px;
+  right: -15px;
+  background-color: var(--danger);
+
+  &:hover {
+    background-color: var(--danger-hover);
+  }
+}
+
+.uploadBtn {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 0;
+  padding: 0;
+  cursor: pointer;
 }

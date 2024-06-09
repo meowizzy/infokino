@@ -14,7 +14,10 @@
      --primary-hover: #2A2A2E;
      --primary-dark: #161515;
 
-     
+     --danger: #c25656;
+     --danger-hover: #d56262;
+
+
      --main-font: 'OpenSans';
 
      --radius-small: 3px;
@@ -26,4 +29,12 @@
 
      --min-width: 360px;
      --container-max-width: 1400px;
+
+     --toastify-color-light: var(--primary);
+     --toastify-text-color-light: var(--color-white);
+     --toastify-color-progress-error: var(--danger);
+     --toastify-icon-color-error: var(--danger);
+     --toastify-color-progress-success: var(--color-main);
+     --toastify-icon-color-success: var(--color-main);
+     --toastify-toast-bd-radius: 0;
 }

@@ -81,7 +81,7 @@ body {
      &:hover {
           &:before {
                background-color: rgba(42,42,46,.6);
-               transform: scale(1.2);  
+               transform: scale(1.2);
           }
      }
 
@@ -134,17 +134,17 @@ html body .custom-select {
 
      &__menu {
           background-color: var(--primary);
-          
+
           & > div {
                &::-webkit-scrollbar {
                     width: 4px;
                }
-          
+
                &::-webkit-scrollbar-track {
                     background: transparent;
                }
-          
-          
+
+
                &::-webkit-scrollbar-thumb {
                     background-color: #808080;
                     border-radius: 2px;

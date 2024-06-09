@@ -29,10 +29,11 @@ const ProfileCard = (props) => {
         <div className={cn(cls.card_wrapper, className)}>
             <UIAvatar
                 avatar={authData?.avatar}
-                username={authData?.name}
+                username={authData?.username}
                 type="large"
                 withZoom="true"
                 hasLink={false}
+                withUpload={true}
             />
             <ul className={cls.infoTable}>
                 <li className={cls.infoTableRow}>

@@ -1,10 +1,16 @@
-import {memo, useCallback, useState} from "react";
+import { memo, useState } from "react";
+import {useDispatch, useSelector} from "react-redux";
 import { Link } from "react-router-dom";
 import { Image } from "antd";
-import cn from "classnames";
-import {routesPath} from "@app/config/routes";
-import { rolesTranslation } from "@app/config/auth";
 import { ReactComponent as AvatarIcon } from "@public/images/avatarIcon.svg";
+import { routesPath } from "@app/config/routes";
+import { rolesTranslation } from "@app/config/auth";
+import { UIButton, UIInput } from "../index";
+import { ReactComponent as EditIcon } from "@public/images/edit2.svg";
+import { ReactComponent as CloseIcon } from "@public/images/close.svg";
+import { ReactComponent as SubmitIcon } from "@public/images/ok.svg";
+import { setProfileAvatar } from "@store/reducers/auth/profileAvatarReducer";
+import cn from "classnames";
 import cls from "./UIAvatar.module.scss";
 
 export const UIAvatar = memo((props) => {
@@ -16,8 +22,58 @@ export const UIAvatar = memo((props) => {
         type = "small",
         email,
         role,
+        withUpload = false,
         withZoom = false
     } = props;
+    const [editableAvatar, setEditableAvatar] = useState(null);
+    const dispatch = useDispatch();
+    const { isLoading } = useSelector(state => state.profileAvatarReducer);
+
+    const handleInputChange = (e) => {
+        setEditableAvatar(e.target.files[0]);
+    };
+
+    const handleCancelAvatarSelect = () => {
+        setEditableAvatar(null);
+    };
+
+    const handleSubmitAvatar = () => {
+        dispatch(setProfileAvatar(editableAvatar));
+        setEditableAvatar(null);
+    };
+
+    const avatarBtns = () => {
+        if (!withUpload) return null;
+
+        return (
+            editableAvatar ? (
+                <>
+                    <UIButton
+                        Icon={CloseIcon}
+                        classes={cls.cancelBtn}
+                        type="clear"
+                        onClick={handleCancelAvatarSelect}
+                    />
+                    <UIButton
+                        Icon={SubmitIcon}
+                        classes={cls.submitBtn}
+                        onClick={handleSubmitAvatar}
+                        type="clear"
+                    />
+                </>
+            ) : (
+                <div className={cls.uploadBtnCont}>
+                    <input
+                        className={cls.uploadBtn}
+                        type="file"
+                        accept=".png, .jpg, .jpeg"
+                        onChange={handleInputChange}
+                    />
+                    <EditIcon />
+                </div>
+            )
+        )
+    }
 
     let content;
     let image = avatar ? ( withZoom ?
@@ -28,8 +84,15 @@ export const UIAvatar = memo((props) => {
         /> : <img src={avatar} alt="avatar"/> ) : <AvatarIcon/>;
     let info = (
         <>
-            <div className={cls.avatar_pic}>
-                {image}
+            <div className={cls.avatar_pic_wrapper}>
+                <div className={withUpload ? cn(cls.avatar_pic, { [cls.isLoading]: isLoading }) : cls.avatar_pic}>
+                    {withUpload && editableAvatar ? (
+                        <img src={URL.createObjectURL(editableAvatar)}/>
+                    ) : (
+                        image
+                    )}
+                </div>
+                {avatarBtns()}
             </div>
             <div className={cls.avatar_info}>
                 <span className={cls.avatar_name}>

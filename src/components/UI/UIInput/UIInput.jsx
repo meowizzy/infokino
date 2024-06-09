@@ -1,22 +1,22 @@
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import styles from './UIInput.module.scss';
-import { memo } from "react";
+import {forwardRef, memo} from "react";
 
 
-const UIInput = ({ value, type = "text", onChange, name, classes, placeholder, inputStyle = 'base', ...props }) => {
+const UIInput = forwardRef(({ value, type = "text", onChange, name, classes, placeholder, inputStyle = 'base', ...props }, ref) => {
      return (
-          <input 
+          <input
                className={cn(styles[inputStyle], styles.input, classes)}
-               type={type} 
+               type={type}
                onChange={e => onChange && onChange(e.target.value)}
-               value={value} 
-               placeholder={placeholder} 
-               name={name} 
+               value={value}
+               placeholder={placeholder}
+               name={name}
                {...props}
           />
      );
-};
+});
 
 export default memo(UIInput);
 

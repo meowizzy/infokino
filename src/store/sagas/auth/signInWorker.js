@@ -4,7 +4,7 @@ import { signIn, profile } from "@services/auth.service";
 import { LOCAL_STORAGE_AUTH } from "@app/constants";
 import { validateLoginForm } from "@components/AuthComponent/Login/validateLoginForm";
 import { clearForm, setLoginValidateError } from "../../reducers/auth/loginReducer";
-import {setUserData, setUserError, setUserIsLoading} from "../../reducers/auth/userReducer";
+import {setUserData, setUserIsLoading} from "../../reducers/auth/userReducer";
 
 export function* signInWorker() {
     try {

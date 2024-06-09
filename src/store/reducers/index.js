@@ -10,9 +10,10 @@ import { userReducer } from "./auth/userReducer";
 import { commentsReducer } from "./reviews/commentsReducer";
 import { createCommentReducer } from "./reviews/createCommentReducer";
 import { favoritesReducer } from "./favorites/favoritesReducer";
+import { profileAvatarReducer } from "./auth/profileAvatarReducer";
 
 
-const index = combineReducers({
+const rootReducer = combineReducers({
      filmsReducer,
      filmsErrorReducer,
      allFilmsReducer,
@@ -23,8 +24,9 @@ const index = combineReducers({
      userReducer,
      commentsReducer,
      createCommentReducer,
-     favoritesReducer
+     favoritesReducer,
+     profileAvatarReducer
 });
 
 
-export default index;
+export default rootReducer;
