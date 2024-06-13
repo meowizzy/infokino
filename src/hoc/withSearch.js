@@ -14,7 +14,7 @@ const withSearch = (Component) => {
           const getData = useDebounce(useMemo(() => async (query) => {
                setIsLoading(true);
 
-               const request = await Promise.all([getSearchQuery({
+               const [movies, persons] = await Promise.all([getSearchQuery({
                     query,
                     type: "movie"
                }), getSearchQuery({
@@ -23,13 +23,12 @@ const withSearch = (Component) => {
                })]);
 
                setData({
-                    movies: request[0].docs.length ? request[0].docs : [],
-                    persons: request[1].docs.length ? request[1].docs : []
+                    movies: movies.data.docs.length ? movies.data.docs : [],
+                    persons: persons.data.docs.length ? persons.data.docs : []
                });
 
                setIsLoading(false);
           }, []), 800);
-
 
           const handleChange = e => {
                const value = e.target.value;

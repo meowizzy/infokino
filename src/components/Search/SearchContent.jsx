@@ -1,11 +1,11 @@
 import withSearch from '@hoc/withSearch';
+import { ReactComponent as SearchIcon } from "@public/images/search-icon.svg";
 import { SearchInput } from './SearchInput/SearchInput';
 import styles from './Search.module.scss';
 import { SearchResults } from './SearchResults/SearchResults';
-import { ReactComponent as SearchIcon } from "@public/images/search-icon.svg";
 
 const SearchContent = ({ isLoading, data, query, handleChange }) => {
-     
+
      return (
           <div className={styles.container}>
                <div className={styles.field}>
