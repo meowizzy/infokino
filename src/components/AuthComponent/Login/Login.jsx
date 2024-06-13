@@ -56,9 +56,8 @@ const Login = ({ closeModal }) => {
                     />
                </div>
                <div className="form_field">
-                    <UIInput
+                    <UIInput.Password
                         inputStyle="large"
-                        type="password"
                         value={password}
                         onChange={onChangePassword}
                         placeholder="Пароль"

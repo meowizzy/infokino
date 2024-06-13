@@ -4,13 +4,14 @@ import {
     SET_USER_NAME,
     SET_USER_PASSWORD,
     REGISTER,
-    SET_REGISTER_VALIDATE_ERROR, CLEAR_FORM
+    SET_REGISTER_VALIDATE_ERROR, CLEAR_FORM, SET_USER_CONFIRM_PASSWORD
 } from "../../constants/auth";
 
 const initialState = {
     username: "",
     email: "",
     password: "",
+    confirmPassword: "",
     avatar: "",
     error: undefined
 }
@@ -22,6 +23,8 @@ export const registerReducer = (state = initialState, action) => {
             return { ...state, email: action.payload }
         case SET_USER_PASSWORD:
             return { ...state, password: action.payload }
+        case SET_USER_CONFIRM_PASSWORD:
+            return { ...state, confirmPassword: action.payload }
         case SET_USER_AVATAR:
             return { ...state, avatar: action.payload }
         case SET_REGISTER_VALIDATE_ERROR:
@@ -54,6 +57,12 @@ export const setRegisterEmail = (value) => {
     }
 };
 
+export const setRegisterConfirmPassword = (value) => {
+    return {
+        type: SET_USER_CONFIRM_PASSWORD,
+        payload: value
+    }
+};
 export const setRegisterPassword = (value) => {
     return {
         type: SET_USER_PASSWORD,

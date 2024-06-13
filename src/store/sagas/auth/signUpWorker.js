@@ -15,15 +15,14 @@ export function* signUpWorker() {
         if (error?.length) throw new Error(error);
 
         yield put(setUserIsLoading(true));
-        const { data: tokens } = yield call(signUp, formData);
+        const { data: tokens } = yield call(signUp, {...formData, confirmPassword: undefined});
 
         yield localStorage.setItem(LOCAL_STORAGE_AUTH, JSON.stringify(tokens));
 
         const { data: profileData } = yield call(profile);
 
         yield put(setUserData({
-            ...profileData,
-            password: undefined
+            ...profileData
         }));
 
         yield put(setUserIsLoading(false));
@@ -32,7 +31,8 @@ export function* signUpWorker() {
         modalContext.closeModal();
 
     } catch (e) {
-        yield put(setRegisterValidateError(e.message.split("%")));
+        const error = e?.response ? e.response.data.message : e.message;
+        yield put(setRegisterValidateError(error.split("%")));
         yield put(setUserIsLoading(false));
     }
 }

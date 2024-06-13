@@ -2,6 +2,8 @@ export const SET_USER_EMAIL = "SET_USER_EMAIL";
 export const SET_USER_NAME = "SET_USER_NAME";
 export const SET_USER_PASSWORD = "SET_USER_PASSWORD";
 export const SET_USER_AVATAR = "SET_USER_AVATAR";
+
+export const SET_USER_CONFIRM_PASSWORD = "SET_USER_CONFIRM_PASSWORD";
 export const REGISTER = "REGISTER";
 export const LOGIN = "LOGIN";
 

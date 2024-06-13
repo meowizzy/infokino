@@ -11,7 +11,6 @@ import {
 } from "@components/UI";
 import cls from "./Favorites.module.scss";
 
-
 const Favorites = () => {
     const dispatch = useDispatch();
     const {

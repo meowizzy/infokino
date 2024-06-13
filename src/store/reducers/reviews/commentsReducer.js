@@ -11,7 +11,7 @@ import { deleteReview } from "@services/reviews.service";
 const initialState = {
     data: undefined,
     isLoading: false,
-    error: undefined
+    error: undefined,
 };
 
 export const commentsReducer = (state = initialState, action) => {
@@ -31,7 +31,7 @@ export const commentsReducer = (state = initialState, action) => {
                 error: undefined
             }
         case DELETE_COMMENT:
-            const newData = state.data.filter(item => item.id !== action.payload);
+            const newData = state.data.filter(item => item._id !== action.payload);
             deleteReview(action.payload);
 
             return {

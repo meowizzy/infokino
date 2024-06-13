@@ -72,7 +72,7 @@ const Comments = (props) => {
                             <Comments.Item
                                 key={comment._id}
                                 id={comment?._id}
-                                role={comment.reviewer?.role}
+                                role={comment?.role}
                                 rating={comment?.rating}
                                 avatar={comment?.avatar}
                                 name={comment?.username}
@@ -125,8 +125,8 @@ const Item = (props) => {
             <div className={cls.info}>
                 <UIAvatar
                     username={name}
-                    email={new Date(createdAt).toLocaleString()}
                     role={role}
+                    email={new Date(createdAt).toLocaleString()}
                     avatar={avatar}
                     type="medium"
                     hasLink={false}

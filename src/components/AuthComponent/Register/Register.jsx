@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import {
     registerAction,
     setRegisterEmail,
+    setRegisterConfirmPassword,
     setRegisterPassword,
     setRegisterUserName,
     clearForm
 } from "@store/reducers/auth/registerReducer";
-import UIErrorMsg from "../../UI/UIErrorMsg/UIErrorMsg";
-import { UIForm, UIInput, UIButton } from '@components/UI';
-import styles from './Register.module.scss';
+import { UIInput, UIForm, UIButton } from '@components/UI';
+import UIErrorMsg from "@components/UI/UIErrorMsg/UIErrorMsg";
 
 const Register = () => {
     const dispatch = useDispatch();
@@ -17,21 +17,26 @@ const Register = () => {
         username,
         email,
         password,
+        confirmPassword,
         error
     } = useSelector(state => state.registerReducer)
     const isLoading = useSelector(state => state.userReducer.isLoading);
 
     const onChangeName = useCallback((value) => {
         dispatch(setRegisterUserName(value));
-    }, [username]);
+    }, [dispatch]);
 
     const onChangeEmail = useCallback((value) => {
         dispatch(setRegisterEmail(value));
-    }, [email]);
+    }, [dispatch]);
 
     const onChangePassword = useCallback((value) => {
         dispatch(setRegisterPassword(value));
-    }, [password]);
+    }, [dispatch]);
+
+    const onChangeConfirmPassword = useCallback((value) => {
+        dispatch(setRegisterConfirmPassword(value));
+    }, [dispatch]);
 
     const onSubmit = useCallback(() => {
         dispatch(registerAction());
@@ -76,12 +81,19 @@ const Register = () => {
                  />
              </div>
              <div className="form_field">
-                 <UIInput
+                 <UIInput.Password
                      inputStyle="large"
-                     type="password"
                      value={password}
                      placeholder="Пароль"
                      onChange={onChangePassword}
+                 />
+             </div>
+             <div className="form_field">
+                 <UIInput.Password
+                     inputStyle="large"
+                     value={confirmPassword}
+                     placeholder="Повторите пароль"
+                     onChange={onChangeConfirmPassword}
                  />
              </div>
              <div className="form_submit">

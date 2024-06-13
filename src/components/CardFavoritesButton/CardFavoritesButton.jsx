@@ -16,7 +16,7 @@ export const CardFavoritesButton = ({ filmId }) => {
         dispatch(toggleFavoritesAction(filmId));
     }, [dispatch, filmId]);
 
-    if (userFavoritesData && userFavoritesData.includes(String(filmId))) {
+    if (userFavoritesData && userFavoritesData.includes(filmId)) {
         return (
             <div className={cls.removeFromFavoritesWrap}>
                 <div className={cls.removeFromFavoritesLabel}>
