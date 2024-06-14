@@ -3,10 +3,9 @@ import {
     SET_COMMENTS_LOADING,
     SET_COMMENTS_ERROR,
     CLEAR_COMMENTS, FILM_COMMENTS,
-    SET_CREATED_COMMENT,
+    SET_CREATED_UPDATED_COMMENT,
     DELETE_COMMENT
 } from "../../constants/comments";
-import { deleteReview } from "@services/reviews.service";
 
 const initialState = {
     data: undefined,
@@ -23,20 +22,12 @@ export const commentsReducer = (state = initialState, action) => {
                 isLoading: false,
                 error: undefined
             };
-        case SET_CREATED_COMMENT:
+        case SET_CREATED_UPDATED_COMMENT:
             return {
                 ...state,
                 data: [ action.payload, ...state.data ],
                 isLoading: false,
                 error: undefined
-            }
-        case DELETE_COMMENT:
-            const newData = state.data.filter(item => item._id !== action.payload);
-            deleteReview(action.payload);
-
-            return {
-                ...state,
-                data: newData
             }
         case SET_COMMENTS_LOADING:
             return {

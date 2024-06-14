@@ -24,7 +24,6 @@ export const userReducer = (state = initialState, action) => {
                 error: undefined
             };
         case SET_USER_DATA_AVATAR:
-            toast.success("Фотография профиля успешно изменена");
             return {
                 ...state,
                 authData: { ...state.authData, avatar: action.payload }

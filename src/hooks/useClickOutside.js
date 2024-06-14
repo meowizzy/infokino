@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 
-const useClickOutside = (handler) => {
+export const useClickOutside = (handler) => {
      const ref = useRef();
 
      useEffect(() => {
@@ -18,5 +18,3 @@ const useClickOutside = (handler) => {
 
      return ref;
 };
-
-export default useClickOutside;

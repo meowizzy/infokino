@@ -8,7 +8,7 @@ import { registerReducer } from "./auth/registerReducer";
 import { loginReducer } from "./auth/loginReducer";
 import { userReducer } from "./auth/userReducer";
 import { commentsReducer } from "./reviews/commentsReducer";
-import { createCommentReducer } from "./reviews/createCommentReducer";
+import { createUpdateCommentReducer } from "./reviews/createUpdateCommentReducer";
 import { favoritesReducer } from "./favorites/favoritesReducer";
 import { profileAvatarReducer } from "./auth/profileAvatarReducer";
 
@@ -23,7 +23,7 @@ const rootReducer = combineReducers({
      loginReducer,
      userReducer,
      commentsReducer,
-     createCommentReducer,
+     createUpdateCommentReducer,
      favoritesReducer,
      profileAvatarReducer
 });

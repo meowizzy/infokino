@@ -31,7 +31,7 @@
         position: absolute;
         top: 100%;
         pointer-events: none;
-        right: 0;
+        left: 0;
         transition: var(--transition);
 
         z-index: 10;
@@ -71,6 +71,12 @@
         opacity: 1;
         pointer-events: all;
     }
+}
+
+.updateBtns {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
 }
 
 .test {

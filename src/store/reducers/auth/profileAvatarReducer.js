@@ -1,5 +1,5 @@
-import {SET_PROFILE_AVATAR, SET_PROFILE_AVATAR_ERROR, SET_PROFILE_AVATAR_LOADING} from "../../constants/auth";
-import {toast} from "react-toastify";
+import { SET_PROFILE_AVATAR, SET_PROFILE_AVATAR_ERROR, SET_PROFILE_AVATAR_LOADING } from "../../constants/auth";
+
 const initialState = {
     avatar: undefined,
     error: undefined,
@@ -13,7 +13,6 @@ export const profileAvatarReducer = (state = initialState, action) => {
         case SET_PROFILE_AVATAR_LOADING:
             return { ...state, isLoading: action.payload };
         case SET_PROFILE_AVATAR_ERROR:
-            toast.error(action.payload);
             return { ...state, isLoading: false, error: action.payload };
         default:
             return state;

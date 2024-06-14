@@ -1,10 +1,10 @@
 import { useEffect, memo, useMemo } from "react";
 import { useParams, useSearchParams } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
+import { useScrollFetching } from "@hooks/useScrollFetching";
 import { setFilmsFilter } from "@store/reducers/kinopoisk/allFilmsReducer";
 import { CLEAR_FILMS_LIST } from "@store/constants/allfilms";
 import convertMovieType from "@helpers/convertMovieType";
-import useScrollFetching from "@hooks/useScrollFetching";
 import { List } from "@components/List";
 import { UITitle } from "@components/UI";
 import { Filter } from "@components/Filter";

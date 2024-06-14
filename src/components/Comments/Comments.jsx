@@ -1,12 +1,12 @@
-import { useContext, useRef, useCallback, useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { useContext, useRef, useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import useClickOutside from "@hooks/useClickOutside";
+import { useClickOutside } from "@hooks/useClickOutside";
 import { Rate } from "antd";
 import { ModalContext } from "@contexts";
-import { setCommentFormData, createCommentAction } from "@store/reducers/reviews/createCommentReducer";
-import { fetchFilmCommentsAction, deleteCommentAction } from "@store/reducers/reviews/commentsReducer";
+import { setCommentFormData, createUpdateCommentAction, clearCommentForm } from "@store/reducers/reviews/createUpdateCommentReducer";
+import { deleteCommentAction } from "@store/reducers/reviews/commentsReducer";
 import { AuthComponent } from "../AuthComponent";
-import PropTypes from "prop-types";
 import { WithPermission } from "@hoc/WithPermission";
 import {
     UIButton,
@@ -21,20 +21,41 @@ import { ReactComponent as EditIcon } from "@public/images/edit.svg";
 import cn from "classnames";
 import cls from './Comments.module.scss';
 
+
 const Comments = (props) => {
     const {
         isLoading,
         data,
+        authData,
         error
     } = props;
+    const [reviewIsEditing, setReviewIsEditing] = useState(false);
+
     const dispatch = useDispatch();
     const listRef = useRef();
 
-    useEffect(() => {
-        if (listRef.current) {
-            listRef.current.scrollTop = 0;
+    const onCreateUpdateComment = () => {
+        dispatch(createUpdateCommentAction({ reviewIsEditing, setReviewIsEditing }));
+
+        if (!reviewIsEditing) {
+            if (listRef.current) {
+                listRef.current.scrollTop = 0;
+            }
         }
-    }, [data]);
+    };
+
+    const onDeleteComment = useCallback((id) => {
+        dispatch(deleteCommentAction(id));
+    }, [dispatch]);
+
+    const onEditComment = (payload) => {
+        setReviewIsEditing(true);
+        dispatch(setCommentFormData(payload));
+    };
+
+    /*const onLoadMoreComments = () => {
+        dispatch(fetchFilmCommentsAction());
+    };*/
 
     if (isLoading) {
         return (
@@ -50,39 +71,44 @@ const Comments = (props) => {
         )
     }
 
+    let content;
+
     if (!data?.length) {
-        return (
+        content = (
             <UIErrorMsg
                 value="Комментариев к этому фильму пока нет. Будьте первым, кто оставит комментарий."
             />
         );
+    } else {
+        content = (
+            <div className={cls.listWrap}>
+                <div className={cn(cls.list)} ref={listRef}>
+                    {data?.map(comment => (
+                        <Comments.Item
+                            key={comment._id}
+                            data={comment}
+                            onEditComment={() => onEditComment({
+                                id: comment._id,
+                                comment: comment.comment,
+                                rating: comment.rating
+                            })}
+                            onDeleteComment={() => onDeleteComment(comment._id)}
+                        />
+                    ))}
+                </div>
+            </div>
+        )
     }
-
-    const onLoadMoreComments = () => {
-        dispatch(fetchFilmCommentsAction());
-    };
 
     return (
         <>
-            <div className={cls.listWrap}>
-                <div className={cn(cls.list)} ref={listRef}>
-                    {
-
-                        data?.map(comment => (
-                            <Comments.Item
-                                key={comment._id}
-                                id={comment?._id}
-                                role={comment?.role}
-                                rating={comment?.rating}
-                                avatar={comment?.avatar}
-                                name={comment?.username}
-                                createdAt={comment?.createdAt}
-                                comment={comment?.comment}
-                            />
-                        ))
-                    }
-                </div>
-            </div>
+            {content}
+            <Comments.Form
+                authData={authData}
+                reviewIsEditing={reviewIsEditing}
+                setReviewIsEditing={setReviewIsEditing}
+                onCreateUpdateComment={onCreateUpdateComment}
+            />
         </>
     );
 };
@@ -96,38 +122,29 @@ Comments.propTypes = {
 
 const Item = (props) => {
     const {
-        id,
         className,
-        avatar,
-        name,
-        rating,
-        createdAt,
-        comment,
-        role
+        data,
+        onEditComment,
+        onDeleteComment
     } = props;
     const [isDropdownVisible, setIsDropDownVisible] = useState(false);
     const dropDownRef = useClickOutside(setIsDropDownVisible);
-    const dispatch = useDispatch();
 
     const onToggleDropdown = () => setIsDropDownVisible(!isDropdownVisible);
 
-    const onEditComment = useCallback(() => {
-
-    }, []);
-
-    const onDeleteComment = useCallback(() => {
-        dispatch(deleteCommentAction(id));
-    }, []);
-
+    const handleOnEditCommentClick = () => {
+        setIsDropDownVisible(false);
+        onEditComment();
+    }
 
     return (
         <div className={cn(cls.commentItem, className)}>
             <div className={cls.info}>
                 <UIAvatar
-                    username={name}
-                    role={role}
-                    email={new Date(createdAt).toLocaleString()}
-                    avatar={avatar}
+                    username={data?.username}
+                    role={data?.role}
+                    email={new Date(data?.createdAt).toLocaleString()}
+                    avatar={data?.avatar}
                     type="medium"
                     hasLink={false}
                 />
@@ -142,7 +159,7 @@ const Item = (props) => {
                                 classes={cls.editBtn}
                                 type={"primary"}
                                 text="Редактировать"
-                                onClick={onEditComment}
+                                onClick={handleOnEditCommentClick}
                             />
                             <UIButton
                                 Icon={DeleteIcon}
@@ -156,14 +173,13 @@ const Item = (props) => {
                 </WithPermission>
             </div>
             <div className={cls.comment}>
-                {
-                    rating ?
+                {data?.rating ? (
                     <div className={cls.commentRate}>
                         <span className={cls.formFieldLabel}>Оценка: </span>
-                        <Rate disabled allowHalf defaultValue={Number(rating)}/>
-                    </div> : ""
-                }
-                <p>{comment}</p>
+                        <Rate disabled allowHalf defaultValue={Number(data?.rating)}/>
+                    </div>
+                ) : ""}
+                <p>{data?.comment}</p>
             </div>
         </div>
     );
@@ -172,12 +188,15 @@ const Item = (props) => {
 const Form = (props) => {
     const {
         className,
-        authData
+        authData,
+        onCreateUpdateComment,
+        setReviewIsEditing,
+        reviewIsEditing
     } = props;
     const { openModal } = useContext(ModalContext);
     const dispatch = useDispatch();
-    const { isLoading, error, formData } = useSelector(state => state.createCommentReducer);
-    const handleOpenModalClick = e => {
+    const { isLoading, error, formData } = useSelector(state => state.createUpdateCommentReducer);
+    const handleOpenModalClick = (e) => {
         e.preventDefault();
         openModal({
              content: <AuthComponent/>
@@ -188,12 +207,13 @@ const Form = (props) => {
         dispatch(setCommentFormData({ ...formData, comment: value }));
     }, [dispatch, formData]);
 
-    const onSubmitFormData = useCallback(() => {
-        dispatch(createCommentAction());
-    }, [dispatch]);
-
     const onChangeCommentRating = (value) => {
         dispatch(setCommentFormData({ ...formData, rating: value }));
+    };
+
+    const onClearCommentForm = () => {
+        dispatch(clearCommentForm());
+        setReviewIsEditing(false);
     };
 
     if (!authData) {
@@ -222,6 +242,7 @@ const Form = (props) => {
                 <span className={cls.formFieldLabel}>Оценка: </span>
                 <Rate
                     allowHalf
+                    disabled={reviewIsEditing}
                     value={Number(formData?.rating)}
                     onChange={onChangeCommentRating}
                 />
@@ -236,12 +257,28 @@ const Form = (props) => {
                     className={cls.field}
                 />
             </div>
-            <UIButton
-                isLoading={isLoading}
-                onClick={onSubmitFormData}
-                type={"accent"}
-                text="Оставить комментарий"
-            />
+            {reviewIsEditing ? (
+                <div className={cls.updateBtns}>
+                    <UIButton
+                        isLoading={isLoading}
+                        onClick={onCreateUpdateComment}
+                        type="accent"
+                        text="Сохранить"
+                    />
+                    <UIButton
+                        onClick={onClearCommentForm}
+                        type="primary"
+                        text="Отмена"
+                    />
+                </div>
+            ) : (
+                <UIButton
+                    isLoading={isLoading}
+                    onClick={onCreateUpdateComment}
+                    type={"accent"}
+                    text="Оставить комментарий"
+                />
+            )}
         </div>
     );
 };

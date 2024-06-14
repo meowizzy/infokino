@@ -1,10 +1,10 @@
 import {
     CLEAR_COMMENT_FORM,
-    CREATE_COMMENT,
-    CREATE_COMMENT_ERROR,
-    CREATE_COMMENT_LOADING,
+    CREATE_UPDATE_COMMENT,
+    CREATE_UPDATE_COMMENT_ERROR,
+    CREATE_UPDATE_COMMENT_LOADING,
     SET_COMMENT_FORM_DATA,
-    SET_CREATED_COMMENT
+    SET_CREATED_UPDATED_COMMENT
 } from "../../constants/comments";
 
 const initialState = {
@@ -16,7 +16,7 @@ const initialState = {
     isLoading: false,
     error: undefined
 };
-export const createCommentReducer = (state = initialState, action) => {
+export const createUpdateCommentReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_COMMENT_FORM_DATA:
             return {
@@ -25,13 +25,13 @@ export const createCommentReducer = (state = initialState, action) => {
                 isLoading: false,
                 error: undefined
             }
-        case CREATE_COMMENT_LOADING:
+        case CREATE_UPDATE_COMMENT_LOADING:
             return {
                 ...state,
                 isLoading: true,
                 error: undefined
             }
-        case CREATE_COMMENT_ERROR:
+        case CREATE_UPDATE_COMMENT_ERROR:
             return {
                 ...state,
                 formData: {
@@ -64,22 +64,22 @@ export const setCommentFormData = (payload) => {
     };
 };
 
-export const createCommentLoading = () => {
+export const createUpdateCommentLoading = () => {
     return {
-        type: CREATE_COMMENT_LOADING
+        type: CREATE_UPDATE_COMMENT_LOADING
     };
 };
 
-export const setCreatedComment = (payload) => {
+export const setCreatedUpdatedComment = (payload) => {
     return {
-        type: SET_CREATED_COMMENT,
+        type: SET_CREATED_UPDATED_COMMENT,
         payload
     }
 };
 
-export const createCommentError = (payload) => {
+export const createUpdateCommentError = (payload) => {
     return {
-        type: CREATE_COMMENT_ERROR,
+        type: CREATE_UPDATE_COMMENT_ERROR,
         payload
     };
 };
@@ -90,6 +90,9 @@ export const clearCommentForm = () => {
     }
 };
 
-export const createCommentAction = () => {
-    return { type: CREATE_COMMENT }
+export const createUpdateCommentAction = (payload) => {
+    return {
+        type: CREATE_UPDATE_COMMENT,
+        payload
+    }
 }

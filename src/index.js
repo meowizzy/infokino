@@ -17,9 +17,7 @@ root.render(
         <Provider store={store}>
             <ModalContextProvider>
                 <App />
-                <ToastContainer
-                    {...toastifyConfig}
-                />
+                <ToastContainer {...toastifyConfig} />
             </ModalContextProvider>
         </Provider>
     </BrowserRouter>

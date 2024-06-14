@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllFilms, setAllFilmsLoadingAction, setAllFilmsPage } from "@store/reducers/kinopoisk/allFilmsReducer";
 
 
-const useScrollFetching = (props) => {
+export const useScrollFetching = (props) => {
      const { data, isLoading, error } = props;
      const page = useSelector(state => state.allFilmsReducer.page);
      const pages = useSelector(state => state.allFilmsReducer.pages);
@@ -31,5 +31,3 @@ const useScrollFetching = (props) => {
           return () => document.removeEventListener('scroll', handleScroll);
      }, [page, isLoading, error]);
 };
-
-export default useScrollFetching;

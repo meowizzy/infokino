@@ -1,8 +1,9 @@
+import { omit } from 'lodash';
 import getObjectFromQueryString from '@helpers/getObjectFromQuerySearchParams';
 import { useSearchParams } from 'react-router-dom';
-import { omit } from 'lodash';
 
-const useFilter = () => {
+
+export const useFilter = () => {
      const [searchParams, setSearchParams] = useSearchParams();
      const filter = getObjectFromQueryString(searchParams);
 
@@ -13,5 +14,3 @@ const useFilter = () => {
 
      return {filter, setSearchQuery, clearFilter};
 };
-
-export default useFilter;

@@ -1,5 +1,4 @@
-import { projectHttpPost, projectHttpGet, projectHttpPatch } from "@app/api/infokinoAxiosInstance";
-import { projectHttpDelete } from "@app/api/infokinoAxiosInstance";
+import { projectHttpPost, projectHttpGet, projectHttpPut, projectHttpDelete } from "@app/api/infokinoAxiosInstance";
 
 export const getAllReviews = (movieId) =>
     projectHttpGet({
@@ -13,7 +12,7 @@ export const createReview = (data) =>
     });
 
 export const updateReview = (reviewId, data) =>
-    projectHttpPatch({
+    projectHttpPut({
         url: `/reviews/${reviewId}`,
         data
     });

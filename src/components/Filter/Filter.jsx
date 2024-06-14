@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router";
-import cn from 'classnames';
-import useClickOutside from "@hooks/useClickOutside";
+import { useClickOutside } from "@hooks/useClickOutside";
 import { Sorting } from "@components/Sorting";
 import FilterGenres from "./FilterGenres/FilterGenres";
 import FilterCountries from "./FilterCountries/FilterCountries";
 import FilterYear from "./FilterYears/FilterYears";
 import { UIButton } from "../UI";
 import { ReactComponent as FilterIcon } from '@public/images/filter.svg';
+import cn from 'classnames';
 import styles from './Filter.module.scss';
 
 export const Filter = () => {

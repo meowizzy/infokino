@@ -9,7 +9,6 @@ export const projectHttpClient = axios.create({
         Authorization: `Bearer ${LOCAL_STORAGE_AUTH_TOKENS?.accessToken}`
     }
 });
-
 projectHttpClient.interceptors.request.use((config) => {
     const token = localStorage.getItem(LOCAL_STORAGE_AUTH);
 

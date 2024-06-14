@@ -1,3 +1,13 @@
+import {
+    CLEAR_FAVORITES_ACTION,
+    FAVORITES_ACTION,
+    RESET_FAVORITES_DATA,
+    SET_FAVORITES_DATA,
+    SET_FAVORITES_ERROR,
+    SET_FAVORITES_LOADING, SET_USER_FAVORITES_DATA,
+    TOGGLE_FAVORITES
+} from "../../constants/favorites";
+
 const initialState = {
     movieId: undefined,
     data: undefined,
@@ -8,37 +18,37 @@ const initialState = {
 
 export const favoritesReducer = (state = initialState, action) => {
     switch (action.type) {
-        case "TOGGLE_FAVORITES":
+        case TOGGLE_FAVORITES:
             return {
                 ...state,
                 movieId: action.payload
             };
-        case "SET_USER_FAVORITES_DATA":
+        case SET_USER_FAVORITES_DATA:
             return {
                 ...state,
                 isLoading: false,
                 userFavoritesData: action.payload,
                 error: undefined
             }
-        case "SET_FAVORITES_LOADING":
+        case SET_FAVORITES_LOADING:
             return {
                 ...state,
                 isLoading: true
             }
-        case "SET_FAVORITES_DATA":
+        case SET_FAVORITES_DATA:
             return {
                 ...state,
                 data: action.payload,
                 isLoading: false,
                 error: undefined
             }
-        case "SET_FAVORITES_ERROR":
+        case SET_FAVORITES_ERROR:
             return {
                 ...state,
                 error: action.payload,
                 isLoading: false
             }
-        case "RESET_FAVORITES_DATA":
+        case SET_FAVORITES_DATA:
             return {
                 ...state,
                 data: undefined,
@@ -53,47 +63,47 @@ export const favoritesReducer = (state = initialState, action) => {
 
 export const toggleFavoritesAction = (payload) => {
     return {
-        type: "TOGGLE_FAVORITES",
+        type: TOGGLE_FAVORITES,
         payload
     }
 };
 
 export const setFavoritesLoading = () => {
     return {
-        type: "SET_FAVORITES_LOADING"
+        type: SET_FAVORITES_LOADING
     }
 };
 
 export const setFavoritesData = (payload) => {
     return {
-        type: "SET_FAVORITES_DATA",
+        type: SET_FAVORITES_DATA,
         payload
     }
 };
 
 export const setFavoritesError = (payload) => {
     return {
-        type: "SET_FAVORITES_ERROR",
+        type: SET_FAVORITES_ERROR,
         payload
     }
 };
 
 export const setUserFavoritesData = (payload) => {
     return {
-        type: "SET_USER_FAVORITES_DATA",
+        type: SET_USER_FAVORITES_DATA,
         payload
     }
 };
 
 export const resetFavoritesData = () => {
     return {
-        type: "RESET_FAVORITES_DATA"
+        type: RESET_FAVORITES_DATA
     };
 };
 export const getFavoritesAction = () => {
-    return { type: "FAVORITES_ACTION" }
+    return { type: FAVORITES_ACTION }
 }
 
 export const clearFavoritesAction = () => {
-    return { type: "CLEAR_FAVORITES_ACTION" }
+    return { type: CLEAR_FAVORITES_ACTION }
 }

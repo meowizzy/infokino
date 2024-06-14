@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { getSearchQuery } from '@services/kinopoisk.service';
-import useDebounce from '@hooks/useDebounce';
+import { useDebounce } from '@hooks/useDebounce';
 
 const withSearch = (Component) => {
      return () => {
