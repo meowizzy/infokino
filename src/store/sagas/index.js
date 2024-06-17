@@ -20,6 +20,7 @@ import { clearFavoritesWorker } from "./favorites/clearFavoritesWorker";
 import { deleteReviewWorker } from "./reviews/deleteReviewWorker";
 import { fetchReviewsWorker } from "./reviews/fetchReviewsWorker";
 import { createUpdateReviewWorker } from "./reviews/createUpdateReviewWorker";
+import {usersWorker} from "./users";
 
 export function* watcherSaga() {
      yield takeLatest(SET_FILM_ID, handleFilmByIdWorker);
@@ -36,6 +37,7 @@ export function* watcherSaga() {
      yield takeLatest(TOGGLE_FAVORITES, toggleFavoritesWorker);
      yield takeLatest(FAVORITES_ACTION, fetchFavoritesWorker);
      yield takeLatest(CLEAR_FAVORITES_ACTION, clearFavoritesWorker);
+     yield takeLatest("GET_USERS_LIST", usersWorker);
 }
 
 export default function* rootSaga() {

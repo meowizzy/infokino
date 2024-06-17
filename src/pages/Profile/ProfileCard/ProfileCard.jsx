@@ -30,6 +30,7 @@ const ProfileCard = (props) => {
             <UIAvatar
                 avatar={authData?.avatar}
                 username={authData?.username}
+                role={authData?.role}
                 type="large"
                 withZoom="true"
                 hasLink={false}

@@ -4,6 +4,8 @@ import FilmAsync from "@pages/Film/Film.async";
 import ProfileAsync from "@pages/Profile/Profile.async";
 import FavoritesPageAsync from "@pages/Favorites/Favorites.async";
 import NotFoundPageAsync from "@pages/NotFoundPage/NotFoundPage.async";
+import ManagementPageAsync from "@pages/Management/Management.async";
+import { roles } from "../auth";
 
 export const routesPath = {
      HOME: "/",
@@ -12,10 +14,13 @@ export const routesPath = {
      PROFILE: "profile",
      TEMP: "temp",
      NOT_FOUND: "*",
-     FAVORITES: "favorites"
+     FAVORITES: "favorites",
+     RECOMMENDS: "recommends",
+     MANAGEMENT: "management",
+     USERS: "users",
 }
 
-const index = {
+export const routesConfig = {
      home: {
           path: routesPath.HOME,
           element: <HomePageAsync />
@@ -38,11 +43,14 @@ const index = {
           element: <FavoritesPageAsync/>,
           isPrivate: true
      },
+     management: {
+          path: routesPath.MANAGEMENT + "/*",
+          element: <ManagementPageAsync/>,
+          roles: [roles.ADMIN],
+          isPrivate: true
+     },
      notFound: {
           path: routesPath.NOT_FOUND,
           element: <NotFoundPageAsync/>
      }
-}
-
-
-export default index;
+};

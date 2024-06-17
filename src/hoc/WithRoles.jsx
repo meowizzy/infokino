@@ -1,21 +1,21 @@
-import { useEffect } from "react";
+import React, {useEffect} from 'react';
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { routesPath } from "@app/config/routes";
 
-export const ProtectedRoute = (props) => {
+export const WithRoles = (props) => {
     const {
-        children,
-        isPrivate,
+        roles,
+        children
     } = props;
     const { authData, _inited } = useSelector(state => state.userReducer);
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!authData && isPrivate && _inited) {
+        if (roles && _inited && !roles.includes(authData?.role)) {
             navigate(routesPath.HOME);
         }
-    }, [authData, _inited, navigate, isPrivate]);
+    }, [authData, _inited, navigate]);
 
     return (
         <>

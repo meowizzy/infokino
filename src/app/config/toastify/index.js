@@ -1,5 +1,5 @@
 export const toastifyConfig = {
     theme: "dark",
     position: "bottom-right",
-    autoClose: 4000,
+    autoClose: 4000
 }

@@ -11,6 +11,7 @@ import { commentsReducer } from "./reviews/commentsReducer";
 import { createUpdateCommentReducer } from "./reviews/createUpdateCommentReducer";
 import { favoritesReducer } from "./favorites/favoritesReducer";
 import { profileAvatarReducer } from "./auth/profileAvatarReducer";
+import { usersListReducer } from "./users/usersListReducer";
 
 
 const rootReducer = combineReducers({
@@ -25,7 +26,8 @@ const rootReducer = combineReducers({
      commentsReducer,
      createUpdateCommentReducer,
      favoritesReducer,
-     profileAvatarReducer
+     profileAvatarReducer,
+     usersListReducer
 });
 
 

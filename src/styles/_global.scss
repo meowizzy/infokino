@@ -10,6 +10,15 @@ body {
      overflow-anchor: none;
      background-color: var(--color-black);
      color: var(--color-white);
+
+     a {
+          color: var(--color-white);
+          text-decoration: none;
+          transition: var(--transition);
+          &:hover {
+               color: var(--color-main-hover);
+          }
+     }
 }
 
 * {

@@ -1,0 +1,14 @@
+.container {
+  padding: 20px;
+  background-color: var(--primary);
+  border-radius: var(--radius-large);
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  row-gap: 20px;
+  max-width: max-content;
+  margin-left: auto;
+  a {
+    text-decoration: none;
+  }
+}

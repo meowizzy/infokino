@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  align-items: flex-start;
+
+  .sidebar, .content {
+    background-color: var(--primary-dark);
+    border-radius: var(--radius-large);
+    padding: 20px;
+  }
+
+  .sidebar {
+    max-width: 300px;
+    width: 100%;
+    margin-right: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 20px;
+
+    a {
+      text-decoration: none;
+      &:global(.active) {
+        & > button {
+          color: var(--color-main-hover);
+        }
+      }
+    }
+  }
+
+  .content {
+    flex-grow: 1;
+  }
+}

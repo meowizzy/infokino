@@ -1,12 +1,15 @@
 import { Route } from "react-router-dom";
 import { Suspense, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute";
 import { fetchUserData } from "@store/reducers/auth/userReducer";
-import RoutesCustom from '../RoutesCustom/RoutesCustom';
-import routes from "@app/config/routes";
-import Layout from "@layouts/Layout";
+import { routesConfig } from "@app/config/routes";
+import { Layout } from "@layouts/common";
 import { UILoader } from "@components/UI";
+import { WithRoles } from "@hoc/WithRoles";
+import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute";
+import RoutesCustom from '../RoutesCustom/RoutesCustom';
+
+
 
 export const App = () => {
      const dispatch = useDispatch();
@@ -20,22 +23,23 @@ export const App = () => {
                <Suspense fallback={<UILoader />}>
                     <RoutesCustom>
                          <Route path="/" element={<Layout />}>
-                              {
-                                   Object
-                                       .values(routes)
-                                       .map(value => {
-                                            return <Route
-                                                key={value.path}
-                                                path={value.path}
-                                                element={
-                                                     <ProtectedRoute
-                                                       isPrivate={value.isPrivate}
-                                                       >
+                              {Object
+                                  .values(routesConfig)
+                                  .map(value => {
+                                       return (
+                                           <Route
+                                               key={value.path}
+                                               path={value.path}
+                                               element={(
+                                                   <ProtectedRoute isPrivate={value.isPrivate}>
+                                                        <WithRoles roles={value.roles} >
                                                             {value.element}
-                                                       </ProtectedRoute>
-                                                }/>
-                                       })
-                              }
+                                                        </WithRoles>
+                                                   </ProtectedRoute>
+                                               )}
+                                           />)
+                                  }
+                             )}
                          </Route>
                     </RoutesCustom>
                </Suspense>

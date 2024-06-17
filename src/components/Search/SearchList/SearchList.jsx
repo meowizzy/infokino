@@ -5,9 +5,7 @@ const SearchList = ({ Item, data, title }) => {
           <div className={styles.wrap}>
                <p className={styles.title}>{title}</p>
                <ul className={styles.list}>
-                    {
-                         data.map(item => <Item key={item.id} data={item}/>)
-                    }
+                    {data.map(item => <Item key={item.id} data={item}/>)}
                </ul>
           </div>
      );

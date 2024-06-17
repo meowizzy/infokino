@@ -34,7 +34,7 @@ export function* createUpdateReviewWorker({ payload: { reviewIsEditing, setRevie
 
             yield put(setComments(newComments));
             setReviewIsEditing(false);
-            toast.success("Комментарий изменен успешно");
+            toast.success("Комментарий успешно изменен");
         } else {
             const { data: createdReview } = yield call(createReview, {
                 movieId,

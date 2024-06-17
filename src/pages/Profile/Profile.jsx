@@ -1,9 +1,10 @@
 import { UITitle, UILoader } from "@components/UI";
 import { useSelector } from "react-redux";
 import ProfileCard from "./ProfileCard/ProfileCard";
-import UIErrorMsg from "../../components/UI/UIErrorMsg/UIErrorMsg";
+import { ProfileNavigation } from "./ProfileNavigation/ProfileNavigation";
+import UIErrorMsg from "@components/UI/UIErrorMsg/UIErrorMsg";
+import { UIButton } from "@components/UI";
 import cls from "./Profile.module.scss";
-import { UIButton } from "../../components/UI";
 
 const Profile = () => {
     const {
@@ -38,10 +39,15 @@ const Profile = () => {
 
     return (
         <div className={cls.profilePage}>
-            <UITitle title="Профиль"/>
-            <ProfileCard
-                authData={authData}
-            />
+            <div className={cls.left}>
+                <UITitle title="Профиль"/>
+                <ProfileCard
+                    authData={authData}
+                />
+            </div>
+            <div className={cls.right}>
+                <ProfileNavigation />
+            </div>
         </div>
     );
 };

@@ -11,6 +11,8 @@ import { UIAvatar } from "./UIAvatar/UIAvatar";
 import UITextArea from "./UITextArea/UITextArea";
 import UIErrorMsg from "./UIErrorMsg/UIErrorMsg";
 import { UIFavoritesLink } from "./UIFavoritesLink/UIFavoritesLink";
+import { UIRole } from "./UIRole/UIRole";
+import UITable from "./UITable/UITable";
 
 export {
     UIAvatar,
@@ -25,5 +27,7 @@ export {
     UIForm,
     UITextArea,
     UIErrorMsg,
-    UIFavoritesLink
+    UIFavoritesLink,
+    UITable,
+    UIRole
 };

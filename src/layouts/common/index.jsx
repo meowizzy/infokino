@@ -1,7 +1,7 @@
-import { Outlet, useLocation } from 'react-router-dom'; 
+import { Outlet, useLocation } from 'react-router-dom';
 import { HeaderPanel } from "@containers/HeaderPanel";
 
-const Layout = () => {
+export const Layout = () => {
      const location = useLocation();
      const withoutContainer = location.pathname === '/' || location.pathname.includes('/film/');
 
@@ -28,5 +28,3 @@ const Layout = () => {
           </>
      );
 };
-
-export default Layout;

@@ -1,0 +1,17 @@
+.flag {
+  padding: 5px 15px;
+  border-radius: var(--radius-medium);
+  display: inline-block;
+}
+
+.ADMIN {
+  background-color: var(--danger);
+}
+
+.USER {
+  background-color: var(--primary-hover);
+}
+
+.MODERATOR {
+  background-color: var(--color-main);
+}

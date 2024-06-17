@@ -27,6 +27,7 @@ export const AuthButton = () => {
               <UIAvatar
                   username={authData?.username}
                   avatar={authData?.avatar}
+                  role={authData?.role}
               />
           );
      }

@@ -12,7 +12,7 @@ export function* deleteReviewWorker({ payload }) {
         const newData = reviews.filter(review => review._id !== payload);
 
         yield put(setComments(newData));
-        toast.success("Комментарий удален успешно");
+        toast.success("Комментарий успешно удален");
 
     } catch (e) {
         const error = e.response ? e.response.data.message : e.message;
