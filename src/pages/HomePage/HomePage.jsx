@@ -1,14 +1,13 @@
 import { useSelector } from "react-redux/es/exports";
 import { getFilmsByGenre } from "@store/reducers/kinopoisk/filmsByGenreReducer";
+import { fetchRecommendMovies } from "@store/reducers/recommends/recommendsReducer";
 import { useFetching } from "@hooks/useFetching";
 import { Categories } from "@components/Categories/Categories";
 import { TopSlider } from "@screens/TopSlider/TopSlider";
 import { Collection } from "@screens/Collection";
 import { collectionsTitles } from "@app/config/collections";
-import {useEffect} from "react";
-import {useDispatch} from "react-redux";
-import {fetchRecommendMovies} from "../../store/reducers/recommends/recommendsReducer";
-import {UILoader} from "../../components/UI";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 const HomePage = () => {
      const films = useSelector(state => state.filmsReducer);
@@ -28,7 +27,7 @@ const HomePage = () => {
           <>
                <TopSlider items={newFilms}/>
                <Categories />
-              {!!data ? <Collection items={data} title="Рекомендуем к просмотру"/> : <UILoader />}
+              <Collection items={data} title="Рекомендуем к просмотру"/>
                { Object.entries(films).map(([key, value]) =>
                    <Collection key={key} items={value} title={collectionsTitles[key]}/>) }
           </>

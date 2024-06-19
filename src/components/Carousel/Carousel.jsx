@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper';
-import 'swiper/css'; 
+import 'swiper/css';
 import cn from 'classnames';
 import styles from './Carousel.module.scss';
 import { UILoader } from '../UI';
@@ -9,17 +9,17 @@ import { UILoader } from '../UI';
 
 
 export const Carousel = ({ sliderOptions, items, Item}) => {
-     const { 
-          slidesPerView = 3, 
-          loop = false, 
-          centeredSlides = false, 
+     const {
+          slidesPerView = 3,
+          loop = false,
+          centeredSlides = false,
           spaceBetween = 0,
           autoPlay = 9000000000,
           speed = 900,
           breakpoints
      } = sliderOptions;
 
-     if (!items.length) {
+     if (!items?.length) {
           return (
                <UILoader />
           )
@@ -28,13 +28,13 @@ export const Carousel = ({ sliderOptions, items, Item}) => {
      return (
           <div className={cn(styles.slider, 'Carousel')}>
                <div className={cn(styles.slider__container, 'container')}>
-                    <Swiper 
+                    <Swiper
                          navigation={true}
                          modules={[Navigation, Autoplay]}
-                         slidesPerView={slidesPerView} 
+                         slidesPerView={slidesPerView}
                          spaceBetween={spaceBetween}
                          autoplay={{delay: autoPlay}}
-                         speed={speed} 
+                         speed={speed}
                          loop={loop}
                          breakpoints={breakpoints}
                          centeredSlides={centeredSlides}>
