@@ -12,6 +12,7 @@ import { createUpdateCommentReducer } from "./reviews/createUpdateCommentReducer
 import { favoritesReducer } from "./favorites/favoritesReducer";
 import { profileAvatarReducer } from "./auth/profileAvatarReducer";
 import { usersListReducer } from "./users/usersListReducer";
+import { deleteUserSuccessReducer } from "./users/deleteUserSuccessReducer";
 
 
 const rootReducer = combineReducers({
@@ -27,7 +28,8 @@ const rootReducer = combineReducers({
      createUpdateCommentReducer,
      favoritesReducer,
      profileAvatarReducer,
-     usersListReducer
+     usersListReducer,
+     deleteUserSuccessReducer
 });
 
 

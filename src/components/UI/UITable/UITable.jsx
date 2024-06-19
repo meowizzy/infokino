@@ -19,11 +19,12 @@ const UITable = (props) => {
 const Row = (props) => {
     const {
         children,
-        className
+        className,
+        rowLoading
     } = props;
 
     return (
-        <div className={cn(cls.tableRow, className)}>
+        <div className={cn(cls.tableRow, className, { [cls.isLoading]: rowLoading })}>
             {children}
         </div>
     );

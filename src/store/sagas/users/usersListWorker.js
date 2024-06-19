@@ -3,8 +3,7 @@ import { call, put } from 'redux-saga/effects';
 import { usersList } from "@services/users.service";
 import { setUsersListError, setUsersListLoading, setUsersList } from "@store/reducers/users/usersListReducer";
 
-
-export function* usersWorker() {
+export function* usersListWorker() {
     try {
         yield put(setUsersListLoading());
         const { data } = yield call(usersList);

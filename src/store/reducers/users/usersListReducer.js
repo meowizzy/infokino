@@ -1,3 +1,5 @@
+import { GET_USERS_LIST, SET_USERS_ERROR, SET_USERS_LIST, SET_USERS_LOADING } from "../../constants/usersList";
+
 const initialState = {
     data: undefined,
     isLoading: false,
@@ -6,19 +8,19 @@ const initialState = {
 
 export const usersListReducer = (state = initialState, action) => {
     switch (action.type) {
-        case "SET_USERS_LIST":
+        case SET_USERS_LIST:
             return {
                 ...state,
                 data: action.payload,
                 isLoading: false,
                 error: undefined
             };
-        case "SET_USERS_LOADING":
+        case SET_USERS_LOADING:
             return {
                 ...state,
                 isLoading: true,
             };
-        case "SET_USERS_ERROR":
+        case SET_USERS_ERROR:
             return {
                 ...state,
                 isLoading: false,
@@ -31,26 +33,26 @@ export const usersListReducer = (state = initialState, action) => {
 
 export const getUsersList = () => {
     return {
-        type: "GET_USERS_LIST"
+        type: GET_USERS_LIST
     }
 }
 
 export const setUsersList = (payload) => {
     return {
-        type: "SET_USERS_LIST",
+        type: SET_USERS_LIST,
         payload
     }
 }
 
 export const setUsersListLoading = () => {
     return {
-        type: "SET_USERS_LOADING"
+        type: SET_USERS_LOADING
     }
 }
 
 export const setUsersListError = (payload) => {
     return {
-        type: "SET_USERS_ERROR",
+        type: SET_USERS_ERROR,
         payload
     }
 }

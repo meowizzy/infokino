@@ -3,9 +3,10 @@ import { SET_FILM_ID } from '../constants/filmById';
 import { GET_ALL_FILMS } from '../constants/allfilms';
 import { GET_FILMS_BY_GENRE } from '../constants/genre';
 import { GET_COUNTRIES } from '../reducers/kinopoisk/countriesReducer';
-import {REGISTER, LOGIN, USER, SET_PROFILE_AVATAR} from "../constants/auth";
+import { REGISTER, LOGIN, USER, SET_PROFILE_AVATAR } from "../constants/auth";
 import { CREATE_UPDATE_COMMENT, DELETE_COMMENT, FILM_COMMENTS } from "../constants/comments";
 import { CLEAR_FAVORITES_ACTION, FAVORITES_ACTION, TOGGLE_FAVORITES } from "../constants/favorites";
+import { GET_USERS_LIST } from "../constants/usersList";
 import { handleAllFilmsWorker } from './kinopoisk/allFilmsWorker';
 import { handleFilmsByGenreWorker } from './kinopoisk/filmsByGenreWorker';
 import { handleFilmByIdWorker } from './kinopoisk/filmByIdWorker';
@@ -20,7 +21,8 @@ import { clearFavoritesWorker } from "./favorites/clearFavoritesWorker";
 import { deleteReviewWorker } from "./reviews/deleteReviewWorker";
 import { fetchReviewsWorker } from "./reviews/fetchReviewsWorker";
 import { createUpdateReviewWorker } from "./reviews/createUpdateReviewWorker";
-import {usersWorker} from "./users";
+import { usersListWorker } from "./users/usersListWorker";
+import { deleteUserWorker } from "./users/deleteUserWorker";
 
 export function* watcherSaga() {
      yield takeLatest(SET_FILM_ID, handleFilmByIdWorker);
@@ -37,7 +39,8 @@ export function* watcherSaga() {
      yield takeLatest(TOGGLE_FAVORITES, toggleFavoritesWorker);
      yield takeLatest(FAVORITES_ACTION, fetchFavoritesWorker);
      yield takeLatest(CLEAR_FAVORITES_ACTION, clearFavoritesWorker);
-     yield takeLatest("GET_USERS_LIST", usersWorker);
+     yield takeLatest(GET_USERS_LIST, usersListWorker);
+     yield takeLatest("TRIGGER_DELETE_USER", deleteUserWorker);
 }
 
 export default function* rootSaga() {

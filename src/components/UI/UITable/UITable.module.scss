@@ -9,6 +9,9 @@
 .tableHead {
   background-color: var(--primary-hover);
   border-radius: var(--radius-large);
+  .tableCell {
+    font-weight: 600;
+  }
 }
 
 .tableCell {
@@ -31,7 +34,9 @@
 .tableBody {
   .tableRow {
     position: relative;
-    overflow: hidden;
+    &.isLoading {
+      opacity: 0.3;
+    }
     &:before {
       content: "";
       position: absolute;
@@ -41,6 +46,7 @@
       bottom: 0;
       background-color: var(--color-white);
       opacity: 0;
+      border-radius: var(--radius-large);
       transition: var(--transition);
       pointer-events: none;
     }
