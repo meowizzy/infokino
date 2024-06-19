@@ -13,6 +13,7 @@ import { favoritesReducer } from "./favorites/favoritesReducer";
 import { profileAvatarReducer } from "./auth/profileAvatarReducer";
 import { usersListReducer } from "./users/usersListReducer";
 import { deleteUserSuccessReducer } from "./users/deleteUserSuccessReducer";
+import { recommendsReducer } from "./recommends/recommendsReducer";
 
 
 const rootReducer = combineReducers({
@@ -29,7 +30,8 @@ const rootReducer = combineReducers({
      favoritesReducer,
      profileAvatarReducer,
      usersListReducer,
-     deleteUserSuccessReducer
+     deleteUserSuccessReducer,
+     recommendsReducer
 });
 
 

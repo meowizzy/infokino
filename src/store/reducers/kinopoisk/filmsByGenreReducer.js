@@ -2,15 +2,14 @@ import {
      SET_COMEDY_FILMS,
      SET_NEW_FILMS,
      SET_DRAMA_FILMS,
-     SET_FAMILY_FILMS, GET_FILMS_BY_GENRE, SET_COMEDY_FILMS_ERROR, SET_NEW_FILMS_ERROR,
+     SET_FAMILY_FILMS, GET_FILMS_BY_GENRE,
 } from "../../constants/genre";
-import {ERROR_MESSAGE} from "../../constants";
 
 const initialState = {
      newFilms: [],
      comedyFilms: [],
      dramaFilms: [],
-     familyFilms: []
+     familyFilms: [],
 };
 
 const filmsByGenreReducer = (state = initialState, action) => {

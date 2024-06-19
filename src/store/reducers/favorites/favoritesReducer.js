@@ -48,7 +48,7 @@ export const favoritesReducer = (state = initialState, action) => {
                 error: action.payload,
                 isLoading: false
             }
-        case SET_FAVORITES_DATA:
+        case RESET_FAVORITES_DATA:
             return {
                 ...state,
                 data: undefined,

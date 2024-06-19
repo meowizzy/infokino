@@ -1,4 +1,10 @@
-import { GET_USERS_LIST, SET_USERS_ERROR, SET_USERS_LIST, SET_USERS_LOADING } from "../../constants/usersList";
+import {
+    CLEAR_USERS_LIST,
+    GET_USERS_LIST,
+    SET_USERS_ERROR,
+    SET_USERS_LIST,
+    SET_USERS_LOADING
+} from "../../constants/usersList";
 
 const initialState = {
     data: undefined,
@@ -25,7 +31,14 @@ export const usersListReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 error: action.payload
-            }
+            };
+        case CLEAR_USERS_LIST:
+            return {
+                ...state,
+                isLoading: false,
+                error: undefined,
+                data: undefined
+            };
         default:
             return state;
     }
@@ -54,5 +67,11 @@ export const setUsersListError = (payload) => {
     return {
         type: SET_USERS_ERROR,
         payload
+    }
+}
+
+export const clearUsersList = () => {
+    return {
+        type: CLEAR_USERS_LIST
     }
 }

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { UITitle, UITable, UIRole, UIButton } from "@components/UI";
 import { useDispatch, useSelector } from "react-redux";
-import { getUsersList } from "@store/reducers/users/usersListReducer";
+import { getUsersList, clearUsersList } from "@store/reducers/users/usersListReducer";
 import { triggerDeleteUser } from "@store/reducers/users/deleteUserSuccessReducer";
 import { rolesTranslation, roles } from "@app/config/auth";
 import { ReactComponent as CloseIcon } from "@public/images/close.svg";
@@ -20,6 +20,9 @@ export const UsersList = () => {
 
     useEffect(() => {
         dispatch(getUsersList());
+        return () => {
+            dispatch(clearUsersList());
+        };
     }, []);
 
     const onDeleteUser = (userId) => {

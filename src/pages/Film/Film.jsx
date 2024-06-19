@@ -40,11 +40,8 @@ const Film = () => {
           data ?
                <>
                     <PlayerPanel
-                         poster={data?.poster}
-                         background={data?.backdrop?.url}
-                         id={id}
-                         title={data.name}
-                         enName={data.alternativeName}
+                        id={id}
+                        data={data}
                     />
 
                     <div className="container" style={{paddingTop: "100px"}}>

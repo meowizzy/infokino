@@ -40,6 +40,22 @@ export const getNewFilms = async (limit = 10) =>
          }
     });
 
+export const getRecommendFilms = async (recommends = []) =>
+    await kinopoiskHttpGet({
+        url: `${KINOPOISK_API_VERSIONS.API_VER_1_3}/movie?${buildUrlParams({ "genres.name": recommends.join("+") })}`,
+        params: {
+            sortField: "year",
+            sortType: "-1",
+            movieLength: "!null",
+            "rating.kp": "1-10",
+            "poster.previewUrl": "!null",
+            "poster.url": "!null",
+            year: `${getCurrentYear()-5}-${getCurrentYear()-1}`,
+            limit: 10,
+            page: 1
+        }
+    })
+
 export const getFilmsByGenre = async (limit = 10, filters, page = 1, type='movie', sort) =>
     await kinopoiskHttpGet({
          url: `${KINOPOISK_API_VERSIONS.API_VER_1_3}/movie?${buildUrlParams(filters)}`,
