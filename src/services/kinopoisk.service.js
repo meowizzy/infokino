@@ -47,7 +47,7 @@ export const getRecommendFilms = async (recommends = []) =>
             sortField: "year",
             sortType: "-1",
             movieLength: "!null",
-            "rating.kp": "1-10",
+            "rating.kp": "5-10",
             "poster.previewUrl": "!null",
             "poster.url": "!null",
             year: `${getCurrentYear()-5}-${getCurrentYear()-1}`,
