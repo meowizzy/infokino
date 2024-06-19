@@ -8,6 +8,7 @@ import { Collection } from "@screens/Collection";
 import { collectionsTitles } from "@app/config/collections";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import {WithAuth} from "../../hoc/WithAuth";
 
 const HomePage = () => {
      const films = useSelector(state => state.filmsReducer);
@@ -25,11 +26,13 @@ const HomePage = () => {
 
      return (
           <>
-               <TopSlider items={newFilms}/>
-               <Categories />
-              <Collection items={data} title="Рекомендуем к просмотру"/>
-               { Object.entries(films).map(([key, value]) =>
-                   <Collection key={key} items={value} title={collectionsTitles[key]}/>) }
+            <TopSlider items={newFilms}/>
+            <Categories />
+            <WithAuth>
+                <Collection items={data} title="Рекомендуем к просмотру"/>
+            </WithAuth>
+            { Object.entries(films).map(([key, value]) =>
+                <Collection key={key} items={value} title={collectionsTitles[key]}/>) }
           </>
      );
 };
