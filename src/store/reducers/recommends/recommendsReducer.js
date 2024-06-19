@@ -2,7 +2,8 @@ const initialState = {
     data: undefined,
     error: undefined,
     isLoading: false,
-    query: []
+    query: [],
+    _inited: false
 };
 export const recommendsReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -12,6 +13,7 @@ export const recommendsReducer = (state = initialState, action) => {
                 data: action.payload,
                 isLoading: false,
                 error: undefined,
+                _inited: true,
             };
         case "SET_RECOMMENDS_LOADING":
             return {
