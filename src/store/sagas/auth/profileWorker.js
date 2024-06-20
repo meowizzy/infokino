@@ -5,7 +5,8 @@ import { fetchFavorites } from "@services/favorites.service";
 import { getRecommends } from "@services/recommends.service";
 import { setUserData, setUserError, setUserIsLoading } from "../../reducers/auth/userReducer";
 import { setUserFavoritesData } from "../../reducers/favorites/favoritesReducer";
-import { setRecommendsQuery } from "../../reducers/recommends/recommendsReducer";
+import {setRecommendsData, setRecommendsQuery} from "../../reducers/recommends/recommendsReducer";
+import {getRecommendFilms} from "../../../services/kinopoisk.service";
 
 export function* profileWorker() {
     try {
@@ -22,17 +23,28 @@ export function* profileWorker() {
             password: undefined
         }));
 
+
+
         if (profileData) {
-            const [userFavorites, userRecommends] = yield all([
-                call(fetchFavorites),
-                call(getRecommends)
-            ]);
+            // const [userFavorites, userRecommends] = yield all([
+            //     call(fetchFavorites),
+            //     call(getRecommends)
+            // ]);
+
+            const userFavorites = yield call(fetchFavorites);
+            const userRecommends = yield call(getRecommends);
 
             const { data: userFavoritesData } = userFavorites;
             const { data: userRecommendsData } = userRecommends;
 
             yield put(setUserFavoritesData(userFavoritesData));
             yield put(setRecommendsQuery(userRecommendsData?.items));
+
+            if (userRecommendsData?.items?.length) {
+                const { data: recommends } = yield call(getRecommendFilms, userRecommendsData?.items);
+
+                yield put(setRecommendsData(recommends?.docs));
+            }
         }
 
         yield put(setUserIsLoading(false));

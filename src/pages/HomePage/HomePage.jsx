@@ -14,13 +14,13 @@ const HomePage = () => {
      const films = useSelector(state => state.filmsReducer);
      const newFilms = films.newFilms;
      const dispatch = useDispatch();
-     const { query, data, _inited } = useSelector(state => state.recommendsReducer);
+     const { data } = useSelector(state => state.recommendsReducer);
 
-    useEffect(() => {
-        if (!_inited) {
-            dispatch(fetchRecommendMovies(query));
-        }
-    }, [query]);
+    // useEffect(() => {
+    //     if (!_inited) {
+    //         dispatch(fetchRecommendMovies(query));
+    //     }
+    // }, [query]);
 
      useFetching(getFilmsByGenre, newFilms.length);
 
